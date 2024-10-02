@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Admin | Job Portal</title>
+    <title>Company | Job Portal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully responsive admin theme which can be used to build CRM, CMS,ERP etc." name="description" />
     <meta content="Job Portal" name="author" />
@@ -51,12 +51,12 @@
                 </li>
                 <li class="dropdown">
                     @php
-                        $admin = auth()->user();
+                        $company = auth()->user();
                     @endphp
                     <a class="nav-link dropdown-toggle arrow-none nav-user" data-bs-toggle="dropdown" href="#" role="button"
                        aria-haspopup="false" aria-expanded="false">
                         <span class="d-lg-block d-none">
-                              <h5 class="my-0 fw-normal">{{$admin->name}}
+                              <h5 class="my-0 fw-normal">{{$company->name}}
                                   <i class="ri-arrow-down-s-line d-none d-sm-inline-block align-middle"></i>
                               </h5>
                         </span>
@@ -83,21 +83,21 @@
     </div>
 
     <div class="leftside-menu">
-        <a href="{{route('admin.dashboard')}}" class="logo logo-light">
-{{--            <span class="logo-lg">--}}
-{{--                <img src="#" alt="logo" style="height: 50px;">--}}
-{{--            </span>--}}
-{{--            <span class="logo-sm">--}}
-{{--                <img src="#" alt="small logo">--}}
-{{--            </span>--}}
-            <h1 style="color: red">JPA</h1>
+        <a href="{{route('company.dashboard')}}" class="logo logo-light">
+            {{--            <span class="logo-lg">--}}
+            {{--                <img src="#" alt="logo" style="height: 50px;">--}}
+            {{--            </span>--}}
+            {{--            <span class="logo-sm">--}}
+            {{--                <img src="#" alt="small logo">--}}
+            {{--            </span>--}}
+            <h1 style="color: red">JPC</h1>
         </a>
 
         <div class="h-100" id="leftside-menu-container" data-simplebar>
             <ul class="side-nav">
                 <li class="side-nav-title">Main</li>
                 <li class="side-nav-item">
-                    <a href="{{route('admin.dashboard')}}" class="side-nav-link">
+                    <a href="{{route('company.dashboard')}}" class="side-nav-link">
                         <i class="ri-dashboard-3-line"></i>
                         <span> Dashboard </span>
                     </a>
@@ -114,9 +114,6 @@
                             <li>
                                 <a href="#">Test 1</a>
                             </li>
-                            <li>
-                                <a href="#">Test 2</a>
-                            </li>
                         </ul>
                     </div>
                 </li>
@@ -127,7 +124,7 @@
     <div class="content-page">
         <div class="content">
             <div class="container-fluid">
-                @yield('admin_content')
+                @yield('company_content')
             </div>
         </div>
         <footer class="footer">

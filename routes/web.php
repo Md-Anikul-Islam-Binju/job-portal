@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\admin\AdminDashboardController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\company\CompanyDashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +22,19 @@ Route::get('/', function () {
 
 //Admin
 Route::middleware('auth')->group(callback: function () {
-    //Dashboard
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::middleware(['admin'])->prefix('admin')->group(function () {
+
+        //dashboard
+        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+    });
+
+
+    Route::middleware(['company'])->prefix('company')->group(function () {
+        //dashboard
+        Route::get('/dashboard', [CompanyDashboardController::class, 'index'])->name('company.dashboard');
+    });
 });
+
+
 require __DIR__.'/auth.php';
