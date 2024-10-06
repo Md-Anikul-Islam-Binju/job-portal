@@ -104,9 +104,17 @@
                 </li>
 
                 <li class="side-nav-item">
+                    <a href="{{route('company.category')}}" class="side-nav-link">
+                        <i class="ri-dashboard-3-line"></i>
+                        <span> Category </span>
+                    </a>
+                </li>
+
+
+                <li class="side-nav-item">
                     <a data-bs-toggle="collapse" href="#sidebarPages" aria-expanded="false" aria-controls="sidebarPages" class="side-nav-link">
                         <i class="ri-pages-line"></i>
-                        <span> Category </span>
+                        <span> Test </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="sidebarPages">

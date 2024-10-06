@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AdminDashboardController;
-use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\company\CategoryController;
 use App\Http\Controllers\company\CompanyDashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +33,12 @@ Route::middleware('auth')->group(callback: function () {
     Route::middleware(['company'])->prefix('company')->group(function () {
         //dashboard
         Route::get('/dashboard', [CompanyDashboardController::class, 'index'])->name('company.dashboard');
+
+        //Category Section
+        Route::get('/category-section', [CategoryController::class, 'index'])->name('company.category');
+        Route::post('/category-store', [CategoryController::class, 'store'])->name('company.category.store');
+        Route::put('/category-update/{id}', [CategoryController::class, 'update'])->name('company.category.update');
+        Route::get('/category-delete/{id}', [CategoryController::class, 'destroy'])->name('company.category.destroy');
     });
 });
 
