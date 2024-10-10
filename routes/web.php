@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\admin\AboutController;
 use App\Http\Controllers\admin\AdminDashboardController;
+use App\Http\Controllers\admin\SiteSettingController;
+use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\company\CategoryController;
 use App\Http\Controllers\company\CompanyDashboardController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +30,21 @@ Route::middleware('auth')->group(callback: function () {
 
         //dashboard
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
+        //Slider Section
+        Route::get('/slider-section', [SliderController::class, 'index'])->name('admin.slider.section');
+        Route::post('/slider-store', [SliderController::class, 'store'])->name('admin.slider.store');
+        Route::put('/slider-update/{id}', [SliderController::class, 'update'])->name('admin.slider.update');
+        Route::get('/slider-delete/{id}', [SliderController::class, 'destroy'])->name('admin.slider.destroy');
+
+
+        //Site Setting
+        Route::get('/site-setting', [SiteSettingController::class, 'index'])->name('admin.site.setting');
+        Route::post('/site-settings-store-update/{id?}', [SiteSettingController::class, 'createOrUpdate'])->name('admin.site.settings.createOrUpdate');
+
+        //Site About
+        Route::get('/about', [AboutController::class, 'index'])->name('admin.about');
+        Route::post('/about-update/{id?}', [AboutController::class, 'createOrUpdateAbout'])->name('admin.about.createOrUpdate');
     });
 
 

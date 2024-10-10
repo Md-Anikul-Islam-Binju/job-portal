@@ -103,24 +103,25 @@
                     </a>
                 </li>
 
-
+                <li class="side-nav-item">
+                    <a href="{{route('admin.slider.section')}}" class="side-nav-link">
+                        <i class="ri-dashboard-3-line"></i>
+                        <span> Slider </span>
+                    </a>
+                </li>
 
                 <li class="side-nav-item">
-                    <a data-bs-toggle="collapse" href="#sidebarPages" aria-expanded="false" aria-controls="sidebarPages" class="side-nav-link">
-                        <i class="ri-pages-line"></i>
-                        <span> Category </span>
-                        <span class="menu-arrow"></span>
+                    <a href="{{route('admin.about')}}" class="side-nav-link">
+                        <i class="ri-dashboard-3-line"></i>
+                        <span> About </span>
                     </a>
-                    <div class="collapse" id="sidebarPages">
-                        <ul class="side-nav-second-level">
-                            <li>
-                                <a href="#">Test 1</a>
-                            </li>
-                            <li>
-                                <a href="#">Test 2</a>
-                            </li>
-                        </ul>
-                    </div>
+                </li>
+
+                <li class="side-nav-item">
+                    <a href="{{route('admin.site.setting')}}" class="side-nav-link">
+                        <i class="ri-dashboard-3-line"></i>
+                        <span> Site Setting </span>
+                    </a>
                 </li>
             </ul>
             <div class="clearfix"></div>
