@@ -11,6 +11,7 @@
     <link href="{{asset('backend/vendor/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- Datatables css -->
     <link href="{{asset('backend/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.css" />
     <link href="{{asset('backend/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css')}}" rel="stylesheet"
           type="text/css" />
     <link href="{{asset('backend/vendor/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css')}}" rel="stylesheet"
@@ -178,6 +179,25 @@
 <script src="{{asset('backend/js/pages/datatable.init.js')}}"></script>
 <script src="{{asset('backend/js/pages/dashboard.js')}}"></script>
 <script src="{{asset('backend/js/app.min.js')}}"></script>
+<script src="{{asset('backend/js/summernote-bs5.min.js')}}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Initialize Summernote for the main textarea
+        $('#summernote').summernote({
+            height: 200,
+        });
 
+        $('#summernoteBn').summernote({
+            height: 200,
+        });
+
+        // Initialize Summernote for edit modals
+        $('[id^=summernoteEdit]').each(function () {
+            $(this).summernote({
+                height: 200,
+            });
+        });
+    });
+</script>
 </body>
 </html>

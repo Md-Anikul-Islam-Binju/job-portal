@@ -109,15 +109,14 @@
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="mb-3">
-                                                            <label> Details English</label>
-                                                            <textarea class="form-control" name="details" rows="5" placeholder="Enter the Description English">{{ strip_tags($sliderData->details) }}</textarea>
+                                                            <label>Details English </label>
+                                                            <textarea id="summernoteEdit{{ $sliderData->id }}" name="details">{{ $sliderData->details }}</textarea>
                                                         </div>
                                                     </div>
-
                                                     <div class="col-12">
                                                         <div class="mb-3">
-                                                            <label> Details Bangle</label>
-                                                            <textarea class="form-control" name="details_bn" rows="5" placeholder="Enter the Description Bangle">{{ strip_tags($sliderData->details_bn) }}</textarea>
+                                                            <label>Details Bangle</label>
+                                                            <textarea id="summernoteEdit{{ $sliderData->id }}" name="details_bn">{{ $sliderData->details_bn }}</textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -197,17 +196,21 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-12">
-                                <div class="mb-3">
-                                    <label> Details English</label>
-                                    <textarea class="form-control" name="details" rows="5" placeholder="Enter the Description English"></textarea>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label> Details English</label>
+                                        <textarea id="summernote" name="details"></textarea>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="col-12">
-                                <div class="mb-3">
-                                    <label> Details Bangle</label>
-                                    <textarea class="form-control" name="details_bn" rows="5" placeholder="Enter the Description Bangle"></textarea>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label> Details Bangle</label>
+                                        <textarea id="summernoteBn" name="details_bn"></textarea>
+                                    </div>
                                 </div>
                             </div>
                         </div>

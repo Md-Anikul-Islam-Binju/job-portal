@@ -52,14 +52,19 @@
                                 </div>
 
                                 <div class="row g-2">
-                                    <div class="mb-3 col-md-12">
-                                        <label for="details" class="form-label">Short Description English</label>
-                                        <textarea type="text" class="form-control" name="details">{{$about?$about->details:''}}</textarea>
-                                    </div>
-
-                                    <div class="mb-3 col-md-12">
-                                        <label for="details_bn" class="form-label">Short Description Bangle</label>
-                                        <textarea type="text" class="form-control" name="details_bn">{{$about?$about->details_bn:''}}</textarea>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="mb-3">
+                                                <label>Short Description English</label>
+                                                <textarea id="summernoteEdit{{ $about->id }}" name="details">{{ $about->details }}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="mb-3">
+                                                <label>Short Description Bangle</label>
+                                                <textarea id="summernoteEdit{{ $about->id }}" name="details_bn">{{ $about->details_bn }}</textarea>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Save</button>
