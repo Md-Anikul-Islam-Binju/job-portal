@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\SiteSettingController;
 use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\company\CategoryController;
 use App\Http\Controllers\company\CompanyDashboardController;
+use App\Http\Controllers\company\LocationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -65,6 +66,12 @@ Route::middleware('auth')->group(callback: function () {
         Route::post('/category-store', [CategoryController::class, 'store'])->name('company.category.store');
         Route::put('/category-update/{id}', [CategoryController::class, 'update'])->name('company.category.update');
         Route::get('/category-delete/{id}', [CategoryController::class, 'destroy'])->name('company.category.destroy');
+
+        //Location Section
+        Route::get('/location-section', [LocationController::class, 'index'])->name('company.location');
+        Route::post('/location-store', [LocationController::class, 'store'])->name('company.location.store');
+        Route::put('/location-update/{id}', [LocationController::class, 'update'])->name('company.location.update');
+        Route::get('/location-delete/{id}', [LocationController::class, 'destroy'])->name('company.location.destroy');
     });
 });
 
