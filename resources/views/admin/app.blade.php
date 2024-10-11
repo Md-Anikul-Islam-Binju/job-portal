@@ -119,6 +119,13 @@
                 </li>
 
                 <li class="side-nav-item">
+                    <a href="{{route('admin.service.section')}}" class="side-nav-link">
+                        <i class="ri-dashboard-3-line"></i>
+                        <span> Service </span>
+                    </a>
+                </li>
+
+                <li class="side-nav-item">
                     <a href="{{route('admin.site.setting')}}" class="side-nav-link">
                         <i class="ri-dashboard-3-line"></i>
                         <span> Site Setting </span>
