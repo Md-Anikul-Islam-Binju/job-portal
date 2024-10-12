@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\company\CategoryController;
 use App\Http\Controllers\company\CompanyDashboardController;
 use App\Http\Controllers\company\LocationController;
+use App\Http\Controllers\user\FrontendController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,9 +22,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth/login');
-});
+
+
+//Route::get('/', function () {
+//    return view('auth/login');
+//});
+
+Route::get('/', [FrontendController::class, 'frontend'])->name('home');
 
 //Admin
 Route::middleware('auth')->group(callback: function () {
