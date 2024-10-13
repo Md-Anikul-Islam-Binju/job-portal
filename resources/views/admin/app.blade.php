@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Admin | Job Portal</title>
+    <title>Admin | Job Portal </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully responsive admin theme which can be used to build CRM, CMS,ERP etc." name="description" />
     <meta content="Job Portal" name="author" />
@@ -145,7 +145,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 text-center">
-                        <script>document.write(new Date().getFullYear())</script> © Powered By CoderNetix</b>
+                        <script>document.write(new Date().getFullYear())</script> © Powered By CoderNetix.</b>
                     </div>
                 </div>
             </div>

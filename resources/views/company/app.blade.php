@@ -146,7 +146,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 text-center">
-                        <script>document.write(new Date().getFullYear())</script> © Powered By CoderNetix</b>
+                        <script>document.write(new Date().getFullYear())</script> © Powered By CoderNetix.</b>
                     </div>
                 </div>
             </div>
