@@ -33,16 +33,17 @@ export default {
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.html">home</a></li>
-                                        <li><a href="jobs.html">Browse Job</a></li>
-                                        <li><a href="#">pages <i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="candidate.html">Candidates </a></li>
-                                                <li><a href="job_details.html">job details </a></li>
-                                                <li><a href="elements.html">
-                                                    elements
-                                                </a></li>
-                                            </ul>
+                                        <li>
+                                            <a href="index.html">
+                                                <span v-if="locale === 'en'">Home</span>
+                                                <span v-else>হোম</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="jobs.html">
+                                                <span v-if="locale === 'en'">Job</span>
+                                                <span v-else>জব</span>
+                                            </a>
                                         </li>
                                         <li>
                                             <a href="contact.html">
@@ -50,28 +51,56 @@ export default {
                                                 <span v-else>যোগাযোগ</span>
                                             </a>
                                         </li>
+                                        <li>
+                                            <a href="#">
+                                                <span v-if="locale === 'en'">Page</span>
+                                                <span v-else>পেজ</span>
+                                                <i class="ti-angle-down"></i>
+                                            </a>
+                                            <ul class="submenu">
+                                                <li>
+                                                    <a href="candidate.html">
+                                                        <span v-if="locale === 'en'">Service</span>
+                                                        <span v-else>সেবা</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="job_details.html">
+                                                        <span v-if="locale === 'en'">FAQ</span>
+                                                        <span v-else>প্রশ্নাবলী</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+
                                     </ul>
                                 </nav>
                             </div>
                         </div>
+
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                             <div class="Appointment">
-                                <div class="phone_num d-none d-xl-block">
-                                    <a href="#">Log in</a>
-                                </div>
                                 <div class="d-none d-lg-block">
-                                    <a class="boxed-btn3" href="#">
-                                        <span v-if="locale === 'en'">Job</span>
-                                        <span v-else>চাকরি</span>
+                                    <a class="btn btn-success" href="#">
+                                        <span v-if="locale === 'en'">Log in</span>
+                                        <span v-else>লগ ইন করুন</span>
                                     </a>
                                 </div>
-                                <!-- Language Switcher -->
-                                <div class="language_switcher">
-                                    <button @click="changeLanguage('en')">English</button> |
-                                    <button @click="changeLanguage('bn')">বাংলা</button>
+
+                                <!-- Add mt-3 to create space between the two buttons -->
+                                <div class="">
+                                    <button class="btn btn-dark" @click="changeLanguage(locale === 'en' ? 'bn' : 'en')">
+                                        <span v-if="locale === 'en'">বাংলা</span>
+                                        <span v-else>English</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
+
+
+
+
                         <div class="col-12">
                             <div class="mobile_menu d-block d-lg-none"></div>
                         </div>
@@ -82,12 +111,7 @@ export default {
     </div>
 </template>
 
-<style scoped>
-.language_switcher button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #333;
-    margin-right: 10px;
-}
-</style>
+
+
+
+
