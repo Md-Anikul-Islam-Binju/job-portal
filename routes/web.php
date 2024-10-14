@@ -2,12 +2,12 @@
 
 use App\Http\Controllers\admin\AboutController;
 use App\Http\Controllers\admin\AdminDashboardController;
+use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\LocationController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\SiteSettingController;
 use App\Http\Controllers\admin\SliderController;
-use App\Http\Controllers\company\CategoryController;
 use App\Http\Controllers\company\CompanyDashboardController;
-use App\Http\Controllers\company\LocationController;
 use App\Http\Controllers\user\FrontendController;
 use Illuminate\Support\Facades\Route;
 
@@ -50,6 +50,18 @@ Route::middleware('auth')->group(callback: function () {
         Route::put('/service-update/{id}', [ServiceController::class, 'update'])->name('admin.service.update');
         Route::get('/service-delete/{id}', [ServiceController::class, 'destroy'])->name('admin.service.destroy');
 
+        //Category Section
+        Route::get('/category-section', [CategoryController::class, 'index'])->name('admin.category');
+        Route::post('/category-store', [CategoryController::class, 'store'])->name('admin.category.store');
+        Route::put('/category-update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
+        Route::get('/category-delete/{id}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
+
+        //Location Section
+        Route::get('/location-section', [LocationController::class, 'index'])->name('admin.location');
+        Route::post('/location-store', [LocationController::class, 'store'])->name('admin.location.store');
+        Route::put('/location-update/{id}', [LocationController::class, 'update'])->name('admin.location.update');
+        Route::get('/location-delete/{id}', [LocationController::class, 'destroy'])->name('admin.location.destroy');
+
 
 
         //Site Setting
@@ -66,17 +78,7 @@ Route::middleware('auth')->group(callback: function () {
         //dashboard
         Route::get('/dashboard', [CompanyDashboardController::class, 'index'])->name('company.dashboard');
 
-        //Category Section
-        Route::get('/category-section', [CategoryController::class, 'index'])->name('company.category');
-        Route::post('/category-store', [CategoryController::class, 'store'])->name('company.category.store');
-        Route::put('/category-update/{id}', [CategoryController::class, 'update'])->name('company.category.update');
-        Route::get('/category-delete/{id}', [CategoryController::class, 'destroy'])->name('company.category.destroy');
 
-        //Location Section
-        Route::get('/location-section', [LocationController::class, 'index'])->name('company.location');
-        Route::post('/location-store', [LocationController::class, 'store'])->name('company.location.store');
-        Route::put('/location-update/{id}', [LocationController::class, 'update'])->name('company.location.update');
-        Route::get('/location-delete/{id}', [LocationController::class, 'destroy'])->name('company.location.destroy');
     });
 });
 
