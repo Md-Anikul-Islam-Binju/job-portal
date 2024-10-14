@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\LocationController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\SiteSettingController;
 use App\Http\Controllers\admin\SliderController;
+use App\Http\Controllers\admin\TermsAndConditionController;
 use App\Http\Controllers\company\CompanyDashboardController;
 use App\Http\Controllers\user\FrontendController;
 use Illuminate\Support\Facades\Route;
@@ -71,6 +72,10 @@ Route::middleware('auth')->group(callback: function () {
         //Site About
         Route::get('/about', [AboutController::class, 'index'])->name('admin.about');
         Route::post('/about-update/{id?}', [AboutController::class, 'createOrUpdateAbout'])->name('admin.about.createOrUpdate');
+
+        //Site Terms and Condition
+        Route::get('/terms-and-condition', [TermsAndConditionController::class, 'index'])->name('admin.terms.condition');
+        Route::post('/terms-and-condition-update/{id?}', [TermsAndConditionController::class, 'createOrUpdateTermsCondition'])->name('admin.terms.condition.createOrUpdate');
     });
 
 

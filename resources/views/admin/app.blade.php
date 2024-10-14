@@ -139,6 +139,22 @@
                     </a>
                 </li>
 
+                <li class="side-nav-item">
+                    <a href="{{route('admin.about')}}" class="side-nav-link">
+                        <i class="ri-dashboard-3-line"></i>
+                        <span> About </span>
+                    </a>
+                </li>
+
+                <li class="side-nav-item">
+                    <a href="{{route('admin.terms.condition')}}" class="side-nav-link">
+                        <i class="ri-dashboard-3-line"></i>
+                        <span> Terms & Condition </span>
+                    </a>
+                </li>
+
+
+
 
                 <li class="side-nav-item">
                     <a href="{{route('admin.site.setting')}}" class="side-nav-link">
