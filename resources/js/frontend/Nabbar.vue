@@ -39,7 +39,9 @@ export default {
                                             <ul class="submenu">
                                                 <li><a href="candidate.html">Candidates </a></li>
                                                 <li><a href="job_details.html">job details </a></li>
-                                                <li><a href="elements.html">elements</a></li>
+                                                <li><a href="elements.html">
+                                                    elements
+                                                </a></li>
                                             </ul>
                                         </li>
                                         <li>

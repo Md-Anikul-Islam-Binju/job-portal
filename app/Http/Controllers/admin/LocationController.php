@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\company;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Toastr;
+use Yoeunes\Toastr\Facades\Toastr;
 
-class CategoryController extends Controller
+class LocationController extends Controller
 {
     public function index()
     {
