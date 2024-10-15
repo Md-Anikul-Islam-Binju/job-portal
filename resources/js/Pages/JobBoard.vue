@@ -69,9 +69,6 @@ export default {
 </script>
 
 <template>
-    <head>
-        <title>Job Board</title>
-    </head>
     <!-- bradcam  -->
     <div class="bradcam_area bradcam_bg_1">
         <div class="container">
@@ -98,20 +95,7 @@ export default {
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="single_field">
-                                            <select class="wide">
-                                                <option data-display="Location">Location</option>
-                                                <option value="1">Rangpur</option>
-                                                <option value="2">Dhaka </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="single_field">
-                                            <select class="wide">
-                                                <option data-display="Category">Category</option>
-                                                <option value="1">Category 1</option>
-                                                <option value="2">Category 2 </option>
-                                            </select>
+                                            <input type="text" placeholder="Search keyword">
                                         </div>
                                     </div>
                                 </div>
@@ -125,6 +109,16 @@ export default {
                             <div class="row align-items-center">
                                 <div class="col-md-6">
                                     <h4>Job Listing</h4>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="serch_cat d-flex justify-content-end">
+                                        <select>
+                                            <option data-display="Most Recent">Most Recent</option>
+                                            <option value="1">Marketer</option>
+                                            <option value="2">Wordpress </option>
+                                            <option value="4">Designer</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -210,13 +204,3 @@ export default {
     </div>
 </template>
 
-<style scoped>
-.job_listing_area .job_filter .form_inner .single_field .nice-select {
-    width: 100%;
-    height: 60px;
-    line-height: 60px;
-    color: #7A838B;
-    font-size: 16px;
-    margin-bottom: 15px;
-}
-</style>

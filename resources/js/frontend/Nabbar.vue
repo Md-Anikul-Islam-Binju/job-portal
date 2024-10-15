@@ -55,7 +55,7 @@ export default {
                                             <a href="#">
                                                 <span v-if="locale === 'en'">Page</span>
                                                 <span v-else>পেজ</span>
-                                                <i class="ti-angle-down"></i>
+                                                <i class="ti-angle-down ml-1"></i>
                                             </a>
                                             <ul class="submenu">
                                                 <li>
@@ -80,7 +80,7 @@ export default {
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                             <div class="Appointment">
                                 <div class="d-none d-lg-block">
-                                    <a class="btn btn-success" href="#">
+                                    <a class="btn btn-success mr-2" href="#">
                                         <span v-if="locale === 'en'">Log in</span>
                                         <span v-else>লগ ইন করুন</span>
                                     </a>
