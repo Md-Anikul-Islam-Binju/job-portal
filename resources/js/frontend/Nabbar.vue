@@ -79,24 +79,28 @@ export default {
                             </div>
                         </div>
 
-                        <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                            <div class="Appointment">
-                                <div class="d-none d-lg-block">
-                                    <a class="btn btn-success" href="#">
-                                        <span v-if="locale === 'en'">Log in</span>
-                                        <span v-else>লগ ইন করুন</span>
-                                    </a>
-                                </div>
 
-                                <!-- Add mt-3 to create space between the two buttons -->
-                                <div class="">
-                                    <button class="btn btn-dark" @click="changeLanguage(locale === 'en' ? 'bn' : 'en')">
-                                        <span v-if="locale === 'en'">বাংলা</span>
-                                        <span v-else>English</span>
-                                    </button>
+                            <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                                <div class="Appointment">
+                                    <div class="d-none d-lg-block">
+                                        <a class="btn btn-success" href="#">
+                                            <span v-if="locale === 'en'">Log in</span>
+                                            <span v-else>লগ ইন করুন</span>
+                                        </a>
+                                    </div>
+
+                                    <div>
+                                        <button class="btn btn-dark" @click="changeLanguage(locale === 'en' ? 'bn' : 'en')">
+                                            <span v-if="locale === 'en'">বাংলা</span>
+                                            <span v-else>English</span>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+
+
+
+
 
 
 

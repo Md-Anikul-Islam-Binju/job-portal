@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\SiteSettingController;
 use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\TermsAndConditionController;
 use App\Http\Controllers\company\CompanyDashboardController;
+use App\Http\Controllers\company\JobController;
 use App\Http\Controllers\user\FrontendController;
 use Illuminate\Support\Facades\Route;
 
@@ -82,6 +83,12 @@ Route::middleware('auth')->group(callback: function () {
     Route::middleware(['company'])->prefix('company')->group(function () {
         //dashboard
         Route::get('/dashboard', [CompanyDashboardController::class, 'index'])->name('company.dashboard');
+
+        //Job Section
+        Route::get('/job-section', [JobController::class, 'index'])->name('company.job.section');
+        Route::post('/job-store', [JobController::class, 'store'])->name('company.job.store');
+        Route::put('/job-update/{id}', [JobController::class, 'update'])->name('company.job.update');
+        Route::get('/job-delete/{id}', [JobController::class, 'destroy'])->name('company.job.destroy');
 
 
     });

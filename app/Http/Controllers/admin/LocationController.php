@@ -11,7 +11,7 @@ class LocationController extends Controller
 {
     public function index()
     {
-        $location = Location::where('user_id', auth()->user()->id)->latest()->get();
+        $location = Location::latest()->get();
         return view('admin.pages.location.index', compact('location'));
     }
     public function store(Request $request)
@@ -23,7 +23,6 @@ class LocationController extends Controller
             $location = new Location();
             $location->name = $request->name;
             $location->name_bn = $request->name_bn;
-            $location->user_id = auth()->user()->id;
             $location->save();
             Toastr::success('Location Added Successfully', 'Success');
             return redirect()->back();

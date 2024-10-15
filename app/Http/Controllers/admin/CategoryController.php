@@ -11,7 +11,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $category = Category::where('user_id', auth()->user()->id)->latest()->get();
+        $category = Category::latest()->get();
         return view('admin.pages.category.index', compact('category'));
     }
     public function store(Request $request)
@@ -23,7 +23,6 @@ class CategoryController extends Controller
             $category = new Category();
             $category->name = $request->name;
             $category->name_bn = $request->name_bn;
-            $category->user_id = auth()->user()->id;
             $category->save();
             Toastr::success('Category Added Successfully', 'Success');
             return redirect()->back();
