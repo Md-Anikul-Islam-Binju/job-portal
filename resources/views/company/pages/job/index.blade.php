@@ -128,7 +128,7 @@
                                                     <div class="col-6">
                                                         <div class="mb-3">
                                                             <label for="address_bn" class="form-label">Address(Bn)</label>
-                                                            <input type="text" name="address_bn" value="{{$jobData->salary}}"
+                                                            <input type="text" name="address_bn" value="{{$jobData->address_bn}}"
                                                                    class="form-control" placeholder="Enter Address(Bn)">
                                                         </div>
                                                     </div>
