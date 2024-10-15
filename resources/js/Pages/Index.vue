@@ -62,13 +62,16 @@ export default {
             const year = dateObj.getFullYear().toString().replace(/\d/g, (digit) => englishToBengaliDigits[digit]);
 
             return `${day} ${bengaliMonth} ${year}`;
-        }
-    }
+        },
+    },
 }
 
 </script>
 
 <template>
+    <head>
+        <title>Job</title>
+    </head>
     <!-- slider_area_start -->
     <div class="slider_area">
         <div class="single_slider  d-flex align-items-center slider_bg_1">
@@ -95,28 +98,9 @@ export default {
     <div class="catagory_area">
         <div class="container">
             <div class="row cat_search">
-                <div class="col-lg-3 col-md-4">
+                <div class="col-lg-8 col-md-4">
                     <div class="single_input">
                         <input type="text" placeholder="Search keyword">
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4">
-                    <div class="single_input">
-                        <select class="wide" >
-                            <option data-display="Location">Location</option>
-                            <option value="1">Dhaka</option>
-                            <option value="2">Rangpur</option>
-                            <option value="4">Sylet</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4">
-                    <div class="single_input">
-                        <select class="wide">
-                            <option data-display="Category">Category</option>
-                            <option value="1">Category 1</option>
-                            <option value="2">Category 2</option>
-                        </select>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-12">

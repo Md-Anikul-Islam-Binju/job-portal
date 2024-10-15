@@ -13,9 +13,6 @@ export default {
 </script>
 
 <template>
-    <head>
-        <title>Job Board</title>
-    </head>
     <div>
         <Navbar />
         <slot/>

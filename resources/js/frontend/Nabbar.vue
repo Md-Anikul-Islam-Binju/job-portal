@@ -3,16 +3,16 @@ export default {
     name: "Navbar",
     data() {
         return {
-            locale: localStorage.getItem('locale') || 'bn'  // Default to Bengali if no locale is stored
+            locale: localStorage.getItem('locale') || 'bn'
         };
     },
     methods: {
         changeLanguage(lang) {
             this.locale = lang;
             localStorage.setItem('locale', lang);
-            window.location.reload();  // Reload the page to reflect the language change
-        }
-    }
+            window.location.reload();
+        },
+    },
 }
 </script>
 
@@ -34,16 +34,16 @@ export default {
                                 <nav>
                                     <ul id="navigation">
                                         <li>
-                                            <a href="index.html">
+                                            <Link href="/">
                                                 <span v-if="locale === 'en'">Home</span>
                                                 <span v-else>হোম</span>
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li>
-                                            <a href="jobs.html">
+                                            <Link href="/job-board">
                                                 <span v-if="locale === 'en'">Job</span>
                                                 <span v-else>জব</span>
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li>
                                             <a href="contact.html">
@@ -72,38 +72,28 @@ export default {
                                                 </li>
                                             </ul>
                                         </li>
-
-
                                     </ul>
                                 </nav>
                             </div>
                         </div>
 
+                        <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                            <div class="Appointment">
+                                <div class="d-none d-lg-block">
+                                    <a class="btn btn-success" href="#">
+                                        <span v-if="locale === 'en'">Log in</span>
+                                        <span v-else>লগ ইন করুন</span>
+                                    </a>
+                                </div>
 
-                            <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                                <div class="Appointment">
-                                    <div class="d-none d-lg-block">
-                                        <a class="btn btn-success" href="#">
-                                            <span v-if="locale === 'en'">Log in</span>
-                                            <span v-else>লগ ইন করুন</span>
-                                        </a>
-                                    </div>
-
-                                    <div>
-                                        <button class="btn btn-dark" @click="changeLanguage(locale === 'en' ? 'bn' : 'en')">
-                                            <span v-if="locale === 'en'">বাংলা</span>
-                                            <span v-else>English</span>
-                                        </button>
-                                    </div>
+                                <div>
+                                    <button class="btn btn-dark" @click="changeLanguage(locale === 'en' ? 'bn' : 'en')">
+                                        <span v-if="locale === 'en'">বাংলা</span>
+                                        <span v-else>English</span>
+                                    </button>
                                 </div>
                             </div>
-
-
-
-
-
-
-
+                        </div>
 
                         <div class="col-12">
                             <div class="mobile_menu d-block d-lg-none"></div>

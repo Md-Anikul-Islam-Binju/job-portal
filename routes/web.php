@@ -10,7 +10,8 @@ use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\TermsAndConditionController;
 use App\Http\Controllers\company\CompanyDashboardController;
 use App\Http\Controllers\company\JobController;
-use App\Http\Controllers\user\FrontendController;
+use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\JobBoardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,8 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::get('/', [FrontendController::class, 'frontend'])->name('home');
+Route::get('/job-board', [JobBoardController::class, 'jobBoard'])->name('job.board');
+
 
 //Admin
 Route::middleware('auth')->group(callback: function () {
