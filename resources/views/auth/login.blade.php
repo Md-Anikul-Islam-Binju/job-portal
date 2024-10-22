@@ -34,7 +34,7 @@
                                     </a>
                                 </div>
                                 <div class="p-4 pt-0 my-auto">
-                                    <h4 class="fs-20">Admin Sign In</h4>
+                                    <h4 class="fs-20">Sign In</h4>
                                     <p class="text-muted mb-3">Enter your email address and password to access
                                         the admin.
                                     </p>

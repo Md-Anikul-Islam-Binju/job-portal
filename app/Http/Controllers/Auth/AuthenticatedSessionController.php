@@ -27,11 +27,12 @@ class AuthenticatedSessionController extends Controller
 
         $user = Auth::user();
 
+
+
         // Redirect based on user role
         if ($user->role == 'admin') {
             return redirect()->intended('/admin/dashboard');
         } elseif ($user->role == 'company') {
-
             if($user->status == 'inactive'){
                 Auth::guard('web')->logout();
                 $request->session()->invalidate();
@@ -39,8 +40,16 @@ class AuthenticatedSessionController extends Controller
                 return redirect()->route('message');
             }
             return redirect()->intended('/company/dashboard');
-        }
+        }elseif ($user->role == 'user'){
 
+            if($user->status == 'inactive'){
+                Auth::guard('web')->logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+                return redirect()->route('message');
+            }
+            return redirect()->intended('/user/dashboard');
+        }
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

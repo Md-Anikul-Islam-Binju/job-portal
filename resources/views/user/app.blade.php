@@ -5,7 +5,7 @@
 @endphp
 <head>
     <meta charset="utf-8" />
-    <title>Company | Job Portal</title>
+    <title>User | Job Portal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully responsive admin theme which can be used to build CRM, CMS,ERP etc." name="description" />
     <meta content="Job Portal" name="author" />
@@ -87,8 +87,8 @@
     </div>
 
     <div class="leftside-menu">
-        <a href="{{route('company.dashboard')}}" class="logo logo-light">
-             <span class="logo-lg">
+        <a href="{{route('user.dashboard')}}" class="logo logo-light">
+            <span class="logo-lg">
                 <img src="{{asset($siteSetting->logo)}}" alt="logo" style="height: 50px;">
             </span>
             <span class="logo-sm">
@@ -100,16 +100,9 @@
             <ul class="side-nav">
                 <li class="side-nav-title">Main</li>
                 <li class="side-nav-item">
-                    <a href="{{route('company.dashboard')}}" class="side-nav-link">
+                    <a href="{{route('user.dashboard')}}" class="side-nav-link">
                         <i class="ri-dashboard-3-line"></i>
-                        <span> Dashboard </span>
-                    </a>
-                </li>
-
-                <li class="side-nav-item">
-                    <a href="{{route('company.job.section')}}" class="side-nav-link">
-                        <i class="ri-dashboard-3-line"></i>
-                        <span> Job </span>
+                        <span> Account </span>
                     </a>
                 </li>
             </ul>
@@ -119,7 +112,7 @@
     <div class="content-page">
         <div class="content">
             <div class="container-fluid">
-                @yield('company_content')
+                @yield('user_content')
             </div>
         </div>
         <footer class="footer">

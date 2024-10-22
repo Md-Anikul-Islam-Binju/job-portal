@@ -1,5 +1,5 @@
-@extends('company.app')
-@section('company_content')
+@extends('user.app')
+@section('user_content')
     <div class="row">
         <div class="col-12">
             <div class="page-title-box">
@@ -23,7 +23,7 @@
                         <i class="ri-app-store-line widget-icon"></i>
                     </div>
                     <h6 class="text-uppercase mt-0" title="Customers">Total Job</h6>
-                    <h2 class="my-2">1000</h2>
+                    <h2 class="my-2">100</h2>
                 </div>
             </div>
         </div>
@@ -35,28 +35,6 @@
                     </div>
                     <h6 class="text-uppercase mt-0" title="Customers">Total Apply</h6>
                     <h2 class="my-2">200</h2>
-                </div>
-            </div>
-        </div>
-        <div class="col-xxl-3 col-sm-6">
-            <div class="card widget-flat text-bg-info">
-                <div class="card-body">
-                    <div class="float-end">
-                        <i class="ri-route-line widget-icon"></i>
-                    </div>
-                    <h6 class="text-uppercase mt-0" title="Customers">Total </h6>
-                    <h2 class="my-2">300</h2>
-                </div>
-            </div>
-        </div>
-        <div class="col-xxl-3 col-sm-6">
-            <div class="card widget-flat text-bg-primary">
-                <div class="card-body">
-                    <div class="float-end">
-                        <i class="ri-file-line widget-icon"></i>
-                    </div>
-                    <h6 class="text-uppercase mt-0" title="Customers">Total </h6>
-                    <h2 class="my-2">400</h2>
                 </div>
             </div>
         </div>
