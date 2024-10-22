@@ -1,4 +1,7 @@
 <html>
+@php
+    $siteSetting = DB::table('site_settings')->first();
+@endphp
 <head>
     <meta charset="utf-8" />
     <title>Log In | Job Portal Admin</title>
@@ -23,13 +26,12 @@
                         <div class="col-lg-6">
                             <div class="d-flex flex-column h-100">
                                 <div class="auth-brand p-4">
-{{--                                    <a href="#" class="logo-light">--}}
-{{--                                        <img src="#" alt="logo" height="100">--}}
-{{--                                    </a>--}}
-{{--                                    <a href="#" class="logo-dark">--}}
-{{--                                        <img src="#" alt="dark logo" height="100">--}}
-{{--                                    </a>--}}
-                                    <h1 style="color: red;">Job Portal</h1>
+                                    <a href="{{asset($siteSetting->logo)}}" class="logo-light">
+                                        <img src="#" alt="logo" height="100">
+                                    </a>
+                                    <a href="#" class="logo-dark">
+                                        <img src="{{asset($siteSetting->logo)}}" alt="dark logo" height="100">
+                                    </a>
                                 </div>
                                 <div class="p-4 pt-0 my-auto">
                                     <h4 class="fs-20">Admin Sign In</h4>

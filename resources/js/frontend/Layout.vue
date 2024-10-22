@@ -5,6 +5,9 @@ import Footer from "./Footer.vue";
 
 export default {
     name: "Layout",
+    props: {
+        siteSetting: Object // Accept the siteSetting prop
+    },
     components: {
         Navbar,
         Footer
@@ -14,7 +17,7 @@ export default {
 
 <template>
     <div>
-        <Navbar />
+        <Navbar :siteSetting="siteSetting"  />
         <slot/>
         <Footer/>
     </div>

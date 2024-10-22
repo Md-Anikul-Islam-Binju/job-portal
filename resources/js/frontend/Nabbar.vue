@@ -1,6 +1,9 @@
 <script>
 export default {
     name: "Navbar",
+    props: {
+        siteSetting: Object // Accept siteSetting as a prop
+    },
     data() {
         return {
             locale: localStorage.getItem('locale') || 'bn'
@@ -25,49 +28,50 @@ export default {
                         <div class="col-xl-3 col-lg-2">
                             <div class="logo">
                                 <a href="index.html">
-                                    <img src="frontend/img/logo.png" alt="">
+                                    <img :src="siteSetting?.logo || 'default-logo.png'" alt="Logo" height="100">
+
                                 </a>
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-7">
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
-                                    <ul id="navigation">
+                                    <ul id="navigation" >
                                         <li>
                                             <Link href="/">
-                                                <span v-if="locale === 'en'">Home</span>
-                                                <span v-else>হোম</span>
+                                                <span style="color: orangered" v-if="locale === 'en'">Home</span>
+                                                <span style="color: orangered" v-else>হোম</span>
                                             </Link>
                                         </li>
                                         <li>
                                             <Link href="/job-board">
-                                                <span v-if="locale === 'en'">Job</span>
-                                                <span v-else>জব</span>
+                                                <span style="color: orangered" v-if="locale === 'en'">Job</span>
+                                                <span style="color: orangered" v-else>জব</span>
                                             </Link>
                                         </li>
                                         <li>
                                             <a href="contact.html">
-                                                <span v-if="locale === 'en'">Contact</span>
-                                                <span v-else>যোগাযোগ</span>
+                                                <span style="color: orangered" v-if="locale === 'en'">Contact</span>
+                                                <span style="color: orangered" v-else>যোগাযোগ</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <span v-if="locale === 'en'">Page</span>
-                                                <span v-else>পেজ</span>
+                                                <span style="color: orangered" v-if="locale === 'en'">Page</span>
+                                                <span style="color: orangered" v-else>পেজ</span>
                                                 <i class="ti-angle-down ml-1"></i>
                                             </a>
                                             <ul class="submenu">
                                                 <li>
                                                     <a href="candidate.html">
-                                                        <span v-if="locale === 'en'">Service</span>
-                                                        <span v-else>সেবা</span>
+                                                        <span style="color: orangered" v-if="locale === 'en'">Service</span>
+                                                        <span style="color: orangered" v-else>সেবা</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="job_details.html">
-                                                        <span v-if="locale === 'en'">FAQ</span>
-                                                        <span v-else>প্রশ্নাবলী</span>
+                                                        <span style="color: orangered" v-if="locale === 'en'">FAQ</span>
+                                                        <span style="color: orangered" v-else>প্রশ্নাবলী</span>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -81,8 +85,8 @@ export default {
                             <div class="Appointment">
                                 <div class="d-none d-lg-block">
                                     <a class="btn btn-success mr-2" href="#">
-                                        <span v-if="locale === 'en'">Log in</span>
-                                        <span v-else>লগ ইন করুন</span>
+                                        <span v-if="locale === 'en'">Login / Registration</span>
+                                        <span v-else>লগইন/রেজিস্ট্রেশন করুন</span>
                                     </a>
                                 </div>
 

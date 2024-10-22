@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+@php
+    $siteSetting = DB::table('site_settings')->first();
+@endphp
 <head>
     <meta charset="utf-8" />
     <title>Admin | Job Portal </title>
@@ -85,13 +88,12 @@
 
     <div class="leftside-menu">
         <a href="{{route('admin.dashboard')}}" class="logo logo-light">
-{{--            <span class="logo-lg">--}}
-{{--                <img src="#" alt="logo" style="height: 50px;">--}}
-{{--            </span>--}}
-{{--            <span class="logo-sm">--}}
-{{--                <img src="#" alt="small logo">--}}
-{{--            </span>--}}
-            <h1 style="color: red">JPA</h1>
+            <span class="logo-lg">
+                <img src="{{asset($siteSetting->logo)}}" alt="logo" style="height: 50px;">
+            </span>
+            <span class="logo-sm">
+                <img src="{{asset($siteSetting->logo)}}" alt="small logo">
+            </span>
         </a>
 
         <div class="h-100" id="leftside-menu-container" data-simplebar>

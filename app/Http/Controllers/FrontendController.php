@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Job;
+use App\Models\SiteSetting;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -12,6 +13,7 @@ class FrontendController extends Controller
     {
         $category = Category::latest()->get();
         $job = Job::latest()->get();
-        return inertia('Index',compact('category','job'));
+        $siteSetting = SiteSetting::latest()->first();
+        return inertia('Index',compact('category','job','siteSetting'));
     }
 }
