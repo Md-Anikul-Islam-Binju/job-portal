@@ -70,6 +70,9 @@ export default {
 </script>
 
 <template>
+    <head>
+        <title>Job Board</title>
+    </head>
     <!-- bradcam  -->
     <div class="bradcam_area bradcam_bg_1">
         <div class="container">
