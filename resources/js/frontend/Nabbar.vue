@@ -10,6 +10,13 @@ export default {
         };
     },
     methods: {
+        getLogoUrl(logoPath) {
+            if (!logoPath) {
+                return 'default-logo.png';
+            }
+            return `${window.location.origin}/${logoPath}`;
+        },
+
         changeLanguage(lang) {
             this.locale = lang;
             localStorage.setItem('locale', lang);
@@ -28,7 +35,10 @@ export default {
                         <div class="col-xl-3 col-lg-2">
                             <div class="logo">
                                 <a href="index.html">
-                                    <img :src="siteSetting?.logo || 'default-logo.png'" alt="Logo" height="100">
+<!--                                    <img :src="siteSetting?.logo || 'default-logo.png'" alt="Logo" height="100">-->
+
+                                    <img :src="getLogoUrl(siteSetting?.logo)" alt="Logo" height="100">
+
 
                                 </a>
                             </div>

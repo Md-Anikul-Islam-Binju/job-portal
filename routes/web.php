@@ -34,6 +34,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontendController::class, 'frontend'])->name('home');
 Route::get('/job-board', [JobBoardController::class, 'jobBoard'])->name('job.board');
+Route::get('/job-details/{id}', [JobBoardController::class, 'jobDetails'])->name('job.details');
 
 
 //Admin

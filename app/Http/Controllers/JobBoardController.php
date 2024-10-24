@@ -16,4 +16,11 @@ class JobBoardController extends Controller
         $siteSetting = SiteSetting::latest()->first();
         return inertia('JobBoard',compact('category','job','siteSetting'));
     }
+
+    public function jobDetails($id)
+    {
+        $job = Job::where('id',$id)->first();
+        $siteSetting = SiteSetting::latest()->first();
+        return inertia('JobDetails',compact('job','siteSetting'));
+    }
 }

@@ -175,10 +175,10 @@ export default {
                                     <img src="frontend/img/svg_icon/1.svg" alt="">
                                 </div>
                                 <div class="jobs_conetent">
-                                    <a href="job_details.html">
+                                    <Link :href="`/job-details/${jobData.id}`">
                                         <h4 v-if="locale === 'en'">{{ jobData.title }}</h4>
                                         <h4 v-else>{{ jobData.title_bn }}</h4>
-                                    </a>
+                                    </Link>
                                     <div class="links_locat d-flex align-items-center">
                                         <div class="location">
                                             <p v-if="locale === 'en'">
@@ -202,7 +202,7 @@ export default {
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                    <a href="job_details.html" class="boxed-btn3">Apply Now</a>
+                                    <Link :href="`/job-details/${jobData.id}`" class="boxed-btn3">Apply Now</Link>
                                 </div>
                             </div>
                         </div>
