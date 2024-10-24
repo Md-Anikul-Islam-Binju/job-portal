@@ -126,7 +126,11 @@ export default {
                     </div>
                     <div class="descript_wrap white-bg">
                         <div class="single_wrap">
-                            <h4>Job description</h4>
+
+
+                            <h4 v-if="locale === 'en'">Job description</h4>
+                            <h4 v-else>কাজের বিবরণ</h4>
+
                             <span  v-if="locale === 'en'">
                                  <p v-html="job.details"></p>
                             </span>
@@ -161,8 +165,8 @@ export default {
                         </div>
                         <div class="job_content">
                             <ul>
-                                <li v-if="locale === 'en'">Published Date: <span>12 Nov, 2019</span></li>
-                                <li v-else>প্রকাশের তারিখ: <span>12 Nov, 2019</span></li>
+                                <li v-if="locale === 'en'">Published Date: <span>{{ formatDateEnglish(job.created_at) }}</span></li>
+                                <li v-else>প্রকাশের তারিখ: <span>{{ formatDateBengali(job.created_at) }}</span></li>
 
                                 <li v-if="locale === 'en'">Vacancy: <span> {{ job.vacancy }}</span></li>
                                 <li v-else>শূন্যপদ: <span> {{ convertToBengaliDigits(job.vacancy) }}</span></li>
