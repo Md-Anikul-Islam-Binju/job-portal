@@ -102,9 +102,24 @@
                 <li class="side-nav-item">
                     <a href="{{route('user.dashboard')}}" class="side-nav-link">
                         <i class="ri-dashboard-3-line"></i>
-                        <span> Account </span>
+                        <span> Dashboard </span>
                     </a>
                 </li>
+
+                <li class="side-nav-item">
+                    <a href="{{route('user.education.section')}}" class="side-nav-link">
+                        <i class="ri-dashboard-3-line"></i>
+                        <span> Education </span>
+                    </a>
+                </li>
+
+                <li class="side-nav-item">
+                    <a href="{{route('user.experiences.section')}}" class="side-nav-link">
+                        <i class="ri-dashboard-3-line"></i>
+                        <span> Experiences </span>
+                    </a>
+                </li>
+
             </ul>
             <div class="clearfix"></div>
         </div>

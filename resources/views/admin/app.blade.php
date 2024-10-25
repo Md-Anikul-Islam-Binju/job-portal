@@ -198,8 +198,6 @@
 <script src="{{asset('backend/vendor/apexcharts/apexcharts.min.js')}}"></script>
 <script src="{{asset('backend/vendor/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
 <script src="{{asset('backend/vendor/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js')}}"></script>
-<!-- Ckeditor Here -->
-<script src="{{asset('backend/js/sdmg.ckeditor.js')}}"></script>
 <!-- Datatables js -->
 <script src="{{asset('backend/vendor/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('backend/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js')}}"></script>

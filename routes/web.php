@@ -12,6 +12,8 @@ use App\Http\Controllers\company\CompanyDashboardController;
 use App\Http\Controllers\company\JobController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\JobBoardController;
+use App\Http\Controllers\user\EducationController;
+use App\Http\Controllers\user\ExperiencesController;
 use App\Http\Controllers\user\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -102,6 +104,20 @@ Route::middleware('auth')->group(callback: function () {
     Route::middleware(['user'])->prefix('user')->group(function () {
         //dashboard
         Route::get('/dashboard', [UserController::class, 'index'])->name('user.dashboard');
+
+
+        //Education Section
+        Route::get('/education-section', [EducationController::class, 'index'])->name('user.education.section');
+        Route::post('/education-store', [EducationController::class, 'store'])->name('user.education.store');
+        Route::put('/education-update/{id}', [EducationController::class, 'update'])->name('user.education.update');
+        Route::get('/education-delete/{id}', [EducationController::class, 'destroy'])->name('user.education.destroy');
+
+        //Experiences Section
+        Route::get('/experiences-section', [ExperiencesController::class, 'index'])->name('user.experiences.section');
+        Route::post('/experiences-store', [ExperiencesController::class, 'store'])->name('user.experiences.store');
+        Route::put('/experiences-update/{id}', [ExperiencesController::class, 'update'])->name('user.experiences.update');
+        Route::get('/experiences-delete/{id}', [ExperiencesController::class, 'destroy'])->name('user.experiences.destroy');
+
 
 
     });
