@@ -14,6 +14,20 @@ class User extends Authenticatable
         'phone',
         'role',
         'password',
+
+        //user extra
+        'name_bn',
+        'father_name',
+        'father_name_bn',
+        'mother_name',
+        'mother_name_bn',
+        'nationality',
+        'nationality_bn',
+        'blood_group',
+        'blood_group_bn',
+        'nid',
+        'dob',
+        'status'
     ];
 
     protected $hidden = [
