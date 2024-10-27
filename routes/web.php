@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\admin\AboutController;
 use App\Http\Controllers\admin\AdminDashboardController;
 use App\Http\Controllers\admin\CategoryController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\company\JobController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\JobBoardController;
+use App\Http\Controllers\TermsConditionController;
 use App\Http\Controllers\user\EducationController;
 use App\Http\Controllers\user\ExperiencesController;
 use App\Http\Controllers\user\SkillController;
@@ -41,7 +43,8 @@ Route::get('/jobs/apply/{job}', [UserController::class, 'applyJob'])->name('jobs
 
 //contact
 Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
-
+Route::get('/about-us', [AboutUsController::class, 'about'])->name('about.us');
+Route::get('/terms-condition', [TermsConditionController::class, 'termsCondition'])->name('terms.condition');
 
 
 
@@ -64,12 +67,6 @@ Route::middleware('auth')->group(callback: function () {
         Route::post('/slider-store', [SliderController::class, 'store'])->name('admin.slider.store');
         Route::put('/slider-update/{id}', [SliderController::class, 'update'])->name('admin.slider.update');
         Route::get('/slider-delete/{id}', [SliderController::class, 'destroy'])->name('admin.slider.destroy');
-
-        //Service Section
-        Route::get('/service-section', [ServiceController::class, 'index'])->name('admin.service.section');
-        Route::post('/service-store', [ServiceController::class, 'store'])->name('admin.service.store');
-        Route::put('/service-update/{id}', [ServiceController::class, 'update'])->name('admin.service.update');
-        Route::get('/service-delete/{id}', [ServiceController::class, 'destroy'])->name('admin.service.destroy');
 
         //Category Section
         Route::get('/category-section', [CategoryController::class, 'index'])->name('admin.category');

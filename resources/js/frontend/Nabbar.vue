@@ -73,16 +73,16 @@ export default {
                                             </a>
                                             <ul class="submenu">
                                                 <li>
-                                                    <a href="candidate.html">
-                                                        <span style="color: orangered" v-if="locale === 'en'">Service</span>
-                                                        <span style="color: orangered" v-else>সেবা</span>
-                                                    </a>
+                                                    <Link href="/about-us">
+                                                        <span style="color: orangered" v-if="locale === 'en'">About Us</span>
+                                                        <span style="color: orangered" v-else>আমাদের সম্পর্কে</span>
+                                                    </Link>
                                                 </li>
                                                 <li>
-                                                    <a href="job_details.html">
-                                                        <span style="color: orangered" v-if="locale === 'en'">FAQ</span>
-                                                        <span style="color: orangered" v-else>প্রশ্নাবলী</span>
-                                                    </a>
+                                                    <Link href="/terms-condition">
+                                                        <span style="color: orangered" v-if="locale === 'en'">Terms & Condition</span>
+                                                        <span style="color: orangered" v-else>শর্তাবলী</span>
+                                                    </Link>
                                                 </li>
                                             </ul>
                                         </li>
