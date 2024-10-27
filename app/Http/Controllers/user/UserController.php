@@ -198,8 +198,9 @@ class UserController extends Controller
             'user_id' => $user->id,
             'company_id' => $job->company_id,
         ]);
-        Toastr::success('Service Added Successfully', 'Success');
-        return redirect()->back();
+
+
+        return response()->json(['message' => 'Application successful!'], 200);
     }
 
 

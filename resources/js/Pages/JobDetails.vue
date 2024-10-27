@@ -107,6 +107,7 @@
 </template>
 <script>
 import Layout from "../frontend/Layout.vue";
+import Swal from "sweetalert2";
 
 export default {
     name: "JobDetails",
@@ -135,23 +136,53 @@ export default {
     },
 
     methods: {
+        // applyJobDirectly(event) {
+        //     event.preventDefault();
+        //
+        //     // Send request to backend using href link with axios
+        //     axios.get(event.target.href)
+        //         .then(response => {
+        //             alert(response.data.message || "Application successful!");
+        //         })
+        //         .catch(error => {
+        //             if (error.response && error.response.status === 401) {
+        //                 alert("Please login to apply for the job.");
+        //                 window.location.href = '/login';  // Redirect to login if not authenticated
+        //             } else {
+        //                 console.error("Error applying for job:", error);
+        //             }
+        //         });
+        // },
+
+
         applyJobDirectly(event) {
             event.preventDefault();
 
             // Send request to backend using href link with axios
             axios.get(event.target.href)
                 .then(response => {
-                    alert(response.data.message || "Application successful!");
+                    // Display SweetAlert2 success alert
+                    Swal.fire({
+                        icon: 'success',
+                        title: this.locale === 'en' ? response.data.message : "আবেদন সফল হয়েছে!",
+                        confirmButtonText: 'OK'
+                    });
                 })
                 .catch(error => {
                     if (error.response && error.response.status === 401) {
-                        alert("Please login to apply for the job.");
+                        Swal.fire({
+                            icon: 'warning',
+                            title: this.locale === 'en' ? "Please login to apply for the job." : "দয়া করে আবেদন করতে লগইন করুন।",
+                            confirmButtonText: 'OK'
+                        });
                         window.location.href = '/login';  // Redirect to login if not authenticated
                     } else {
                         console.error("Error applying for job:", error);
                     }
                 });
         },
+
+
         // Convert English Date Format to "Day Month Year" (e.g., "20 October 2024")
         formatDateEnglish(date) {
             const dateObj = new Date(date);
