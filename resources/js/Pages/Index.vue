@@ -79,8 +79,10 @@ export default {
                 <div class="row align-items-center">
                     <div class="col-lg-7 col-md-6">
                         <div class="slider_text">
-                            <h5 class="wow fadeInLeft" style="color: #0a0a0a" data-wow-duration="1s" data-wow-delay=".2s">4536+ Jobs listed</h5>
-                            <h3 class="wow fadeInLeft" style="color: #0a0a0a" data-wow-duration="1s" data-wow-delay=".3s">Find your Dream Job</h3>
+                            <h5 v-if="locale === 'en'" class="wow fadeInLeft" style="color: #0a0a0a" data-wow-duration="1s" data-wow-delay=".2s">4+ Jobs listed</h5>
+                            <h5 v-else class="wow fadeInLeft" style="color: #0a0a0a" data-wow-duration="1s" data-wow-delay=".2s">4+ তালিকাভুক্ত চাকরি</h5>
+                            <h3 v-if="locale === 'en'" class="wow fadeInLeft" style="color: #0a0a0a" data-wow-duration="1s" data-wow-delay=".3s">Find your Dream Job</h3>
+                            <h3 v-else class="wow fadeInLeft" style="color: #0a0a0a" data-wow-duration="1s" data-wow-delay=".3s">আপনার স্বপ্নের চাকরি খুঁজুন</h3>
                             <div class="sldier_btn wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
                             </div>
                         </div>
