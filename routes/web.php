@@ -14,6 +14,7 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\JobBoardController;
 use App\Http\Controllers\user\EducationController;
 use App\Http\Controllers\user\ExperiencesController;
+use App\Http\Controllers\user\SkillController;
 use App\Http\Controllers\user\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -121,6 +122,12 @@ Route::middleware('auth')->group(callback: function () {
         Route::post('/experiences-store', [ExperiencesController::class, 'store'])->name('user.experiences.store');
         Route::put('/experiences-update/{id}', [ExperiencesController::class, 'update'])->name('user.experiences.update');
         Route::get('/experiences-delete/{id}', [ExperiencesController::class, 'destroy'])->name('user.experiences.destroy');
+
+        //Skill Section
+        Route::get('/skill-section', [SkillController::class, 'index'])->name('user.skill.section');
+        Route::post('/skill-store', [SkillController::class, 'store'])->name('user.skill.store');
+        Route::put('/skill-update/{id}', [SkillController::class, 'update'])->name('user.skill.update');
+        Route::get('/skill-delete/{id}', [SkillController::class, 'destroy'])->name('user.skill.destroy');
 
 
 
