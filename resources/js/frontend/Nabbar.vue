@@ -94,7 +94,7 @@ export default {
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                             <div class="Appointment">
                                 <div class="d-none d-lg-block">
-                                    <a class="btn btn-success mr-2" href="#">
+                                    <a href="/user-registration-start" class="btn btn-success mr-2">
                                         <span v-if="locale === 'en'">Login / Registration</span>
                                         <span v-else>লগইন/রেজিস্ট্রেশন করুন</span>
                                     </a>

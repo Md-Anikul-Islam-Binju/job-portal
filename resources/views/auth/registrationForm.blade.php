@@ -71,6 +71,10 @@
                                         <div class="mb-0 text-start">
                                             <button class="btn btn-soft-primary w-100" type="submit"><i class="ri-login-circle-fill me-1"></i> <span class="fw-bold">Sign Up</span> </button>
                                         </div>
+                                        <br>
+                                        <div class="mb-0 text-start">
+                                            <a href="{{ route('login') }}" class="btn btn-soft-danger w-100" type="submit"><i class="ri-login-circle-fill me-1"></i> <span class="fw-bold"> Already registered</span> </a>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
