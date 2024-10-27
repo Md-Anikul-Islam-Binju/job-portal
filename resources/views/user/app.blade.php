@@ -9,7 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully responsive admin theme which can be used to build CRM, CMS,ERP etc." name="description" />
     <meta content="Job Portal" name="author" />
+    @if(!empty($siteSetting))
     <link rel="shortcut icon" href="{{asset($siteSetting->favicon)}}">
+    @endif
     <!-- Select2 css -->
     <link href="{{asset('backend/vendor/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- Datatables css -->
@@ -87,6 +89,7 @@
     </div>
 
     <div class="leftside-menu">
+        @if(!empty($siteSetting))
         <a href="{{route('user.dashboard')}}" class="logo logo-light">
             <span class="logo-lg">
                 <img src="{{asset($siteSetting->logo)}}" alt="logo" style="height: 50px;">
@@ -95,6 +98,7 @@
                 <img src="{{asset($siteSetting->logo)}}" alt="small logo">
             </span>
         </a>
+        @endif
 
         <div class="h-100" id="leftside-menu-container" data-simplebar>
             <ul class="side-nav">

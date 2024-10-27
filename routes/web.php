@@ -30,14 +30,18 @@ use Illuminate\Support\Facades\Route;
 
 
 
-//Route::get('/', function () {
-//    return view('auth/login');
-//});
+
 
 Route::get('/', [FrontendController::class, 'frontend'])->name('home');
 Route::get('/job-board', [JobBoardController::class, 'jobBoard'])->name('job.board');
 Route::get('/job-details/{id}', [JobBoardController::class, 'jobDetails'])->name('job.details');
 
+
+//User Account
+Route::get('/user-registration-start', [UserController::class, 'showRegistrationForm'])->name('user.registration.start');
+Route::post('/user-registration', [UserController::class, 'storeRegistration'])->name('user.registration');
+Route::get('/user-verify', [UserController::class, 'showVerificationForm'])->name('user.verification');
+Route::post('/user-verify-account', [UserController::class, 'verify'])->name('user.verify');
 
 //Admin
 Route::middleware('auth')->group(callback: function () {

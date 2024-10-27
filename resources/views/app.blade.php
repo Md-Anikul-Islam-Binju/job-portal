@@ -8,7 +8,9 @@
     @vite('resources/js/app.js')
 
     {{-- Frontend Template Styles Start--}}
+    @if(!empty($siteSetting))
     <link rel="shortcut icon" href="{{asset($siteSetting->favicon)}}">
+    @endif
     <!-- CSS here -->
     <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/owl.carousel.min.css')}}">

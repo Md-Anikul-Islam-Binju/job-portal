@@ -4,7 +4,7 @@
 @endphp
 <head>
     <meta charset="utf-8" />
-    <title>Log In | Job Portal Admin</title>
+    <title>User Register | Job Portal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully responsive admin theme which can be used to build CRM, CMS, ERP, etc." name="description" />
     <meta content="Your Name" name="author" />
@@ -26,28 +26,39 @@
                         <div class="col-lg-6">
                             <div class="d-flex flex-column h-100">
                                 @if(!empty($siteSetting))
-                                <div class="auth-brand p-4">
-                                    <a href="{{asset($siteSetting->logo)}}" class="logo-light">
-                                        <img src="#" alt="logo" height="100">
-                                    </a>
-                                    <a href="#" class="logo-dark">
-                                        <img src="{{asset($siteSetting->logo)}}" alt="dark logo" height="100">
-                                    </a>
-                                </div>
+                                    <div class="auth-brand p-4">
+                                        <a href="{{asset($siteSetting->logo)}}" class="logo-light">
+                                            <img src="#" alt="logo" height="100">
+                                        </a>
+                                        <a href="#" class="logo-dark">
+                                            <img src="{{asset($siteSetting->logo)}}" alt="dark logo" height="100">
+                                        </a>
+                                    </div>
                                 @endif
                                 <div class="p-4 pt-0 my-auto">
-                                    <h4 class="fs-20">Sign In</h4>
-                                    <p class="text-muted mb-3">Enter your email address and password to access
-                                        the admin.
+                                    <h4 class="fs-20">Sign Up</h4>
+                                    <p class="text-muted mb-3">Create Your Account And Apply Job.
                                     </p>
-                                    <form method="POST" action="{{ route('login') }}">
+                                    <form method="post" action="{{route('user.registration')}}">
                                         @csrf
+
                                         <div class="mb-3">
-                                            <label for="emailaddress" class="form-label">Email address</label>
-                                            <input class="form-control" type="email" id="emailaddress" name="email" value="{{ old('email') }}" required placeholder="Enter your email">
+                                            <label class="form-label">Full Name</label>
+                                            <input class="form-control" type="text" name="name" value="{{ old('name') }}" required placeholder="Enter your name">
                                         </div>
+
                                         <div class="mb-3">
-                                            {{--<a href="{{ route('password.request') }}" class="text-muted float-end"><small>Forgot your password?</small></a>--}}
+                                            <label class="form-label">Email address</label>
+                                            <input class="form-control" type="email" name="email" value="{{ old('email') }}" required placeholder="Enter your email">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Your Phone</label>
+                                            <input class="form-control" type="text" name="phone" value="{{ old('phone') }}" required placeholder="Enter your phone">
+                                        </div>
+
+
+                                        <div class="mb-3">
                                             <label for="password" class="form-label">Password</label>
                                             <div class="input-group">
                                                 <input class="form-control" type="password" required id="password" name="password" placeholder="Enter your password">
@@ -56,8 +67,9 @@
                                                 </button>
                                             </div>
                                         </div>
+
                                         <div class="mb-0 text-start">
-                                            <button class="btn btn-soft-primary w-100" type="submit"><i class="ri-login-circle-fill me-1"></i> <span class="fw-bold">Log In</span> </button>
+                                            <button class="btn btn-soft-primary w-100" type="submit"><i class="ri-login-circle-fill me-1"></i> <span class="fw-bold">Sign Up</span> </button>
                                         </div>
                                     </form>
                                 </div>

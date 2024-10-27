@@ -22,11 +22,15 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
         $request->session()->regenerate();
-
         $user = Auth::user();
 
+
+        // Check if the user is a 'user' role and email is not verified
+        if ($user->role == 'user' && is_null($user->email_verified_at)) {
+            // Redirect to the verification page if email is not verified
+            return redirect()->route('user.verification');
+        }
 
 
         // Redirect based on user role
