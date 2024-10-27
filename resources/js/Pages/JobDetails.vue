@@ -1,74 +1,3 @@
-<script>
-import Layout from "../frontend/Layout.vue";
-
-export default {
-    name: "JobDetails",
-    layout: Layout,
-    props: {
-        job: Array,
-        siteSetting: Object
-    },
-    data() {
-        return {
-            locale: localStorage.getItem('locale') || 'bn',  // Default to Bengali if no locale is stored
-            englishToBengaliDigits: {
-                "0": "০",
-                "1": "১",
-                "2": "২",
-                "3": "৩",
-                "4": "৪",
-                "5": "৫",
-                "6": "৬",
-                "7": "৭",
-                "8": "৮",
-                "9": "৯"
-            }
-        };
-    },
-    methods: {
-        // Convert English Date Format to "Day Month Year" (e.g., "20 October 2024")
-        formatDateEnglish(date) {
-            const dateObj = new Date(date);
-            const day = dateObj.getDate();
-            const month = dateObj.toLocaleString('en-US', { month: 'long' });
-            const year = dateObj.getFullYear();
-            return `${day} ${month} ${year}`;
-        },
-
-        // Convert to Bengali Date Format (e.g., "২০ অক্টোবর ২০২৪")
-        formatDateBengali(date) {
-            const englishToBengaliMonths = {
-                "January": "জানুয়ারি",
-                "February": "ফেব্রুয়ারি",
-                "March": "মার্চ",
-                "April": "এপ্রিল",
-                "May": "মে",
-                "June": "জুন",
-                "July": "জুলাই",
-                "August": "আগস্ট",
-                "September": "সেপ্টেম্বর",
-                "October": "অক্টোবর",
-                "November": "নভেম্বর",
-                "December": "ডিসেম্বর"
-            };
-
-            const dateObj = new Date(date);
-            const day = dateObj.getDate().toString().replace(/\d/g, (digit) => this.englishToBengaliDigits[digit]);
-            const month = dateObj.toLocaleString('en-US', { month: 'long' });
-            const bengaliMonth = englishToBengaliMonths[month];
-            const year = dateObj.getFullYear().toString().replace(/\d/g, (digit) => this.englishToBengaliDigits[digit]);
-
-            return `${day} ${bengaliMonth} ${year}`;
-        },
-
-        // Helper method to convert English digits to Bengali digits
-        convertToBengaliDigits(number) {
-            return number.toString().replace(/\d/g, (digit) => this.englishToBengaliDigits[digit]);
-        }
-    },
-}
-</script>
-
 <template>
     <head>
         <title>Job Details</title>
@@ -138,19 +67,14 @@ export default {
                                  <p v-html="job.details_bn"></p>
                             </span>
 
-                       </div>
+                        </div>
                     </div>
                     <div class="apply_job_form white-bg">
-                        <form action="#">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="submit_btn">
-                                        <button class="boxed-btn3 w-100" type="submit">Apply Now</button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </form>
+                        <div class="container">
+                            <a :href="`/jobs/apply/${job.id}`" @click.prevent="applyJobDirectly" class="boxed-btn3 w-100">
+                                Apply Now
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -181,6 +105,97 @@ export default {
         </div>
     </div>
 </template>
+<script>
+import Layout from "../frontend/Layout.vue";
+
+export default {
+    name: "JobDetails",
+    layout: Layout,
+    props: {
+        job: Array,
+        siteSetting: Object
+    },
+    data() {
+        return {
+            isAuthenticated: !!window.user,
+            locale: localStorage.getItem('locale') || 'bn',  // Default to Bengali if no locale is stored
+            englishToBengaliDigits: {
+                "0": "০",
+                "1": "১",
+                "2": "২",
+                "3": "৩",
+                "4": "৪",
+                "5": "৫",
+                "6": "৬",
+                "7": "৭",
+                "8": "৮",
+                "9": "৯"
+            }
+        };
+    },
+
+    methods: {
+        applyJobDirectly(event) {
+            event.preventDefault();
+
+            // Send request to backend using href link with axios
+            axios.get(event.target.href)
+                .then(response => {
+                    alert(response.data.message || "Application successful!");
+                })
+                .catch(error => {
+                    if (error.response && error.response.status === 401) {
+                        alert("Please login to apply for the job.");
+                        window.location.href = '/login';  // Redirect to login if not authenticated
+                    } else {
+                        console.error("Error applying for job:", error);
+                    }
+                });
+        },
+        // Convert English Date Format to "Day Month Year" (e.g., "20 October 2024")
+        formatDateEnglish(date) {
+            const dateObj = new Date(date);
+            const day = dateObj.getDate();
+            const month = dateObj.toLocaleString('en-US', { month: 'long' });
+            const year = dateObj.getFullYear();
+            return `${day} ${month} ${year}`;
+        },
+
+        // Convert to Bengali Date Format (e.g., "২০ অক্টোবর ২০২৪")
+        formatDateBengali(date) {
+            const englishToBengaliMonths = {
+                "January": "জানুয়ারি",
+                "February": "ফেব্রুয়ারি",
+                "March": "মার্চ",
+                "April": "এপ্রিল",
+                "May": "মে",
+                "June": "জুন",
+                "July": "জুলাই",
+                "August": "আগস্ট",
+                "September": "সেপ্টেম্বর",
+                "October": "অক্টোবর",
+                "November": "নভেম্বর",
+                "December": "ডিসেম্বর"
+            };
+
+            const dateObj = new Date(date);
+            const day = dateObj.getDate().toString().replace(/\d/g, (digit) => this.englishToBengaliDigits[digit]);
+            const month = dateObj.toLocaleString('en-US', { month: 'long' });
+            const bengaliMonth = englishToBengaliMonths[month];
+            const year = dateObj.getFullYear().toString().replace(/\d/g, (digit) => this.englishToBengaliDigits[digit]);
+
+            return `${day} ${bengaliMonth} ${year}`;
+        },
+
+        // Helper method to convert English digits to Bengali digits
+        convertToBengaliDigits(number) {
+            return number.toString().replace(/\d/g, (digit) => this.englishToBengaliDigits[digit]);
+        },
+    },
+}
+</script>
+
+
 
 
 

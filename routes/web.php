@@ -36,6 +36,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FrontendController::class, 'frontend'])->name('home');
 Route::get('/job-board', [JobBoardController::class, 'jobBoard'])->name('job.board');
 Route::get('/job-details/{id}', [JobBoardController::class, 'jobDetails'])->name('job.details');
+// In web.php
+
+// web.php
+Route::get('/jobs/apply/{job}', [UserController::class, 'applyJob'])->name('jobs.apply');
+
+
 
 
 //User Account
@@ -132,6 +138,8 @@ Route::middleware('auth')->group(callback: function () {
         Route::post('/skill-store', [SkillController::class, 'store'])->name('user.skill.store');
         Route::put('/skill-update/{id}', [SkillController::class, 'update'])->name('user.skill.update');
         Route::get('/skill-delete/{id}', [SkillController::class, 'destroy'])->name('user.skill.destroy');
+
+
 
 
 

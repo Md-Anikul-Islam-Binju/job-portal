@@ -4,6 +4,8 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use App\Mail\UserAccountVerificationMail;
+use App\Models\Job;
+use App\Models\JobApplication;
 use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -182,5 +184,25 @@ class UserController extends Controller
         $message = $id ? 'Account settings updated successfully!' : 'Account created successfully!';
         return redirect()->back()->with('success', $message);
     }
+
+
+
+    public function applyJob(Request $request, Job $job)
+    {
+        if (!auth()->check()) {
+            return response()->json(['error' => 'Please login to apply for the job.'], 401);
+        }
+        $user = auth()->user();
+        JobApplication::create([
+            'job_id' => $job->id,
+            'user_id' => $user->id,
+            'company_id' => $job->company_id,
+        ]);
+        Toastr::success('Service Added Successfully', 'Success');
+        return redirect()->back();
+    }
+
+
+
 
 }
