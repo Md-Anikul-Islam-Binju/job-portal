@@ -29,6 +29,8 @@ class User extends Authenticatable
         'blood_group_bn',
         'nid',
         'dob',
+        'cv',
+        'resume',
         'status'
     ];
 

@@ -32,6 +32,8 @@ return new class extends Migration
             $table->string('profile')->nullable();
             $table->string('nid')->nullable();
             $table->string('dob')->nullable();
+            $table->string('cv')->nullable();
+            $table->string('resume')->nullable();
             $table->integer('status')->default(1);
 
             $table->rememberToken();

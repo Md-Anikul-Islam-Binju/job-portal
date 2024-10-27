@@ -110,6 +110,10 @@ Route::middleware('auth')->group(callback: function () {
         //dashboard
         Route::get('/dashboard', [UserController::class, 'index'])->name('user.dashboard');
 
+        //Site Setting
+        Route::get('/account-setting', [UserController::class, 'account'])->name('user.account.setting');
+        Route::post('/account-settings-store-update/{id?}', [UserController::class, 'createOrUpdateAccount'])->name('user.account.settings.createOrUpdate');
+
 
         //Education Section
         Route::get('/education-section', [EducationController::class, 'index'])->name('user.education.section');

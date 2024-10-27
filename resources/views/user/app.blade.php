@@ -111,6 +111,13 @@
                 </li>
 
                 <li class="side-nav-item">
+                    <a href="{{route('user.account.setting')}}" class="side-nav-link">
+                        <i class="ri-dashboard-3-line"></i>
+                        <span> Account </span>
+                    </a>
+                </li>
+
+                <li class="side-nav-item">
                     <a href="{{route('user.education.section')}}" class="side-nav-link">
                         <i class="ri-dashboard-3-line"></i>
                         <span> Education </span>
@@ -130,6 +137,11 @@
                         <span> Skill </span>
                     </a>
                 </li>
+
+
+
+
+
 
             </ul>
             <div class="clearfix"></div>
