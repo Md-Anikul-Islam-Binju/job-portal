@@ -19,7 +19,7 @@ export default {
     <div>
         <Navbar :siteSetting="siteSetting"  />
         <slot/>
-        <Footer/>
+        <Footer :siteSetting="siteSetting"/>
     </div>
 
 </template>

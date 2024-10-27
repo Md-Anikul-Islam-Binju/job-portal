@@ -1,6 +1,23 @@
 <script>
 export default {
     name: "Footer",
+    props:{
+        siteSetting: Object
+    },
+    data() {
+        return {
+            locale: localStorage.getItem('locale') || 'bn'
+        };
+    },
+    methods: {
+        getLogoUrl(logoPath) {
+            if (!logoPath) {
+                return 'default-logo.png';
+            }
+            return `${window.location.origin}/${logoPath}`;
+        },
+    },
+
 }
 
 </script>
@@ -12,15 +29,8 @@ export default {
                     <div class="col-xl-3 col-md-6 col-lg-3">
                         <div class="footer_widget wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
                             <div class="footer_logo">
-                                <a href="#">
-                                    <img src="frontend/img/logo.png" alt="">
-                                </a>
+                              <img :src="getLogoUrl(siteSetting?.logo)" alt="Logo" height="100">
                             </div>
-                            <p>
-                                finloan@support.com <br>
-                                +10 873 672 6782 <br>
-                                600/D, Green road, NewYork
-                            </p>
                             <div class="socail_links">
                                 <ul>
                                     <li>
@@ -30,47 +40,32 @@ export default {
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <i class="fa fa-google-plus"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-instagram"></i>
+                                            <i class="fa fa-whatsapp"></i>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
 
+
+
+
+
                         </div>
                     </div>
                     <div class="col-xl-2 col-md-6 col-lg-2">
                         <div class="footer_widget wow fadeInUp" data-wow-duration="1.1s" data-wow-delay=".4s">
-                            <h3 class="footer_title">
-                                Company
-                            </h3>
-                            <ul>
-                                <li><a href="#">About </a></li>
-                                <li><a href="#"> Pricing</a></li>
-                                <li><a href="#">Carrier Tips</a></li>
-                                <li><a href="#">FAQ</a></li>
-                            </ul>
+
 
                         </div>
                     </div>
                     <div class="col-xl-3 col-md-6 col-lg-3">
                         <div class="footer_widget wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".5s">
                             <h3 class="footer_title">
-                                Category
+                                Company
                             </h3>
                             <ul>
-                                <li><a href="#">Engineering</a></li>
-                                <li><a href="#">Sales & Marketing</a></li>
-                                <li><a href="#">Finance</a></li>
+                                <li><a href="#">About </a></li>
+                                <li><a href="#"> Terms & Condition</a></li>
                             </ul>
                         </div>
                     </div>
