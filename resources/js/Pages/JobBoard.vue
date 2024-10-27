@@ -130,60 +130,34 @@ export default {
 
                     <div class="job_lists m-0">
                         <div class="row">
-                            <div class="col-lg-12 col-md-12">
+                            <div v-for="jobData in job" :key="jobData.id" class="col-lg-12 col-md-12">
                                 <div class="single_jobs white-bg d-flex justify-content-between">
                                     <div class="jobs_left d-flex align-items-center">
                                         <div class="thumb">
                                             <img src="img/svg_icon/1.svg" alt="">
                                         </div>
                                         <div class="jobs_conetent">
-                                            <a href="job_details.html"><h4>Software Engineer</h4></a>
+                                            <Link :href="`/job-details/${jobData.id}`">
+                                                <h4 v-if="locale === 'en'">{{ jobData.title }}</h4>
+                                                <h4 v-else>{{ jobData.title_bn }}</h4>
+                                            </Link>
                                             <div class="links_locat d-flex align-items-center">
                                                 <div class="location">
-                                                    <p> <i class="fa fa-map-marker"></i> California, USA</p>
-                                                </div>
-                                                <div class="location">
-                                                    <p> <i class="fa fa-clock-o"></i> Part-time</p>
+                                                    <p v-if="locale === 'en'">
+                                                        <i class="fa fa-map-marker"></i>
+                                                        {{ jobData.address }}
+                                                    </p>
+                                                    <p v-else>
+                                                        <i class="fa fa-map-marker"></i>
+                                                        {{ jobData.address_bn }}
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="jobs_right">
                                         <div class="apply_now">
-                                            <a class="heart_mark" href="#"> <i class="fa fa-heart"></i> </a>
-                                            <a href="job_details.html" class="boxed-btn3">Apply Now</a>
-                                        </div>
-                                        <div class="date">
-                                            <p>Date line: 31 Jan 2020</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-12">
-                                <div class="single_jobs white-bg d-flex justify-content-between">
-                                    <div class="jobs_left d-flex align-items-center">
-                                        <div class="thumb">
-                                            <img src="img/svg_icon/2.svg" alt="">
-                                        </div>
-                                        <div class="jobs_conetent">
-                                            <a href="job_details.html"><h4>Digital Marketer</h4></a>
-                                            <div class="links_locat d-flex align-items-center">
-                                                <div class="location">
-                                                    <p> <i class="fa fa-map-marker"></i> California, USA</p>
-                                                </div>
-                                                <div class="location">
-                                                    <p> <i class="fa fa-clock-o"></i> Part-time</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="jobs_right">
-                                        <div class="apply_now">
-                                            <a class="heart_mark" href="#"> <i class="fa fa-heart"></i> </a>
-                                            <a href="job_details.html" class="boxed-btn3">Apply Now</a>
-                                        </div>
-                                        <div class="date">
-                                            <p>Date line: 31 Jan 2020</p>
+                                            <Link :href="`/job-details/${jobData.id}`" class="boxed-btn3">Apply Now</Link>
                                         </div>
                                     </div>
                                 </div>

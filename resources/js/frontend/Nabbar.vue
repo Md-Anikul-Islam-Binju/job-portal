@@ -60,10 +60,10 @@ export default {
                                             </Link>
                                         </li>
                                         <li>
-                                            <a href="contact.html">
+                                            <Link href="/contact">
                                                 <span style="color: orangered" v-if="locale === 'en'">Contact</span>
                                                 <span style="color: orangered" v-else>যোগাযোগ</span>
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li>
                                             <a href="#">

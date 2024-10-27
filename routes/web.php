@@ -10,6 +10,7 @@ use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\TermsAndConditionController;
 use App\Http\Controllers\company\CompanyDashboardController;
 use App\Http\Controllers\company\JobController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\JobBoardController;
 use App\Http\Controllers\user\EducationController;
@@ -36,10 +37,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FrontendController::class, 'frontend'])->name('home');
 Route::get('/job-board', [JobBoardController::class, 'jobBoard'])->name('job.board');
 Route::get('/job-details/{id}', [JobBoardController::class, 'jobDetails'])->name('job.details');
-// In web.php
-
-// web.php
 Route::get('/jobs/apply/{job}', [UserController::class, 'applyJob'])->name('jobs.apply');
+
+//contact
+Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
 
 
 
