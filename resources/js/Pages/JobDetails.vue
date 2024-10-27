@@ -136,25 +136,6 @@ export default {
     },
 
     methods: {
-        // applyJobDirectly(event) {
-        //     event.preventDefault();
-        //
-        //     // Send request to backend using href link with axios
-        //     axios.get(event.target.href)
-        //         .then(response => {
-        //             alert(response.data.message || "Application successful!");
-        //         })
-        //         .catch(error => {
-        //             if (error.response && error.response.status === 401) {
-        //                 alert("Please login to apply for the job.");
-        //                 window.location.href = '/login';  // Redirect to login if not authenticated
-        //             } else {
-        //                 console.error("Error applying for job:", error);
-        //             }
-        //         });
-        // },
-
-
         applyJobDirectly(event) {
             event.preventDefault();
 
