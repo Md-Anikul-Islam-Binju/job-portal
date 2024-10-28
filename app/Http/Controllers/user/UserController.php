@@ -187,21 +187,48 @@ class UserController extends Controller
 
 
 
+//    public function applyJob(Request $request, Job $job)
+//    {
+//        if (!auth()->check()) {
+//            return response()->json(['error' => 'Please login to apply for the job.'], 401);
+//        }
+//        $user = auth()->user();
+//        JobApplication::create([
+//            'job_id' => $job->id,
+//            'user_id' => $user->id,
+//            'company_id' => $job->company_id,
+//        ]);
+//        return response()->json(['message' => 'Application successful!'], 200);
+//    }
+
     public function applyJob(Request $request, Job $job)
     {
         if (!auth()->check()) {
             return response()->json(['error' => 'Please login to apply for the job.'], 401);
         }
+
         $user = auth()->user();
+
+        // Check if the user has already applied for the job
+        $existingApplication = JobApplication::where('job_id', $job->id)
+            ->where('user_id', $user->id)
+            ->exists();
+
+        if ($existingApplication) {
+            return response()->json(['message' => 'You have already applied for this job.'], 409);
+        }
+
+        // Create the job application
         JobApplication::create([
             'job_id' => $job->id,
             'user_id' => $user->id,
             'company_id' => $job->company_id,
         ]);
 
-
         return response()->json(['message' => 'Application successful!'], 200);
     }
+
+
 
 
 
