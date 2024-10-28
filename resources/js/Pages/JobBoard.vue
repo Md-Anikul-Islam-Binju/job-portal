@@ -75,6 +75,15 @@ export default {
             const year = dateObj.getFullYear().toString().replace(/\d/g, (digit) => englishToBengaliDigits[digit]);
             return `${day} ${bengaliMonth} ${year}`;
         }
+    },
+    mounted() {
+        // Fetch job data if not available
+        if (this.job.length === 0) {
+            this.$inertia.get('/jobs').then(response => {
+                console.log("Fetched Job Data:", response);
+                this.job = response.data;
+            });
+        }
     }
 }
 </script>
@@ -128,7 +137,7 @@ export default {
                                 </div>
                                 <div class="col-md-6">
                                     <div class="custom-dropdown d-flex justify-content-end">
-                                        <select v-model="selectedCategory" class="custom-select">
+                                        <select v-model="selectedCategory" class="custom-select" >
                                             <option value="all">All Categories</option>
                                             <option v-for="cat in category" :key="cat.id" :value="cat.id">
                                                 {{ locale === 'en' ? cat.name : cat.name_bn }}
@@ -151,9 +160,6 @@ export default {
                             <div v-if="filteredJobs.length > 0" v-for="jobData in filteredJobs" :key="jobData.id" class="col-lg-12 col-md-12">
                                 <div class="single_jobs white-bg d-flex justify-content-between">
                                     <div class="jobs_left d-flex align-items-center">
-                                        <div class="thumb">
-                                            <img src="img/svg_icon/1.svg" alt="">
-                                        </div>
                                         <div class="jobs_conetent">
                                             <Link :href="`/job-details/${jobData.id}`">
                                                 <h4 v-if="locale === 'en'">{{ jobData.title }}</h4>
