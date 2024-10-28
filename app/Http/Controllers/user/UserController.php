@@ -185,22 +185,6 @@ class UserController extends Controller
         return redirect()->back()->with('success', $message);
     }
 
-
-
-//    public function applyJob(Request $request, Job $job)
-//    {
-//        if (!auth()->check()) {
-//            return response()->json(['error' => 'Please login to apply for the job.'], 401);
-//        }
-//        $user = auth()->user();
-//        JobApplication::create([
-//            'job_id' => $job->id,
-//            'user_id' => $user->id,
-//            'company_id' => $job->company_id,
-//        ]);
-//        return response()->json(['message' => 'Application successful!'], 200);
-//    }
-
     public function applyJob(Request $request, Job $job)
     {
         if (!auth()->check()) {
