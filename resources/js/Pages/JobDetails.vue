@@ -70,11 +70,6 @@
                         </div>
                     </div>
                     <div class="apply_job_form white-bg">
-<!--                        <div class="container">-->
-<!--                            <a :href="`/jobs/apply/${job.id}`" @click.prevent="applyJobDirectly" class="boxed-btn3 w-100">-->
-<!--                                Apply Now-->
-<!--                            </a>-->
-<!--                        </div>-->
                         <div class="container">
                             <a
                                 :href="`/jobs/apply/${job.id}`"
@@ -157,29 +152,6 @@ export default {
     },
 
     methods: {
-        // applyJobDirectly(event) {
-        //     event.preventDefault();
-        //     axios.get(event.target.href)
-        //         .then(response => {
-        //             Swal.fire({
-        //                 icon: 'success',
-        //                 title: this.locale === 'en' ? response.data.message : "আবেদন সফল হয়েছে!",
-        //                 confirmButtonText: 'OK'
-        //             });
-        //         })
-        //         .catch(error => {
-        //             if (error.response && error.response.status === 401) {
-        //                 Swal.fire({
-        //                     icon: 'warning',
-        //                     title: this.locale === 'en' ? "Please login to apply for the job." : "দয়া করে আবেদন করতে লগইন করুন।",
-        //                     confirmButtonText: 'OK'
-        //                 });
-        //                 window.location.href = '/login';
-        //             } else {
-        //                 console.error("Error applying for job:", error);
-        //             }
-        //         });
-        // },
         applyJobDirectly(event) {
             event.preventDefault();
 
