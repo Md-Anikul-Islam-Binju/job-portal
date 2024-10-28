@@ -38,9 +38,9 @@ export default {
                     <div class="row align-items-center">
                         <div class="col-xl-3 col-lg-2">
                             <div class="logo">
-                                <a href="index.html">
+                                <Link href="/">
                                     <img :src="getLogoUrl(siteSetting?.logo)" alt="Logo" height="100">
-                                </a>
+                                </Link>
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-7">
