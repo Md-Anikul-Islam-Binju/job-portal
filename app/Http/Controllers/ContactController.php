@@ -13,6 +13,7 @@ class ContactController extends Controller
         $siteSetting = SiteSetting::latest()->first();
         $auth = Auth::user() ? [
             'name' => Auth::user()->name,
+            'name_bn' => Auth::user()->name_bn,
             'email' => Auth::user()->email,
             'role' => Auth::user()->role,
         ] : null;

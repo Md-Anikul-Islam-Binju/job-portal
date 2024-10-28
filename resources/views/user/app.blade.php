@@ -103,6 +103,8 @@
         <div class="h-100" id="leftside-menu-container" data-simplebar>
             <ul class="side-nav">
                 <li class="side-nav-title">Main</li>
+
+
                 <li class="side-nav-item">
                     <a href="{{route('user.dashboard')}}" class="side-nav-link">
                         <i class="ri-dashboard-3-line"></i>
@@ -138,10 +140,12 @@
                     </a>
                 </li>
 
-
-
-
-
+                <li class="side-nav-item">
+                    <a href="{{route('home')}}" class="side-nav-link" target="_blank">
+                        <i class="ri-dashboard-3-line"></i>
+                        <b style="color: red"> Our Site </b>
+                    </a>
+                </li>
 
             </ul>
             <div class="clearfix"></div>

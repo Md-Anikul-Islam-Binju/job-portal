@@ -77,8 +77,6 @@ export default {
                 <div class="row align-items-center">
                     <div class="col-lg-7 col-md-6">
                         <div class="slider_text">
-                            <h5 v-if="locale === 'en'" class="wow fadeInLeft" style="color: #0a0a0a" data-wow-duration="1s" data-wow-delay=".2s">4+ Jobs listed</h5>
-                            <h5 v-else class="wow fadeInLeft" style="color: #0a0a0a" data-wow-duration="1s" data-wow-delay=".2s">4+ তালিকাভুক্ত চাকরি</h5>
                             <h3 v-if="locale === 'en'" class="wow fadeInLeft" style="color: #0a0a0a" data-wow-duration="1s" data-wow-delay=".3s">Find your Dream Job</h3>
                             <h3 v-else class="wow fadeInLeft" style="color: #0a0a0a" data-wow-duration="1s" data-wow-delay=".3s">আপনার স্বপ্নের চাকরি খুঁজুন</h3>
                             <div class="sldier_btn wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
@@ -104,7 +102,9 @@ export default {
                 </div>
                 <div class="col-lg-3 col-md-12">
                     <div class="job_btn">
-                        <a href="#" class="boxed-btn3">Find Job</a>
+                        <a href="#" class="boxed-btn3">
+                            <span>Find Job</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -116,38 +116,55 @@ export default {
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="section_title mb-40">
-                        <h4 v-if="locale === 'en'">Popular Categories</h4>
-                        <h4 v-else>কাজের তালিকা</h4>
+                    <div class="section_title mb-3">
+                        <h4 v-if="locale === 'en'">All Categories</h4>
+                        <h4 v-else>সকল ক্যাটাগরি </h4>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div v-for="categoryData in category" :key="categoryData.id" class="col-lg-4 col-xl-3 col-md-6">
-                    <div class="single_catagory">
-                        <a href="#">
-                            <h4 v-if="locale === 'en'">{{ categoryData.name }}</h4>
-                            <h4 v-else>{{ categoryData.name_bn }}</h4>
-                        </a>
 
+            <div class="row">
+                <div class="single_catagory">
+                    <a href="#" @click.prevent="selectCategory(null)">
+                        <h4 v-if="locale === 'en'">All</h4>
+                        <h4 v-else>সব</h4>
                         <p  v-if="locale === 'en'">
                             <span>50</span>
                             Available position
                         </p>
-
                         <p  v-else>
                             <span>50</span>
-                            উপলব্ধ পদ
+                             পদ শূন্য  আছে
                         </p>
+                    </a>
+                </div>
 
-
+                <div v-for="categoryData in category" :key="categoryData.id" class="col-lg-4 col-xl-3 col-md-6">
+                    <div class="single_catagory">
+                        <a href="#" @click.prevent="selectCategory(categoryData.id)">
+                            <h4 v-if="locale === 'en'">{{ categoryData.name }}</h4>
+                            <h4 v-else>{{ categoryData.name_bn }}</h4>
+                        </a>
+                        <p  v-if="locale === 'en'">
+                            <span>50</span>
+                            Available position
+                        </p>
+                        <p  v-else>
+                            <span>50</span>
+                            পদ শূন্য  আছে
+                        </p>
                     </div>
                 </div>
             </div>
+
+
         </div>
     </div>
 
     <!-- job_listing_area_start  -->
+
+
+
     <div class="job_listing_area">
         <div class="container">
             <div class="row align-items-center">
@@ -168,17 +185,17 @@ export default {
             </div>
             <div class="job_lists">
                 <div class="row">
-                    <div  v-for="jobData in job" :key="jobData.id"  class="col-lg-12 col-md-12">
+                    <div v-for="jobData in filteredJobs" :key="jobData.id" class="col-lg-12 col-md-12">
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="thumb">
                                     <img src="frontend/img/svg_icon/1.svg" alt="">
                                 </div>
                                 <div class="jobs_conetent">
-                                    <Link :href="`/job-details/${jobData.id}`">
+                                    <a :href="`/job-details/${jobData.id}`">
                                         <h4 v-if="locale === 'en'">{{ jobData.title }}</h4>
                                         <h4 v-else>{{ jobData.title_bn }}</h4>
-                                    </Link>
+                                    </a>
                                     <div class="links_locat d-flex align-items-center">
                                         <div class="location">
                                             <p v-if="locale === 'en'">
@@ -202,7 +219,11 @@ export default {
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                    <Link :href="`/job-details/${jobData.id}`" class="boxed-btn3">Apply Now</Link>
+                                    <a :href="`/job-details/${jobData.id}`" class="boxed-btn3">
+
+                                        <span v-if="locale === 'en'">Apply Now</span>
+                                        <span v-else>আবেদন করুন</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>

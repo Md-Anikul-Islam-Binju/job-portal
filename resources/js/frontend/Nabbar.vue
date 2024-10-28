@@ -39,11 +39,7 @@ export default {
                         <div class="col-xl-3 col-lg-2">
                             <div class="logo">
                                 <a href="index.html">
-<!--                                    <img :src="siteSetting?.logo || 'default-logo.png'" alt="Logo" height="100">-->
-
                                     <img :src="getLogoUrl(siteSetting?.logo)" alt="Logo" height="100">
-
-
                                 </a>
                             </div>
                         </div>
@@ -53,39 +49,39 @@ export default {
                                     <ul id="navigation" >
                                         <li>
                                             <Link href="/">
-                                                <span style="color: orangered" v-if="locale === 'en'">Home</span>
-                                                <span style="color: orangered" v-else>হোম</span>
+                                                <h5 style="color: orangered" v-if="locale === 'en'">Home</h5>
+                                                <h5 style="color: orangered" v-else>হোম</h5>
                                             </Link>
                                         </li>
                                         <li>
                                             <Link href="/job-board">
-                                                <span style="color: orangered" v-if="locale === 'en'">Job</span>
-                                                <span style="color: orangered" v-else>জব</span>
+                                                <h5 style="color: orangered" v-if="locale === 'en'">Job</h5>
+                                                <h5 style="color: orangered" v-else>জব</h5>
                                             </Link>
                                         </li>
                                         <li>
                                             <Link href="/contact">
-                                                <span style="color: orangered" v-if="locale === 'en'">Contact</span>
-                                                <span style="color: orangered" v-else>যোগাযোগ</span>
+                                                <h5 style="color: orangered" v-if="locale === 'en'">Contact Us</h5>
+                                                <h5 style="color: orangered" v-else>যোগাযোগ</h5>
                                             </Link>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <span style="color: orangered" v-if="locale === 'en'">Page</span>
-                                                <span style="color: orangered" v-else>পেজ</span>
+                                                <span style="color: orangered" v-if="locale === 'en'">Our Page</span>
+                                                <span style="color: orangered" v-else>আমাদের পেজ</span>
                                                 <i class="ti-angle-down ml-1"></i>
                                             </a>
                                             <ul class="submenu">
                                                 <li>
                                                     <Link href="/about-us">
-                                                        <span style="color: orangered" v-if="locale === 'en'">About Us</span>
-                                                        <span style="color: orangered" v-else>আমাদের সম্পর্কে</span>
+                                                        <h5 style="color: orangered" v-if="locale === 'en'">About Us</h5>
+                                                        <h5 style="color: orangered" v-else>আমাদের সম্পর্কে</h5>
                                                     </Link>
                                                 </li>
                                                 <li>
                                                     <Link href="/terms-condition">
-                                                        <span style="color: orangered" v-if="locale === 'en'">Terms & Condition</span>
-                                                        <span style="color: orangered" v-else>শর্তাবলী</span>
+                                                        <h5 style="color: orangered" v-if="locale === 'en'">Terms & Condition</h5>
+                                                        <h5 style="color: orangered" v-else>শর্তাবলী</h5>
                                                     </Link>
                                                 </li>
                                             </ul>
@@ -99,11 +95,13 @@ export default {
                             <div class="Appointment">
                                 <div v-if="auth && auth.role === 'user'">
                                     <a @click="redirectToDashboard" class="btn btn-success mr-2">
-                                        {{ auth.name }}
+
+                                        <span v-if="locale === 'en'"> {{ auth.name }}</span>
+                                        <span v-else> {{ auth.name_bn }}</span>
                                     </a>
                                 </div>
                                 <div v-else>
-                                    <a href="/login" class="btn btn-success mr-2">
+                                    <a href="/login" class="btn btn-warning mr-2">
                                         <span v-if="locale === 'en'">Login / Registration</span>
                                         <span v-else>লগইন/রেজিস্ট্রেশন করুন</span>
                                     </a>
