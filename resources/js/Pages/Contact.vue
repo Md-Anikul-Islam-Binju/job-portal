@@ -77,7 +77,8 @@ export default {
     name: "Contact",
     layout : Layout,
     props:{
-        siteSetting: Object
+        siteSetting: Object,
+        auth:Object,
     },
     data() {
         return {

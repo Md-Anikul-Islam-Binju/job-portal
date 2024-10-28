@@ -40,7 +40,8 @@ export default {
     layout : Layout,
     props:{
         about:Object,
-        siteSetting:Object
+        siteSetting:Object,
+        auth:Object,
     },
 
     data() {

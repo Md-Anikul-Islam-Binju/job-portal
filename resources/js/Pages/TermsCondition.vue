@@ -33,7 +33,8 @@ export default {
     layout : Layout,
     props:{
         terms:Object,
-        siteSetting:Object
+        siteSetting:Object,
+        auth:Object,
     },
 
     data() {

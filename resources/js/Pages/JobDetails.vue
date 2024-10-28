@@ -114,7 +114,8 @@ export default {
     layout: Layout,
     props: {
         job: Array,
-        siteSetting: Object
+        siteSetting: Object,
+        auth:Object,
     },
     data() {
         return {

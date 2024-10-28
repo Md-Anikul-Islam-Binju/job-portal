@@ -9,7 +9,8 @@ export default {
     props: {
         category: Array,
         job: Array,
-        siteSetting: Object
+        siteSetting: Object,
+        auth:Object,
     },
     data() {
         return {

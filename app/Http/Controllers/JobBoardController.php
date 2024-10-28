@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Job;
 use App\Models\SiteSetting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JobBoardController extends Controller
 {
@@ -14,13 +15,23 @@ class JobBoardController extends Controller
         $category = Category::latest()->get();
         $job = Job::latest()->get();
         $siteSetting = SiteSetting::latest()->first();
-        return inertia('JobBoard',compact('category','job','siteSetting'));
+        $auth = Auth::user() ? [
+            'name' => Auth::user()->name,
+            'email' => Auth::user()->email,
+            'role' => Auth::user()->role,
+        ] : null;
+        return inertia('JobBoard',compact('category','job','siteSetting','auth'));
     }
 
     public function jobDetails($id)
     {
         $job = Job::where('id',$id)->first();
         $siteSetting = SiteSetting::latest()->first();
-        return inertia('JobDetails',compact('job','siteSetting'));
+        $auth = Auth::user() ? [
+            'name' => Auth::user()->name,
+            'email' => Auth::user()->email,
+            'role' => Auth::user()->role,
+        ] : null;
+        return inertia('JobDetails',compact('job','siteSetting','auth'));
     }
 }

@@ -2,7 +2,8 @@
 export default {
     name: "Navbar",
     props: {
-        siteSetting: Object // Accept siteSetting as a prop
+        siteSetting: Object,
+        auth: Object
     },
     data() {
         return {
@@ -22,6 +23,9 @@ export default {
             localStorage.setItem('locale', lang);
             window.location.reload();
         },
+        redirectToDashboard() {
+            window.location.href = "/user/dashboard";
+        }
     },
 }
 </script>
@@ -93,8 +97,13 @@ export default {
 
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                             <div class="Appointment">
-                                <div class="d-none d-lg-block">
-                                    <a href="/user-registration-start" class="btn btn-success mr-2">
+                                <div v-if="auth && auth.role === 'user'">
+                                    <a @click="redirectToDashboard" class="btn btn-success mr-2">
+                                        {{ auth.name }}
+                                    </a>
+                                </div>
+                                <div v-else>
+                                    <a href="/login" class="btn btn-success mr-2">
                                         <span v-if="locale === 'en'">Login / Registration</span>
                                         <span v-else>লগইন/রেজিস্ট্রেশন করুন</span>
                                     </a>

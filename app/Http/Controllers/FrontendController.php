@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Job;
 use App\Models\SiteSetting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FrontendController extends Controller
 {
@@ -14,6 +15,12 @@ class FrontendController extends Controller
         $category = Category::latest()->get();
         $job = Job::latest()->get();
         $siteSetting = SiteSetting::latest()->first();
-        return inertia('Index',compact('category','job','siteSetting'));
+
+        $auth = Auth::user() ? [
+            'name' => Auth::user()->name,
+            'email' => Auth::user()->email,
+            'role' => Auth::user()->role,
+        ] : null;
+        return inertia('Index',compact('category','job','siteSetting','auth'));
     }
 }
