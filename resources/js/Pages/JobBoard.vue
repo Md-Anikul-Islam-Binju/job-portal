@@ -1,4 +1,3 @@
-
 <script>
 import Layout from "../frontend/Layout.vue";
 
@@ -8,7 +7,7 @@ export default {
     props: {
         category: Array,
         job: Array,
-        locations: Array, // Assuming you pass locations as a prop
+        locations: Array,
         siteSetting: Object,
         auth: Object,
     },
@@ -19,6 +18,8 @@ export default {
             selectedLocation: 'all',
             searchKeyword: '',
             filteredJobs: [],
+            currentPage: 1,   // Track current page
+            jobsPerPage: 50,  // Number of jobs to show per page
         };
     },
     watch: {
@@ -43,6 +44,18 @@ export default {
             this.filterJobs();
         },
     },
+    computed: {
+        // Paginate filtered jobs based on currentPage and jobsPerPage
+        paginatedJobs() {
+            const startIndex = (this.currentPage - 1) * this.jobsPerPage;
+            const endIndex = startIndex + this.jobsPerPage;
+            return this.filteredJobs.slice(startIndex, endIndex);
+        },
+        // Calculate the total number of pages
+        totalPages() {
+            return Math.ceil(this.filteredJobs.length / this.jobsPerPage);
+        }
+    },
     methods: {
         filterJobs() {
             this.$nextTick(() => {
@@ -52,15 +65,14 @@ export default {
                         this.selectedCategory === 'all' || job.category_id === parseInt(this.selectedCategory);
                     const matchesLocation =
                         this.selectedLocation === 'all' || job.location_id === parseInt(this.selectedLocation);
-
-                     //return matchesCategory && matchesLocation
                     const matchesKeyword =
                         keyword === '' ||
                         job.title.toLowerCase().includes(keyword) ||
                         (job.title_bn && job.title_bn.toLowerCase().includes(keyword));
-
                     return matchesCategory && matchesLocation && matchesKeyword;
                 });
+                // Reset to the first page after filtering
+                this.currentPage = 1;
                 console.log("Filtered Jobs:", this.filteredJobs);
             });
         },
@@ -71,7 +83,6 @@ export default {
             const year = dateObj.getFullYear();
             return `${day} ${month} ${year}`;
         },
-
         formatDateBengali(date) {
             const englishToBengaliDigits = {
                 "0": "০", "1": "১", "2": "২", "3": "৩", "4": "৪",
@@ -89,11 +100,17 @@ export default {
             const bengaliMonth = englishToBengaliMonths[month];
             const year = dateObj.getFullYear().toString().replace(/\d/g, (digit) => englishToBengaliDigits[digit]);
             return `${day} ${bengaliMonth} ${year}`;
-        }
+        },
+        // Method to change the page
+        goToPage(pageNumber) {
+            if (pageNumber >= 1 && pageNumber <= this.totalPages) {
+                this.currentPage = pageNumber;
+            }
+        },
     },
     mounted() {
         if (this.job.length === 0) {
-            this.$inertia.get('/jobs').then(response => {
+            this.$inertia.get('/jobs').then((response) => {
                 console.log("Fetched Job Data:", response);
                 this.job = response.data;
             });
@@ -101,6 +118,7 @@ export default {
     }
 };
 </script>
+
 <template>
     <head>
         <title>Job Board</title>
@@ -153,43 +171,44 @@ export default {
                                     <div class="col-md-6">
                                         <h4>Job Listing</h4>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <!-- Category Dropdown -->
-                                            <div class="custom-dropdown d-flex justify-content-end">
-                                                <select v-model="selectedCategory" class="custom-select">
-                                                    <option value="all">All Categories</option>
-                                                    <option v-for="cat in category" :key="cat.id" :value="cat.id">
-                                                        {{ locale === 'en' ? cat.name : cat.name_bn }}
-                                                    </option>
-                                                </select>
-                                            </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <!-- Category Dropdown -->
+                                        <div class="custom-dropdown d-flex justify-content-end">
+                                            <select v-model="selectedCategory" class="custom-select">
+                                                <option value="all">All Categories</option>
+                                                <option v-for="cat in category" :key="cat.id" :value="cat.id">
+                                                    {{ locale === 'en' ? cat.name : cat.name_bn }}
+                                                </option>
+                                            </select>
                                         </div>
-                                        <div class="col-md-6">
-                                            <!-- Location Dropdown -->
-                                            <div class="custom-dropdown d-flex justify-content-end">
-                                                <select v-model="selectedLocation" class="custom-select">
-                                                    <option value="all">All Locations</option>
-                                                    <option v-for="loc in locations" :key="loc.id" :value="loc.id">
-                                                        {{ locale === 'en' ? loc.name : loc.name_bn }}
-                                                    </option>
-                                                </select>
-                                            </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- Location Dropdown -->
+                                        <div class="custom-dropdown d-flex justify-content-end">
+                                            <select v-model="selectedLocation" class="custom-select">
+                                                <option value="all">All Locations</option>
+                                                <option v-for="loc in locations" :key="loc.id" :value="loc.id">
+                                                    {{ locale === 'en' ? loc.name : loc.name_bn }}
+                                                </option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
+                              </div>
                             </div>
                         </div>
 
-                        <!-- Debugging messages for data flow -->
+
+                        <!-- Job List Display -->
                         <p v-if="job.length === 0">Loading jobs...</p>
-                        <p v-else-if="filteredJobs.length > 0">Showing {{ filteredJobs.length }} jobs</p>
+                        <p v-else-if="paginatedJobs.length > 0">Showing {{ paginatedJobs.length }} jobs</p>
                         <p v-else>No jobs available in this category.</p>
 
-                        <!-- Display Filtered Jobs -->
+                        <!-- Display Paginated Jobs -->
                         <div class="job_lists m-0 flex-grow-1 overflow-auto">
                             <div class="row">
-                                <div v-if="filteredJobs.length > 0" v-for="jobData in filteredJobs" :key="jobData.id" class="col-lg-12 col-md-12">
+                                <div v-if="paginatedJobs.length > 0" v-for="jobData in paginatedJobs" :key="jobData.id" class="col-lg-12 col-md-12">
                                     <div class="single_jobs white-bg d-flex justify-content-between">
                                         <div class="jobs_left d-flex align-items-center">
                                             <div class="jobs_conetent">
@@ -200,12 +219,10 @@ export default {
                                                 <div class="links_locat d-flex align-items-center">
                                                     <div class="location">
                                                         <p v-if="locale === 'en'">
-                                                            <i class="fa fa-map-marker"></i>
-                                                            {{ jobData.address }}
+                                                            <i class="fa fa-map-marker"></i> {{ jobData.address }}
                                                         </p>
                                                         <p v-else>
-                                                            <i class="fa fa-map-marker"></i>
-                                                            {{ jobData.address_bn }}
+                                                            <i class="fa fa-map-marker"></i> {{ jobData.address_bn }}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -220,10 +237,30 @@ export default {
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Pagination Controls -->
+                        <div class="pagination-controls mt-4 d-flex justify-content-center" v-if="totalPages > 1">
+                            <button class="btn btn-primary mx-1" @click="goToPage(currentPage - 1)" :disabled="currentPage === 1">
+                                Previous
+                            </button>
+                            <button
+                                v-for="page in totalPages"
+                                :key="page"
+                                class="btn"
+                                :class="{ 'btn-primary': page === currentPage, 'btn-secondary': page !== currentPage }"
+                                @click="goToPage(page)"
+                            >
+                                {{ page }}
+                            </button>
+                            <button class="btn btn-primary mx-1" @click="goToPage(currentPage + 1)" :disabled="currentPage === totalPages">
+                                Next
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
+
 
