@@ -17,6 +17,7 @@ export default {
             locale: localStorage.getItem('locale') || 'bn',
             selectedCategory: 'all',
             selectedLocation: 'all',
+            searchKeyword: '',
             filteredJobs: [],
         };
     },
@@ -38,16 +39,27 @@ export default {
         selectedLocation() {
             this.filterJobs();
         },
+        searchKeyword() {
+            this.filterJobs();
+        },
     },
     methods: {
         filterJobs() {
             this.$nextTick(() => {
+                const keyword = this.searchKeyword.toLowerCase().trim();
                 this.filteredJobs = this.job.filter((job) => {
                     const matchesCategory =
                         this.selectedCategory === 'all' || job.category_id === parseInt(this.selectedCategory);
                     const matchesLocation =
                         this.selectedLocation === 'all' || job.location_id === parseInt(this.selectedLocation);
-                    return matchesCategory && matchesLocation;
+
+                     //return matchesCategory && matchesLocation
+                    const matchesKeyword =
+                        keyword === '' ||
+                        job.title.toLowerCase().includes(keyword) ||
+                        (job.title_bn && job.title_bn.toLowerCase().includes(keyword));
+
+                    return matchesCategory && matchesLocation && matchesKeyword;
                 });
                 console.log("Filtered Jobs:", this.filteredJobs);
             });
@@ -121,7 +133,10 @@ export default {
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="single_field">
-                                                <input type="text" placeholder="Search keyword">
+                                                <input
+                                                    type="text"
+                                                    placeholder="Search by title"
+                                                    v-model="searchKeyword" />
                                             </div>
                                         </div>
                                     </div>
