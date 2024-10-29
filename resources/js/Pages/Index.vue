@@ -183,10 +183,10 @@ export default {
                 </div>
                 <div class="col-lg-6">
                     <div class="brouse_job text-right">
-                        <a href="jobs.html" class="boxed-btn4">
+                        <Link href="/job-board" class="boxed-btn4">
                             <span v-if="locale === 'en'">More Job</span>
                             <span v-else>আরও কাজ</span>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>
