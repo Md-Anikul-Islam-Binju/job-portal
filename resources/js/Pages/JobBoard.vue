@@ -1,3 +1,4 @@
+
 <script>
 import Layout from "../frontend/Layout.vue";
 
@@ -7,48 +8,50 @@ export default {
     props: {
         category: Array,
         job: Array,
+        locations: Array, // Assuming you pass locations as a prop
         siteSetting: Object,
         auth: Object,
     },
     data() {
         return {
             locale: localStorage.getItem('locale') || 'bn',
-            selectedCategory: 'all', // Default to 'all' to show all jobs initially
-            filteredJobs: [], // Set filtered jobs when job data is loaded
+            selectedCategory: 'all',
+            selectedLocation: 'all',
+            filteredJobs: [],
         };
     },
     watch: {
-        // Watch for changes in the job prop to set filteredJobs when data is available
         job: {
             immediate: true,
             handler(newJobs) {
-                console.log("Job data loaded:", newJobs); // Check if job data is available on reload
+                console.log("Job data loaded:", newJobs);
                 if (newJobs && newJobs.length > 0) {
-                    // Apply filter after confirming job data is present
                     this.$nextTick(() => {
-                        this.filterJobsByCategory();
+                        this.filterJobs();
                     });
                 }
-            }
+            },
         },
-        // Watch for changes in selectedCategory to filter jobs accordingly
         selectedCategory() {
-            this.filterJobsByCategory();
-        }
+            this.filterJobs();
+        },
+        selectedLocation() {
+            this.filterJobs();
+        },
     },
     methods: {
-        // Filter jobs based on selected category
-        filterJobsByCategory() {
+        filterJobs() {
             this.$nextTick(() => {
-                if (this.selectedCategory === 'all') {
-                    this.filteredJobs = this.job; // Show all jobs if 'all' is selected
-                } else {
-                    this.filteredJobs = this.job.filter(job => job.category_id === parseInt(this.selectedCategory));
-                }
-                console.log("Filtered Jobs:", this.filteredJobs); // Debug filtered results
+                this.filteredJobs = this.job.filter((job) => {
+                    const matchesCategory =
+                        this.selectedCategory === 'all' || job.category_id === parseInt(this.selectedCategory);
+                    const matchesLocation =
+                        this.selectedLocation === 'all' || job.location_id === parseInt(this.selectedLocation);
+                    return matchesCategory && matchesLocation;
+                });
+                console.log("Filtered Jobs:", this.filteredJobs);
             });
         },
-
         formatDateEnglish(date) {
             const dateObj = new Date(date);
             const day = dateObj.getDate();
@@ -77,7 +80,6 @@ export default {
         }
     },
     mounted() {
-        // Fetch job data if not available
         if (this.job.length === 0) {
             this.$inertia.get('/jobs').then(response => {
                 console.log("Fetched Job Data:", response);
@@ -85,103 +87,119 @@ export default {
             });
         }
     }
-}
+};
 </script>
-
 <template>
     <head>
         <title>Job Board</title>
     </head>
 
-    <!-- bradcam area -->
-    <div class="bradcam_area bradcam_bg_1">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="bradcam_text">
-                        <h3 style="color: black">4536+ Jobs Available</h3>
+    <div class="job-board-container">
+        <!-- Header Section -->
+        <div class="bradcam_area bradcam_bg_1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="bradcam_text">
+                            <h3 style="color: black">4536+ Jobs Available</h3>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- job_listing_area_start -->
-    <div class="job_listing_area plus_padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="job_filter white-bg">
-                        <div class="form_inner white-bg">
-                            <h3>Filter</h3>
-                            <form action="#">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="single_field">
-                                            <input type="text" placeholder="Search keyword">
+        <!-- Job Listing Area -->
+        <div class="job_listing_area plus_padding flex-fill">
+            <div class="container h-100 d-flex">
+                <div class="row w-100">
+                    <!-- Filter Sidebar -->
+                    <div class="col-lg-3">
+                        <div class="job_filter white-bg">
+                            <div class="form_inner white-bg">
+                                <h3>Filter</h3>
+                                <form action="#">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="single_field">
+                                                <input type="text" placeholder="Search keyword">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-9">
-                    <!-- Category Dropdown -->
-                    <div class="recent_joblist_wrap">
-                        <div class="recent_joblist white-bg ">
-                            <div class="row align-items-center">
-                                <div class="col-md-6">
-                                    <h4>Job Listing</h4>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="custom-dropdown d-flex justify-content-end">
-                                        <select v-model="selectedCategory" class="custom-select" >
-                                            <option value="all">All Categories</option>
-                                            <option v-for="cat in category" :key="cat.id" :value="cat.id">
-                                                {{ locale === 'en' ? cat.name : cat.name_bn }}
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Debugging messages for data flow -->
-                    <p v-if="job.length === 0">Loading jobs...</p>
-                    <p v-else-if="filteredJobs.length > 0">Showing {{ filteredJobs.length }} jobs</p>
-                    <p v-else>No jobs available in this category.</p>
-
-                    <!-- Display Filtered Jobs -->
-                    <div class="job_lists m-0">
-                        <div class="row">
-                            <div v-if="filteredJobs.length > 0" v-for="jobData in filteredJobs" :key="jobData.id" class="col-lg-12 col-md-12">
-                                <div class="single_jobs white-bg d-flex justify-content-between">
-                                    <div class="jobs_left d-flex align-items-center">
-                                        <div class="jobs_conetent">
-                                            <Link :href="`/job-details/${jobData.id}`">
-                                                <h4 v-if="locale === 'en'">{{ jobData.title }}</h4>
-                                                <h4 v-else>{{ jobData.title_bn }}</h4>
-                                            </Link>
-                                            <div class="links_locat d-flex align-items-center">
-                                                <div class="location">
-                                                    <p v-if="locale === 'en'">
-                                                        <i class="fa fa-map-marker"></i>
-                                                        {{ jobData.address }}
-                                                    </p>
-                                                    <p v-else>
-                                                        <i class="fa fa-map-marker"></i>
-                                                        {{ jobData.address_bn }}
-                                                    </p>
-                                                </div>
+                    <!-- Main Job List Section -->
+                    <div class="col-lg-9 d-flex flex-column">
+                        <div class="recent_joblist_wrap">
+                            <div class="recent_joblist white-bg ">
+                                <div class="row align-items-center">
+                                    <div class="col-md-6">
+                                        <h4>Job Listing</h4>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <!-- Category Dropdown -->
+                                            <div class="custom-dropdown d-flex justify-content-end">
+                                                <select v-model="selectedCategory" class="custom-select">
+                                                    <option value="all">All Categories</option>
+                                                    <option v-for="cat in category" :key="cat.id" :value="cat.id">
+                                                        {{ locale === 'en' ? cat.name : cat.name_bn }}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!-- Location Dropdown -->
+                                            <div class="custom-dropdown d-flex justify-content-end">
+                                                <select v-model="selectedLocation" class="custom-select">
+                                                    <option value="all">All Locations</option>
+                                                    <option v-for="loc in locations" :key="loc.id" :value="loc.id">
+                                                        {{ locale === 'en' ? loc.name : loc.name_bn }}
+                                                    </option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="jobs_right">
-                                        <div class="apply_now">
-                                            <Link :href="`/job-details/${jobData.id}`" class="boxed-btn3">Apply Now</Link>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Debugging messages for data flow -->
+                        <p v-if="job.length === 0">Loading jobs...</p>
+                        <p v-else-if="filteredJobs.length > 0">Showing {{ filteredJobs.length }} jobs</p>
+                        <p v-else>No jobs available in this category.</p>
+
+                        <!-- Display Filtered Jobs -->
+                        <div class="job_lists m-0 flex-grow-1 overflow-auto">
+                            <div class="row">
+                                <div v-if="filteredJobs.length > 0" v-for="jobData in filteredJobs" :key="jobData.id" class="col-lg-12 col-md-12">
+                                    <div class="single_jobs white-bg d-flex justify-content-between">
+                                        <div class="jobs_left d-flex align-items-center">
+                                            <div class="jobs_conetent">
+                                                <Link :href="`/job-details/${jobData.id}`">
+                                                    <h4 v-if="locale === 'en'">{{ jobData.title }}</h4>
+                                                    <h4 v-else>{{ jobData.title_bn }}</h4>
+                                                </Link>
+                                                <div class="links_locat d-flex align-items-center">
+                                                    <div class="location">
+                                                        <p v-if="locale === 'en'">
+                                                            <i class="fa fa-map-marker"></i>
+                                                            {{ jobData.address }}
+                                                        </p>
+                                                        <p v-else>
+                                                            <i class="fa fa-map-marker"></i>
+                                                            {{ jobData.address_bn }}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="jobs_right">
+                                            <div class="apply_now">
+                                                <Link :href="`/job-details/${jobData.id}`" class="boxed-btn3">Apply Now</Link>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -193,3 +211,4 @@ export default {
         </div>
     </div>
 </template>
+

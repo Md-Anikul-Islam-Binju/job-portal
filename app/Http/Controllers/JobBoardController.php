@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Job;
 use App\Models\JobApplication;
+use App\Models\Location;
 use App\Models\SiteSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,7 @@ class JobBoardController extends Controller
     public function jobBoard()
     {
         $category = Category::latest()->get();
+        $locations = Location::latest()->get();
         $job = Job::latest()->get();
         $siteSetting = SiteSetting::latest()->first();
         $auth = Auth::user() ? [
@@ -22,7 +24,7 @@ class JobBoardController extends Controller
             'email' => Auth::user()->email,
             'role' => Auth::user()->role,
         ] : null;
-        return inertia('JobBoard',compact('category','job','siteSetting','auth'));
+        return inertia('JobBoard',compact('category','locations','job','siteSetting','auth'));
     }
 
 
