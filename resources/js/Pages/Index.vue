@@ -6,7 +6,9 @@ export default {
     layout: Layout,
     props: {
         category: Array,
-        job: Array
+        job: Array,
+        slider:Object,
+        company: Array
     },
     data() {
         return {
@@ -51,7 +53,23 @@ export default {
         // Method to select category and filter jobs
         selectCategory(categoryId) {
             this.selectedCategory = categoryId;
+        },
+        getSliderUrl(sliderPath) {
+            if (!sliderPath) {
+                return 'default-slider.png'; // Ensure this default image path is correct
+            }
+            // Update this line to prepend the correct path
+            const fullUrl = `${window.location.origin}/images/slider/${sliderPath}`;
+            console.log('Slider URL:', fullUrl); // Debugging output
+            return fullUrl;
+        },
+        getCompanyImageUrl(imagePath) {
+            if (!imagePath) {
+                return 'frontend/img/company.png'; // You might want to return a default image directly here too
+            }
+            return `${window.location.origin}/images/user/${imagePath}`; // Adjust the path as necessary
         }
+
     },
     computed: {
         // Compute filtered jobs based on selected category
@@ -87,8 +105,9 @@ export default {
                 <div class="row align-items-center">
                     <div class="col-lg-7 col-md-6">
                         <div class="slider_text">
-                            <h3 v-if="locale === 'en'" class="wow fadeInLeft" style="color: #0a0a0a" data-wow-duration="1s" data-wow-delay=".3s">Find your Dream Job</h3>
-                            <h3 v-else class="wow fadeInLeft" style="color: #0a0a0a" data-wow-duration="1s" data-wow-delay=".3s">আপনার স্বপ্নের চাকরি খুঁজুন</h3>
+                            <h3 v-if="locale === 'en'" class="wow fadeInLeft" style="color: #0a0a0a" data-wow-duration="1s" data-wow-delay=".3s">
+                                {{ slider.title }}</h3>
+                            <h3 v-else class="wow fadeInLeft" style="color: #0a0a0a" data-wow-duration="1s" data-wow-delay=".3s"> {{ slider.title_bn }}</h3>
                             <div class="sldier_btn wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
                             </div>
                         </div>
@@ -97,7 +116,7 @@ export default {
             </div>
         </div>
         <div class="ilstration_img wow fadeInRight d-none d-lg-block text-right" data-wow-duration="1s" data-wow-delay=".2s">
-            <img src="frontend/img/banner/illustration.png" alt="">
+            <img :src="getSliderUrl(slider?.image)" alt="">
         </div>
     </div>
 
@@ -109,7 +128,7 @@ export default {
                     <div class="single_input">
                         <input
                             type="text"
-                            placeholder="Search by title"
+                            :placeholder="locale === 'en' ? 'Search by title' : 'অনুসন্ধান করুন'"
                             v-model="searchKeyword"
                         />
                     </div>
@@ -136,11 +155,9 @@ export default {
                         <h4 v-if="locale === 'en'">All</h4>
                         <h4 v-else>সব</h4>
                         <p  v-if="locale === 'en'">
-                            <span>50</span>
                             Available position
                         </p>
                         <p  v-else>
-                            <span>50</span>
                              পদ শূন্য  আছে
                         </p>
                     </a>
@@ -157,7 +174,6 @@ export default {
                             Available position
                         </p>
                         <p  v-else>
-                            <span>50</span>
                             পদ শূন্য  আছে
                         </p>
                     </div>
@@ -196,7 +212,7 @@ export default {
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="thumb">
-                                    <img src="frontend/img/svg_icon/1.svg" alt="">
+                                    <img src="frontend/img/company.png" alt="" style="height: 50px;">
                                 </div>
                                 <div class="jobs_conetent">
                                     <a :href="`/job-details/${jobData.id}`">
@@ -252,40 +268,18 @@ export default {
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-xl-3 col-md-6">
+                <div v-for="companyData in company" :key="companyData.id" class="col-lg-4 col-xl-3 col-md-6">
                     <div class="single_company">
                         <div class="thumb">
-                            <img src="frontend/img/svg_icon/5.svg" alt="">
+                            <img
+                                :src="companyData.profile ? getCompanyImageUrl(companyData.profile) : 'frontend/img/company.png'"
+                                alt="Company Image" style="height: 50px;"
+                            >
                         </div>
-                        <a href="jobs.html"><h3>Snack Studio</h3></a>
-                        <p> <span>50</span> Available position</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-xl-3 col-md-6">
-                    <div class="single_company">
-                        <div class="thumb">
-                            <img src="frontend/img/svg_icon/4.svg" alt="">
-                        </div>
-                        <a href="jobs.html"><h3>Snack Studio</h3></a>
-                        <p> <span>50</span> Available position</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-xl-3 col-md-6">
-                    <div class="single_company">
-                        <div class="thumb">
-                            <img src="frontend/img/svg_icon/3.svg" alt="">
-                        </div>
-                        <a href="jobs.html"><h3>Snack Studio</h3></a>
-                        <p> <span>50</span> Available position</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-xl-3 col-md-6">
-                    <div class="single_company">
-                        <div class="thumb">
-                            <img src="img/svg_icon/1.svg" alt="">
-                        </div>
-                        <a href="jobs.html"><h3>Snack Studio</h3></a>
-                        <p> <span>50</span> Available position</p>
+                        <a href="jobs.html">
+                            <h3 v-if="locale === 'en'">{{ companyData.name }}</h3>
+                            <h3 v-else>{{ companyData.name_bn }}</h3>
+                        </a>
                     </div>
                 </div>
             </div>
