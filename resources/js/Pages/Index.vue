@@ -95,16 +95,9 @@ export default {
     <div class="catagory_area">
         <div class="container">
             <div class="row cat_search">
-                <div class="col-lg-8 col-md-4">
+                <div class="col-lg-12 col-md-4">
                     <div class="single_input">
                         <input type="text" placeholder="Search keyword">
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-12">
-                    <div class="job_btn">
-                        <a href="#" class="boxed-btn3">
-                            <span>Find Job</span>
-                        </a>
                     </div>
                 </div>
             </div>
