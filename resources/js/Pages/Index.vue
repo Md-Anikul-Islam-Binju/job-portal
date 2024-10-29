@@ -11,7 +11,8 @@ export default {
     data() {
         return {
             locale: localStorage.getItem('locale') || 'bn',  // Default to Bengali if no locale is stored
-            selectedCategory: null  // This will store the selected category ID or null for "All"
+            selectedCategory: null,  // This will store the selected category ID or null for "All"
+            searchKeyword: ''
         };
     },
     methods: {
@@ -54,13 +55,22 @@ export default {
     },
     computed: {
         // Compute filtered jobs based on selected category
+        // filteredJobs() {
+        //     if (!this.selectedCategory) {
+        //         return this.job;
+        //     }
+        //     return this.job.filter(jobData => jobData.category_id === this.selectedCategory);
+        // }
         filteredJobs() {
-            if (!this.selectedCategory) {
-                // Return all jobs if no category is selected (i.e., 'All' is selected)
-                return this.job;
-            }
-            // Filter jobs based on the selected category ID
-            return this.job.filter(jobData => jobData.category_id === this.selectedCategory);
+            return this.job.filter((jobData) => {
+                const matchesCategory = !this.selectedCategory || jobData.category_id === this.selectedCategory;
+                const matchesKeyword =
+                    !this.searchKeyword ||
+                    jobData.title.toLowerCase().includes(this.searchKeyword.toLowerCase()) ||
+                    (jobData.title_bn && jobData.title_bn.toLowerCase().includes(this.searchKeyword.toLowerCase()));
+
+                return matchesCategory && matchesKeyword;
+            });
         }
     }
 }
@@ -97,7 +107,11 @@ export default {
             <div class="row cat_search">
                 <div class="col-lg-12 col-md-4">
                     <div class="single_input">
-                        <input type="text" placeholder="Search keyword">
+                        <input
+                            type="text"
+                            placeholder="Search by title"
+                            v-model="searchKeyword"
+                        />
                     </div>
                 </div>
             </div>
