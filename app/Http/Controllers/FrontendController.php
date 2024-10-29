@@ -13,7 +13,7 @@ class FrontendController extends Controller
     public function frontend()
     {
         $category = Category::latest()->get();
-        $job = Job::latest()->get();
+        $job = Job::latest()->limit(50)->get();
         $siteSetting = SiteSetting::latest()->first();
 
         $auth = Auth::user() ? [
