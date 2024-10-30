@@ -235,7 +235,10 @@ export default {
                                         </div>
                                         <div class="jobs_right">
                                             <div class="apply_now">
-                                                <Link :href="`/job-details/${jobData.id}`" class="boxed-btn3">Apply Now</Link>
+                                                <Link :href="`/job-details/${jobData.id}`" class="boxed-btn3">
+                                                    <span v-if="locale === 'en'">Apply Now</span>
+                                                    <span v-else>আবেদন করুন</span>
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>
