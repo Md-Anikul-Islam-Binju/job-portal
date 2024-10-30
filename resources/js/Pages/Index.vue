@@ -67,7 +67,7 @@ export default {
             if (!imagePath) {
                 return 'frontend/img/company.png'; // You might want to return a default image directly here too
             }
-            return `${window.location.origin}/images/user/${imagePath}`; // Adjust the path as necessary
+            return `${window.location.origin}/images/logo/${imagePath}`; // Adjust the path as necessary
         }
 
     },
@@ -273,7 +273,7 @@ export default {
                         <div class="thumb">
                             <img
                                 :src="companyData.profile ? getCompanyImageUrl(companyData.profile) : 'frontend/img/company.png'"
-                                alt="Company Image" style="height: 50px;"
+                                alt="Company Image" style="height: 35px;"
                             >
                         </div>
                         <a href="jobs.html">

@@ -116,6 +116,15 @@
                         <span> Job </span>
                     </a>
                 </li>
+
+                <li class="side-nav-item">
+                    <a href="{{route('company.job.candidate')}}" class="side-nav-link">
+                        <i class="ri-dashboard-3-line"></i>
+                        <span> Application </span>
+                    </a>
+                </li>
+
+
             </ul>
             <div class="clearfix"></div>
         </div>

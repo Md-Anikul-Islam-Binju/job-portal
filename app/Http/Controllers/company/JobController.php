@@ -5,6 +5,7 @@ namespace App\Http\Controllers\company;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Job;
+use App\Models\JobApplication;
 use App\Models\Location;
 use Illuminate\Http\Request;
 use Yoeunes\Toastr\Facades\Toastr;
@@ -70,6 +71,37 @@ class JobController extends Controller
             $job->status = $request->status;
             $job->save();
             Toastr::success('Job Updated Successfully', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $job = Job::find($id);
+            $job->delete();
+            Toastr::success('Job Deleted Successfully', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());
+        }
+    }
+
+
+    public function candidate()
+    {
+        $candidate = JobApplication::where('company_id',auth()->user()->id)->with('user','job')->get();
+        return view('company.pages.job.candidate',compact('candidate'));
+    }
+
+    public function candidateDestroy($id)
+    {
+        try {
+            $jobApplication = JobApplication::find($id);
+            $jobApplication->delete();
+            Toastr::success('Job Application Deleted Successfully', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());

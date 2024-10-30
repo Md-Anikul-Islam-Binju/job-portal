@@ -114,6 +114,9 @@ Route::middleware('auth')->group(callback: function () {
         Route::get('/job-delete/{id}', [JobController::class, 'destroy'])->name('company.job.destroy');
 
 
+        //candidate
+        Route::get('/job-candidate', [JobController::class, 'candidate'])->name('company.job.candidate');
+        Route::get('/job-candidate-delete/{id}', [JobController::class, 'candidateDestroy'])->name('company.job.candidate.destroy');
     });
 
 
