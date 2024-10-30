@@ -45,11 +45,6 @@ export default {
                                     </li>
                                 </ul>
                             </div>
-
-
-
-
-
                         </div>
                     </div>
                     <div class="col-xl-2 col-md-6 col-lg-2">
@@ -60,26 +55,38 @@ export default {
                     </div>
                     <div class="col-xl-3 col-md-6 col-lg-3">
                         <div class="footer_widget wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".5s">
-                            <h3 class="footer_title">
-                                Company
-                            </h3>
+                            <h3 v-if="locale === 'en'" class="footer_title">Company</h3>
+                            <h3 v-else class="footer_title">কোম্পানি </h3>
                             <ul>
-                                <li><a href="#">About </a></li>
-                                <li><a href="#"> Terms & Condition</a></li>
+                                <li>
+                                    <Link  href="/about-us">
+                                        <b v-if="locale === 'en'">About Us</b>
+                                        <b v-else>আমাদের সম্পর্কে</b>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link  href="/terms-condition">
+                                        <b v-if="locale === 'en'">Terms & Condition</b>
+                                        <b v-else>শর্তাবলী</b>
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6 col-lg-4">
                         <div class="footer_widget wow fadeInUp" data-wow-duration="1.3s" data-wow-delay=".6s">
-                            <h3 class="footer_title">
+                            <h3 v-if="locale === 'en'" class="footer_title">
                                 Subscribe
+                            </h3>
+                            <h3 v-else class="footer_title">
+                                সাবস্ক্রিভেশন
                             </h3>
                             <form action="#" class="newsletter_form">
                                 <input type="text" placeholder="Enter your mail">
                                 <button type="submit">Subscribe</button>
                             </form>
-                            <p class="newsletter_text">Esteem spirit temper too say adieus who direct esteem esteems
-                                luckily.</p>
+                            <p v-if="locale === 'en'" class="newsletter_text">Please Connect with Us</p>
+                            <p v-else class="newsletter_text">আমাদের সাথে সংযোগ করুন</p>
                         </div>
                     </div>
                 </div>

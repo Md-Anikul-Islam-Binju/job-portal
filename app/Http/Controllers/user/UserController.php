@@ -19,7 +19,9 @@ class UserController extends Controller
     public function index()
     {
         $user = auth()->user();
-        return view('user.dashboard', compact('user'));
+        $totalJob = Job::count();
+        $totalApply = JobApplication::where('user_id',auth()->user()->id)->count();
+        return view('user.dashboard', compact('user','totalJob','totalApply'));
     }
 
     public function showRegistrationForm()
@@ -131,6 +133,8 @@ class UserController extends Controller
             'profile' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:5120',
             'cv' => 'nullable|mimes:pdf,doc,docx|max:5120',
             'resume' => 'nullable|mimes:pdf,doc,docx|max:5120',
+            'address' => 'nullable',
+            'address_bn' => 'nullable',
         ];
 
         // Validate the request data
@@ -210,6 +214,12 @@ class UserController extends Controller
         ]);
 
         return response()->json(['message' => 'Application successful!'], 200);
+    }
+
+    public function applyJobList()
+    {
+        $candidate = JobApplication::where('user_id',auth()->user()->id)->with('company','job')->get();
+        return view('user.pages.account.applyJob',compact('candidate'));
     }
 
 

@@ -109,6 +109,20 @@
                                     </div>
 
                                     <div class="mb-3 col-md-4">
+                                        <label class="form-label">Address (En)</label>
+                                        <input type="text" class="form-control" name="address" value="{{$user?$user->address:''}}"
+                                               placeholder="Enter Address (En)">
+                                    </div>
+
+
+                                    <div class="mb-3 col-md-4">
+                                        <label class="form-label">Address (Bn)</label>
+                                        <input type="text" class="form-control" name="address_bn" value="{{$user?$user->address_bn:''}}"
+                                               placeholder="Enter Address (Bn)">
+                                    </div>
+
+
+                                    <div class="mb-3 col-md-4">
                                         <label for="profile" class="form-label">Profile Image</label>
                                         <input type="file" class="form-control" name="profile" value="{{$user?$user->profile:''}}"
                                                placeholder="Enter Logo">

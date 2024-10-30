@@ -101,7 +101,7 @@ export default {
                                     </a>
                                 </div>
                                 <div v-else>
-                                    <a href="/login" class="btn btn-warning mr-2">
+                                    <a href="/login" class="btn btn-warning mr-2" target="_blank">
                                         <span v-if="locale === 'en'">Login / Registration</span>
                                         <span v-else>লগইন/রেজিস্ট্রেশন করুন</span>
                                     </a>

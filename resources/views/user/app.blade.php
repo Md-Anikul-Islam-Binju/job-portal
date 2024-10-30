@@ -141,11 +141,21 @@
                 </li>
 
                 <li class="side-nav-item">
+                    <a href="{{route('user.job.apply')}}" class="side-nav-link">
+                        <i class="ri-dashboard-3-line"></i>
+                        <span> Applied Job </span>
+                    </a>
+                </li>
+
+                <li class="side-nav-item">
                     <a href="{{route('home')}}" class="side-nav-link" target="_blank">
                         <i class="ri-dashboard-3-line"></i>
                         <b style="color: red"> Our Site </b>
                     </a>
                 </li>
+
+
+
 
             </ul>
             <div class="clearfix"></div>

@@ -22,8 +22,8 @@
                     <div class="float-end">
                         <i class="ri-app-store-line widget-icon"></i>
                     </div>
-                    <h6 class="text-uppercase mt-0" title="Customers">Total Job</h6>
-                    <h2 class="my-2">1000</h2>
+                    <h6 class="text-uppercase mt-0" title="Customers">Total Company</h6>
+                    <h2 class="my-2">{{$totalCompany}}</h2>
                 </div>
             </div>
         </div>
@@ -33,8 +33,8 @@
                     <div class="float-end">
                         <i class="ri-profile-line widget-icon"></i>
                     </div>
-                    <h6 class="text-uppercase mt-0" title="Customers">Total Apply</h6>
-                    <h2 class="my-2">200</h2>
+                    <h6 class="text-uppercase mt-0" title="Customers">Total Job</h6>
+                    <h2 class="my-2">{{$totalJob}}</h2>
                 </div>
             </div>
         </div>
@@ -44,8 +44,8 @@
                     <div class="float-end">
                         <i class="ri-route-line widget-icon"></i>
                     </div>
-                    <h6 class="text-uppercase mt-0" title="Customers">Total </h6>
-                    <h2 class="my-2">300</h2>
+                    <h6 class="text-uppercase mt-0" title="Customers">Total Category</h6>
+                    <h2 class="my-2">{{$totalCategory}}</h2>
                 </div>
             </div>
         </div>
@@ -55,8 +55,8 @@
                     <div class="float-end">
                         <i class="ri-file-line widget-icon"></i>
                     </div>
-                    <h6 class="text-uppercase mt-0" title="Customers">Total </h6>
-                    <h2 class="my-2">400</h2>
+                    <h6 class="text-uppercase mt-0" title="Customers">Total User</h6>
+                    <h2 class="my-2">{{$totalUser}}</h2>
                 </div>
             </div>
         </div>

@@ -148,6 +148,10 @@ Route::middleware('auth')->group(callback: function () {
         Route::get('/skill-delete/{id}', [SkillController::class, 'destroy'])->name('user.skill.destroy');
 
 
+        Route::get('/applied-job-list', [UserController::class, 'applyJobList'])->name('user.job.apply');
+
+
+
 
 
 

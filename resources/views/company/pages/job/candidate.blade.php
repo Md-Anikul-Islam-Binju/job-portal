@@ -18,9 +18,6 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <div class="d-flex justify-content-end">
-                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#addNewModalId">Add New</button>
-                </div>
             </div>
             <div class="card-body">
                 <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
