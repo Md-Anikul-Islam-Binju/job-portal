@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\admin\AboutController;
 use App\Http\Controllers\admin\AdminDashboardController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\CompanyController;
 use App\Http\Controllers\admin\LocationController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\SiteSettingController;
@@ -79,6 +80,12 @@ Route::middleware('auth')->group(callback: function () {
         Route::post('/location-store', [LocationController::class, 'store'])->name('admin.location.store');
         Route::put('/location-update/{id}', [LocationController::class, 'update'])->name('admin.location.update');
         Route::get('/location-delete/{id}', [LocationController::class, 'destroy'])->name('admin.location.destroy');
+
+        //Company Section
+        Route::get('/company-section', [CompanyController::class, 'index'])->name('admin.company');
+        Route::post('/company-store', [CompanyController::class, 'store'])->name('admin.company.store');
+        Route::put('/company-update/{id}', [CompanyController::class, 'update'])->name('admin.company.update');
+        Route::get('/company-delete/{id}', [CompanyController::class, 'destroy'])->name('admin.company.destroy');
 
 
 

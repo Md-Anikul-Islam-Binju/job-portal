@@ -32,6 +32,9 @@ class User extends Authenticatable
         'cv',
         'resume',
         'profile',
+        'address',
+        'address_bn',
+        'licence',
         'status'
     ];
 

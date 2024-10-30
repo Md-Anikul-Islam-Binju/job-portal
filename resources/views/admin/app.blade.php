@@ -111,6 +111,13 @@
                 </li>
 
                 <li class="side-nav-item">
+                    <a href="{{route('admin.company')}}" class="side-nav-link">
+                        <i class="ri-dashboard-3-line"></i>
+                        <span> Company </span>
+                    </a>
+                </li>
+
+                <li class="side-nav-item">
                     <a href="{{route('admin.slider.section')}}" class="side-nav-link">
                         <i class="ri-dashboard-3-line"></i>
                         <span> Slider </span>

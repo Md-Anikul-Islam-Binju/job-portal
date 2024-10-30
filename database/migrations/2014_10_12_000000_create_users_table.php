@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('role')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-
             //optional
             $table->string('name_bn')->nullable();
             $table->string('father_name')->nullable();
@@ -34,6 +33,9 @@ return new class extends Migration
             $table->string('dob')->nullable();
             $table->string('cv')->nullable();
             $table->string('resume')->nullable();
+            $table->string('address')->nullable();
+            $table->string('address_bn')->nullable();
+            $table->string('licence')->nullable();
             $table->integer('status')->default(1);
 
             $table->rememberToken();
