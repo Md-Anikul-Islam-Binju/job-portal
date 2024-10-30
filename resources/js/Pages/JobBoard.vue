@@ -131,7 +131,8 @@ export default {
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="bradcam_text">
-                            <h3 style="color: black">4536+ Jobs Available</h3>
+                            <h3 v-if="locale === 'en'" style="color: black">Jobs Available</h3>
+                            <h3 v-else style="color: black">জব পোস্ট খালি আছে </h3>
                         </div>
                     </div>
                 </div>
@@ -146,14 +147,15 @@ export default {
                     <div class="col-lg-3">
                         <div class="job_filter white-bg">
                             <div class="form_inner white-bg">
-                                <h3>Filter</h3>
+                                <h3 v-if="locale === 'en'">Filter</h3>
+                                <h3 v-else>ফিল্টারিং </h3>
                                 <form action="#">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="single_field">
                                                 <input
                                                     type="text"
-                                                    placeholder="Search by title"
+                                                    :placeholder="locale === 'en' ? 'Search by title' : 'অনুসন্ধান করুন'"
                                                     v-model="searchKeyword" />
                                             </div>
                                         </div>
@@ -167,35 +169,38 @@ export default {
                     <div class="col-lg-9 d-flex flex-column">
                         <div class="recent_joblist_wrap">
                             <div class="recent_joblist white-bg ">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        <h4>Job Listing</h4>
-                                    </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <!-- Category Dropdown -->
-                                        <div class="custom-dropdown d-flex justify-content-end">
-                                            <select v-model="selectedCategory" class="custom-select">
-                                                <option value="all">All Categories</option>
-                                                <option v-for="cat in category" :key="cat.id" :value="cat.id">
-                                                    {{ locale === 'en' ? cat.name : cat.name_bn }}
-                                                </option>
-                                            </select>
-                                        </div>
+                                        <h4 v-if="locale === 'en'">Job List</h4>
+                                        <h4 v-else>জব লিস্ট</h4>
                                     </div>
-                                    <div class="col-md-6">
-                                        <!-- Location Dropdown -->
-                                        <div class="custom-dropdown d-flex justify-content-end">
-                                            <select v-model="selectedLocation" class="custom-select">
-                                                <option value="all">All Locations</option>
-                                                <option v-for="loc in locations" :key="loc.id" :value="loc.id">
-                                                    {{ locale === 'en' ? loc.name : loc.name_bn }}
-                                                </option>
-                                            </select>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <!-- Category Dropdown -->
+                                            <div class="custom-dropdown d-flex justify-content-end">
+                                                <select v-model="selectedCategory" class="custom-select">
+                                                    <option v-if="locale === 'en'" value="all">All Categories</option>
+                                                    <option v-else value="all">সকল  ক্যাটাগরি </option>
+                                                    <option v-for="cat in category" :key="cat.id" :value="cat.id">
+                                                        {{ locale === 'en' ? cat.name : cat.name_bn }}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!-- Location Dropdown -->
+                                            <div class="custom-dropdown d-flex justify-content-end">
+                                                <select v-model="selectedLocation" class="custom-select">
+                                                    <option v-if="locale === 'en'"   value="all">All Locations</option>
+                                                    <option v-else value="all">সকল  লোকেশন</option>
+                                                    <option v-for="loc in locations" :key="loc.id" :value="loc.id">
+                                                        {{ locale === 'en' ? loc.name : loc.name_bn }}
+                                                    </option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                              </div>
                             </div>
                         </div>
 
