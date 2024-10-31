@@ -7,6 +7,7 @@ use App\Mail\UserAccountVerificationMail;
 use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
@@ -94,5 +95,41 @@ class UserController extends Controller
     }
 
 
+    public function login(Request $request)
+    {
+        // Validate input
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        // Attempt to log in the user
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            $user = Auth::user();
+
+            // Check if the user's account is verified
+            if ($user->status === 0) {
+                Auth::logout(); // Log the user out
+                return response()->json([
+                    'error' => 'Your account is not verified. Please verify your account first.',
+                ], 403); // 403 Forbidden
+            }
+
+            // Generate a new token
+            $token = $user->createToken('YourAppName')->plainTextToken;
+
+            // Return a success response with the token
+            return response()->json([
+                'message' => 'Login successful.',
+                'token' => $token,
+                'user' => $user, // Optionally return user data
+            ], 200);
+        } else {
+            // Return error response for invalid credentials
+            return response()->json([
+                'error' => 'Invalid email or password.',
+            ], 401); // 401 Unauthorized
+        }
+    }
 
 }
