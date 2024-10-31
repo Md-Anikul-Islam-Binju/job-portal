@@ -34,13 +34,13 @@ export default {
                             <div class="socail_links">
                                 <ul>
                                     <li>
-                                        <a href="#">
+                                        <a :href="siteSetting.facebook_link">
                                             <i class="ti-facebook"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
-                                            <i class="fa fa-whatsapp"></i>
+                                        <a :href="siteSetting.linkedin_link">
+                                            <i class="fa fa-linkedin"></i>
                                         </a>
                                     </li>
                                 </ul>

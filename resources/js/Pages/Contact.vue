@@ -19,21 +19,21 @@
                     <h2 v-else class="contact-title">যোগাযোগ করুন</h2>
                 </div>
                 <div class="col-lg-8">
-                    <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+                    <form @submit.prevent="submitForm" id="contactForm" novalidate="novalidate">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input class="form-control" name="name" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" placeholder = 'Enter your name'>
+                                    <input class="form-control" name="name" v-model="form.name" type="text" placeholder="Enter your name">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input class="form-control" name="email" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" placeholder = 'Enter email address'>
+                                    <input class="form-control" name="email" v-model="form.email" type="email" placeholder="Enter email address">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <input class="form-control" name="subject" id="subject" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'" placeholder = 'Enter Subject'>
+                                    <input class="form-control" name="subject" v-model="form.subject" type="text" placeholder="Enter Subject">
                                 </div>
                             </div>
                         </div>
@@ -41,6 +41,10 @@
                             <button type="submit" class="button button-contactForm btn_4 boxed-btn">Send Message</button>
                         </div>
                     </form>
+
+
+
+
                 </div>
                 <div class="col-lg-4">
                     <div class="media contact-info">
@@ -72,6 +76,8 @@
 
 <script>
 import Layout from "../frontend/Layout.vue";
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export default {
     name: "Contact",
@@ -82,9 +88,47 @@ export default {
     },
     data() {
         return {
-            locale: localStorage.getItem('locale') || 'bn'  // Default to Bengali if no locale is stored
+            locale: localStorage.getItem('locale') || 'bn',  // Default to Bengali if no locale is stored
+            form: {
+                name: '',
+                email: '',
+                subject: '',
+            },
         };
     },
+    methods: {
+        async submitForm() {
+            try {
+                const response = await axios.post('/message', this.form);
+                // Display success alert
+                Swal.fire({
+                    icon: 'success',
+                    title: this.locale === 'en' ? response.data.message : "আপনার বার্তা পাঠানো হয়েছে!",
+                    confirmButtonText: 'OK'
+                });
+                // Reset the form
+                this.form = { name: '', email: '', subject: '' };
+            } catch (error) {
+                let errorMessage = '';
+                if (error.response) {
+                    if (error.response.status === 422) {
+                        // Handle validation errors
+                        errorMessage = this.locale === 'en' ? "Please check your inputs." : "দয়া করে আপনার ইনপুট পরীক্ষা করুন।";
+                    } else {
+                        errorMessage = this.locale === 'en' ? "Failed to send your message." : "আপনার বার্তা পাঠাতে ব্যর্থ।";
+                    }
+                } else {
+                    errorMessage = this.locale === 'en' ? "An error occurred." : "একটি ত্রুটি ঘটেছে।";
+                }
+                // Display error alert
+                Swal.fire({
+                    icon: 'error',
+                    title: errorMessage,
+                    confirmButtonText: 'OK'
+                });
+            }
+        }
+    }
 }
 </script>
 

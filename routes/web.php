@@ -47,7 +47,8 @@ Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
 Route::get('/about-us', [AboutUsController::class, 'about'])->name('about.us');
 Route::get('/terms-condition', [TermsConditionController::class, 'termsCondition'])->name('terms.condition');
 
-
+//free message
+Route::post('/message', [ContactController::class, 'store'])->name('message.store');
 
 //User Account
 Route::get('/user-registration-start', [UserController::class, 'showRegistrationForm'])->name('user.registration.start');
