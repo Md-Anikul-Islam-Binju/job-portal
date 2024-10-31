@@ -7,10 +7,10 @@
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Job Portal</a></li>
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Job Portal</a></li>
-                        <li class="breadcrumb-item active">Job!</li>
+                        <li class="breadcrumb-item active">Candidate!</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Job!</h4>
+                <h4 class="page-title">Candidate!</h4>
             </div>
         </div>
     </div>
@@ -42,7 +42,9 @@
                             <td style="width: 100px;">
                                 <div class="d-flex justify-content-end gap-1">
                                     <a href="{{route('company.job.candidate.destroy',$candidateData->id)}}"class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#danger-header-modal{{$candidateData->id}}">Delete</a>
+                                    <a href="{{route('company.job.candidate.details',$candidateData->id)}}"class="btn btn-success btn-sm">Details</a>
                                 </div>
+
                             </td>
                             <!--Edit Modal -->
                             <!-- Delete Modal -->

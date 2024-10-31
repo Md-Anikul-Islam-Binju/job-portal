@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Job;
 use App\Models\JobApplication;
 use App\Models\Location;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Yoeunes\Toastr\Facades\Toastr;
 
@@ -106,6 +107,13 @@ class JobController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());
         }
+    }
+
+
+    public function candidateDetails($id)
+    {
+        $candidate = User::where('id',$id)->first();
+        return view('company.pages.job.candidateDetails',compact('candidate'));
     }
 
 }
