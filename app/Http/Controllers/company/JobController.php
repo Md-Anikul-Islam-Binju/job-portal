@@ -4,9 +4,12 @@ namespace App\Http\Controllers\company;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Education;
+use App\Models\Experiences;
 use App\Models\Job;
 use App\Models\JobApplication;
 use App\Models\Location;
+use App\Models\Skill;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Yoeunes\Toastr\Facades\Toastr;
@@ -113,7 +116,16 @@ class JobController extends Controller
     public function candidateDetails($id)
     {
         $candidate = User::where('id',$id)->first();
-        return view('company.pages.job.candidateDetails',compact('candidate'));
+        $candidateEducation = Education::where('user_id',$id)->get();
+
+        $candidateExperiences = Experiences::where('user_id',$id)->get();
+
+        $candidateSkill = Skill::where('user_id',$id)->get();
+
+
+
+        return view('company.pages.job.candidateDetails',compact('candidate','candidateEducation',
+        'candidateExperiences','candidateSkill'));
     }
 
 }

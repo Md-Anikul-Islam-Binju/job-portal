@@ -10,7 +10,7 @@ class SkillController extends Controller
 {
     public function index()
     {
-        $skills = Skill::latest()->get();
+        $skills = Skill::where('user_id', auth()->user()->id)->latest()->get();
         return response()->json($skills);
     }
 

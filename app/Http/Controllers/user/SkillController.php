@@ -11,7 +11,7 @@ class SkillController extends Controller
 {
     public function index()
     {
-        $skill = Skill::latest()->get();
+        $skill = Skill::where('user_id', auth()->user()->id)->latest()->get();
         return view('user.pages.skill.index', compact('skill'));
     }
     public function store(Request $request)
@@ -23,6 +23,7 @@ class SkillController extends Controller
             $skill = new Skill();
             $skill->name = $request->name;
             $skill->name_bn = $request->name_bn;
+            $skill->user_id = auth()->user()->id;
             $skill->save();
             Toastr::success('Skill Added Successfully', 'Success');
             return redirect()->back();

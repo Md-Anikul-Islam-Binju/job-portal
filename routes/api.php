@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\AccountController;
+use App\Http\Controllers\api\CategoryController;
 use App\Http\Controllers\api\EducationController;
 use App\Http\Controllers\api\ExperiencesController;
 use App\Http\Controllers\api\SkillController;
@@ -42,4 +43,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/skills', [SkillController::class, 'index']); // Get all skills
     Route::post('/skills-store', [SkillController::class, 'store']); // Add a new skill
+
+    Route::get('/category', [CategoryController::class, 'index']); // Get all skills
 });

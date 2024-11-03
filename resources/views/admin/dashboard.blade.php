@@ -33,8 +33,8 @@
                     <div class="float-end">
                         <i class="ri-profile-line widget-icon"></i>
                     </div>
-                    <h6 class="text-uppercase mt-0" title="Customers">Total Job</h6>
-                    <h2 class="my-2">{{$totalJob}}</h2>
+                    <h6 class="text-uppercase mt-0" title="Customers">Total Location</h6>
+                    <h2 class="my-2">{{$totalLocation}}</h2>
                 </div>
             </div>
         </div>
