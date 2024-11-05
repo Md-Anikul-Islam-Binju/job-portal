@@ -73,6 +73,12 @@ export default {
                                             </a>
                                             <ul class="submenu">
                                                 <li>
+                                                    <Link href="/blog">
+                                                        <h5 style="color: orangered" v-if="locale === 'en'">Blog</h5>
+                                                        <h5 style="color: orangered" v-else>ব্লগ</h5>
+                                                    </Link>
+                                                </li>
+                                                <li>
                                                     <Link href="/about-us">
                                                         <h5 style="color: orangered" v-if="locale === 'en'">About Us</h5>
                                                         <h5 style="color: orangered" v-else>আমাদের সম্পর্কে</h5>

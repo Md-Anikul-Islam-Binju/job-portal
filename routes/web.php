@@ -10,6 +10,7 @@ use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\SiteSettingController;
 use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\TermsAndConditionController;
+use App\Http\Controllers\BlogPageController;
 use App\Http\Controllers\company\CompanyDashboardController;
 use App\Http\Controllers\company\JobController;
 use App\Http\Controllers\ContactController;
@@ -49,6 +50,9 @@ Route::get('/terms-condition', [TermsConditionController::class, 'termsCondition
 
 //free message
 Route::post('/message', [ContactController::class, 'store'])->name('message.store');
+
+//blog
+Route::get('/blog', [BlogPageController::class, 'blog'])->name('blog');
 
 //User Account
 Route::get('/user-registration-start', [UserController::class, 'showRegistrationForm'])->name('user.registration.start');
