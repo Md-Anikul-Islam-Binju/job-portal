@@ -120,17 +120,22 @@ export default {
         </div>
     </div>
 
-    <!-- category_area -->
+
     <div class="catagory_area">
         <div class="container">
-            <div class="row cat_search">
-                <div class="col-lg-12 col-md-4">
-                    <div class="single_input">
-                        <input
-                            type="text"
-                            :placeholder="locale === 'en' ? 'Search by title' : 'অনুসন্ধান করুন'"
-                            v-model="searchKeyword"
-                        />
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="popular_search d-flex align-items-center">
+                        <span>Popular Search:</span>
+                        <ul>
+                            <li><a href="#">Design & Creative</a></li>
+                            <li><a href="#">Marketing</a></li>
+                            <li><a href="#">Administration</a></li>
+                            <li><a href="#">Teaching & Education</a></li>
+                            <li><a href="#">Engineering</a></li>
+                            <li><a href="#">Software & Web</a></li>
+                            <li><a href="#">Telemarketing</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -187,7 +192,6 @@ export default {
     <!-- job_listing_area_start  -->
 
 
-
     <div class="job_listing_area">
         <div class="container">
             <div class="row align-items-center">
@@ -198,14 +202,27 @@ export default {
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="brouse_job text-right">
-                        <Link href="/job-board" class="boxed-btn4">
-                            <span v-if="locale === 'en'">More Job</span>
-                            <span v-else>আরও কাজ</span>
+                    <div class="job text-right">
+                        <Link href="/job-board">
+                            <h4 v-if="locale === 'en'">More Job</h4>
+                            <h4 v-else>আরও কাজ</h4>
                         </Link>
                     </div>
                 </div>
             </div>
+
+                <div class="row cat_search">
+                    <div class="col-lg-12 col-md-4">
+                        <div class="single_input">
+                            <input
+                                type="text"
+                                :placeholder="locale === 'en' ? 'Search by title' : 'অনুসন্ধান করুন'"
+                                v-model="searchKeyword"
+                            />
+                        </div>
+                    </div>
+                </div>
+
             <div class="job_lists">
                 <div class="row">
                     <div v-for="jobData in filteredJobs" :key="jobData.id" class="col-lg-12 col-md-12">
@@ -285,8 +302,19 @@ export default {
             </div>
         </div>
     </div>
+
+
 </template>
 
 <style scoped>
+.single_input input{
+    height: 50px;
+    border: 1px solid #E8E8E8;
+    padding: 20px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width: 100%;
+}
 
 </style>

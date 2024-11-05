@@ -1402,7 +1402,7 @@ h3 {
 
 /* line 10, ../../Arafath/CL/December/235. Job board/HTML/scss/_slider.scss */
 .slider_area .single_slider {
-  height: 700px;
+  height: 600px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -2624,7 +2624,7 @@ h3 {
 
 /* line 1, ../../Arafath/CL/December/235. Job board/HTML/scss/_category.scss */
 .catagory_area {
-  padding: 100px 0;
+  padding: 50px 0;
 }
 
 @media (max-width: 767px) {
@@ -2819,7 +2819,7 @@ h3 {
 /* line 1, ../../Arafath/CL/December/235. Job board/HTML/scss/_popular_catagory.scss */
 .popular_catagory_area {
   background: #F5F7FA;
-  padding: 100px 0;
+  padding: 50px 0;
 }
 
 /* line 4, ../../Arafath/CL/December/235. Job board/HTML/scss/_popular_catagory.scss */
@@ -2828,7 +2828,7 @@ h3 {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  padding: 38px 25px;
+  padding: 13px 10px;
   border: 1px solid transparent;
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
