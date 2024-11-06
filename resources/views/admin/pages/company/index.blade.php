@@ -49,7 +49,9 @@
                             <td style="width: 100px;">
                                 <div class="d-flex justify-content-end gap-1">
                                     <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#editNewModalId{{$companyData->id}}">Edit</button>
-                                    <a href="{{route('admin.company.destroy',$companyData->id)}}"class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#danger-header-modal{{$companyData->id}}">Delete</a>
+                                    <a href="{{route('admin.company.destroy',$companyData->id)}}" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#danger-header-modal{{$companyData->id}}">Delete</a>
+
+                                    <a href="{{route('admin.company.under.job',$companyData->id)}}" class="btn btn-warning btn-sm">Job</a>
                                 </div>
                             </td>
                             <!--Edit Modal -->

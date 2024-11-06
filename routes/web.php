@@ -93,6 +93,8 @@ Route::middleware('auth')->group(callback: function () {
         Route::post('/company-store', [CompanyController::class, 'store'])->name('admin.company.store');
         Route::put('/company-update/{id}', [CompanyController::class, 'update'])->name('admin.company.update');
         Route::get('/company-delete/{id}', [CompanyController::class, 'destroy'])->name('admin.company.destroy');
+        Route::get('/company-under-job/{id}', [CompanyController::class, 'companyUnderJob'])->name('admin.company.under.job');
+        Route::get('/company-under-job-application/{id}', [CompanyController::class, 'companyUnderJobApplyCandidate'])->name('admin.company.under.job.application');
 
         //Blog Section
         Route::get('/blog-section', [BlogController::class, 'index'])->name('admin.blog');

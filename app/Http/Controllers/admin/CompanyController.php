@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Job;
+use App\Models\JobApplication;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -137,6 +139,21 @@ class CompanyController extends Controller
             return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());
         }
     }
+
+    public function companyUnderJob($id)
+    {
+        $job = Job::where('company_id', $id)->latest()->get();
+        return view('admin.pages.company.companyUnderJob', compact('job'));
+    }
+
+
+    public function companyUnderJobApplyCandidate($id)
+    {
+        $jobApplication = JobApplication::where('job_id', $id)->with('user')->latest()->get();
+        $jobApplicationCount = JobApplication::where('job_id', $id)->count();
+        return view('admin.pages.company.companyUnderJobApplication', compact('jobApplication', 'jobApplicationCount'));
+    }
+
 
 
 }
