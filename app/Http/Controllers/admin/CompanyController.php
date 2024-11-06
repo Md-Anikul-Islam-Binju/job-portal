@@ -154,6 +154,18 @@ class CompanyController extends Controller
         return view('admin.pages.company.companyUnderJobApplication', compact('jobApplication', 'jobApplicationCount'));
     }
 
+    public function companyUnderJobApplyCandidateDestroy($id)
+    {
+        try {
+            $jobApplication = JobApplication::find($id);
+            $jobApplication->delete();
+            Toastr::success('Job Application Deleted Successfully', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());
+        }
+    }
+
 
 
 }

@@ -95,6 +95,7 @@ Route::middleware('auth')->group(callback: function () {
         Route::get('/company-delete/{id}', [CompanyController::class, 'destroy'])->name('admin.company.destroy');
         Route::get('/company-under-job/{id}', [CompanyController::class, 'companyUnderJob'])->name('admin.company.under.job');
         Route::get('/company-under-job-application/{id}', [CompanyController::class, 'companyUnderJobApplyCandidate'])->name('admin.company.under.job.application');
+        Route::get('/company-under-job-application-delete/{id}', [CompanyController::class, 'companyUnderJobApplyCandidateDestroy'])->name('admin.company.under.job.application.delete');
 
         //Blog Section
         Route::get('/blog-section', [BlogController::class, 'index'])->name('admin.blog');
