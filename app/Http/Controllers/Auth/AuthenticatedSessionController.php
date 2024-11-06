@@ -32,6 +32,12 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('user.verification');
         }
 
+        // Check if the user is a 'user' role and email is not verified
+        if ($user->role == 'company' && is_null($user->email_verified_at)) {
+            // Redirect to the verification page if email is not verified
+            return redirect()->route('company.verification');
+        }
+
 
         // Redirect based on user role
         if ($user->role == 'admin') {

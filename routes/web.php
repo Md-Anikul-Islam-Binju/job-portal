@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\AdminDashboardController;
 use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\CompanyController;
+use App\Http\Controllers\admin\CompanySelfRegistrationController;
 use App\Http\Controllers\admin\LocationController;
 use App\Http\Controllers\admin\ReviewController;
 use App\Http\Controllers\admin\ServiceController;
@@ -61,6 +62,14 @@ Route::get('/user-registration-start', [UserController::class, 'showRegistration
 Route::post('/user-registration', [UserController::class, 'storeRegistration'])->name('user.registration');
 Route::get('/user-verify', [UserController::class, 'showVerificationForm'])->name('user.verification');
 Route::post('/user-verify-account', [UserController::class, 'verify'])->name('user.verify');
+
+
+
+//User Account
+Route::get('/company-registration-start', [CompanySelfRegistrationController::class, 'showRegistrationForm'])->name('company.registration.start');
+Route::post('/company-registration', [CompanySelfRegistrationController::class, 'storeRegistration'])->name('company.registration');
+Route::get('/company-verify', [CompanySelfRegistrationController::class, 'showVerificationForm'])->name('company.verification');
+Route::post('/company-verify-account', [CompanySelfRegistrationController::class, 'verify'])->name('company.verify');
 
 //Admin
 Route::middleware('auth')->group(callback: function () {
