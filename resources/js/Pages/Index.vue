@@ -6,14 +6,16 @@ export default {
     layout: Layout,
     props: {
         category: Array,
+        location: Array,
         job: Array,
         slider:Object,
         company: Array
     },
     data() {
         return {
-            locale: localStorage.getItem('locale') || 'bn',  // Default to Bengali if no locale is stored
-            selectedCategory: null,  // This will store the selected category ID or null for "All"
+            locale: localStorage.getItem('locale') || 'bn',
+            selectedCategory: null,
+            selectedLocation: null,
             searchKeyword: ''
         };
     },
@@ -54,6 +56,9 @@ export default {
         selectCategory(categoryId) {
             this.selectedCategory = categoryId;
         },
+        selectLocation(locationId) {
+            this.selectedLocation = locationId;
+        },
         getSliderUrl(sliderPath) {
             if (!sliderPath) {
                 return 'default-slider.png'; // Ensure this default image path is correct
@@ -72,22 +77,28 @@ export default {
 
     },
     computed: {
-        // Compute filtered jobs based on selected category
+
         // filteredJobs() {
-        //     if (!this.selectedCategory) {
-        //         return this.job;
-        //     }
-        //     return this.job.filter(jobData => jobData.category_id === this.selectedCategory);
+        //     return this.job.filter((jobData) => {
+        //         const matchesCategory = !this.selectedCategory || jobData.category_id === this.selectedCategory;
+        //         const matchesKeyword =
+        //             !this.searchKeyword ||
+        //             jobData.title.toLowerCase().includes(this.searchKeyword.toLowerCase()) ||
+        //             (jobData.title_bn && jobData.title_bn.toLowerCase().includes(this.searchKeyword.toLowerCase()));
+        //
+        //         return matchesCategory && matchesKeyword;
+        //     });
         // }
         filteredJobs() {
             return this.job.filter((jobData) => {
                 const matchesCategory = !this.selectedCategory || jobData.category_id === this.selectedCategory;
+                const matchesLocation = !this.selectedLocation || jobData.location_id === this.selectedLocation;
                 const matchesKeyword =
                     !this.searchKeyword ||
                     jobData.title.toLowerCase().includes(this.searchKeyword.toLowerCase()) ||
                     (jobData.title_bn && jobData.title_bn.toLowerCase().includes(this.searchKeyword.toLowerCase()));
 
-                return matchesCategory && matchesKeyword;
+                return matchesCategory && matchesLocation && matchesKeyword;
             });
         }
     }
@@ -98,6 +109,7 @@ export default {
     <head>
         <title>Job</title>
     </head>
+
     <!-- slider_area_start -->
     <div class="slider_area">
         <div class="single_slider  d-flex align-items-center slider_bg_1">
@@ -120,21 +132,33 @@ export default {
         </div>
     </div>
 
-
+    <!-- Location Filter -->
     <div class="catagory_area">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="popular_search d-flex align-items-center">
-                        <span>Popular Search:</span>
-                        <ul>
-                            <li><a href="#">Design & Creative</a></li>
-                            <li><a href="#">Marketing</a></li>
-                            <li><a href="#">Administration</a></li>
-                            <li><a href="#">Teaching & Education</a></li>
-                            <li><a href="#">Engineering</a></li>
-                            <li><a href="#">Software & Web</a></li>
-                            <li><a href="#">Telemarketing</a></li>
+                        <!-- Location label -->
+                        <span v-if="locale === 'en'">Popular Location:</span>
+                        <span v-else>জনপ্রিয় লোকেশন </span>
+
+                        <!-- Location filter list displayed on the same line -->
+                        <ul class="d-flex list-inline m-0">
+                            <!-- 'All' location option -->
+                            <li class="mr-3">
+                                <a href="#" @click.prevent="selectLocation(null)">
+                                    <h4 v-if="locale === 'en'">All</h4>
+                                    <h4 v-else>সব</h4>
+                                </a>
+                            </li>
+
+                            <!-- Dynamic Location options -->
+                            <li v-for="locationData in location" :key="locationData.id" class="mr-3">
+                                <a href="#" @click.prevent="selectLocation(locationData.id)">
+                                    <span v-if="locale === 'en'">{{ locationData.name }}</span>
+                                    <span v-else>{{ locationData.name_bn }}</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -142,7 +166,8 @@ export default {
         </div>
     </div>
 
-    <!-- popular_category_area_start  -->
+
+    <!-- Job Categories Area -->
     <div class="popular_catagory_area">
         <div class="container">
             <div class="row">
@@ -159,12 +184,8 @@ export default {
                     <a href="#" @click.prevent="selectCategory(null)">
                         <h4 v-if="locale === 'en'">All</h4>
                         <h4 v-else>সব</h4>
-                        <p  v-if="locale === 'en'">
-                            Available position
-                        </p>
-                        <p  v-else>
-                             পদ শূন্য  আছে
-                        </p>
+                        <p v-if="locale === 'en'">Available position</p>
+                        <p v-else>পদ শূন্য  আছে</p>
                     </a>
                 </div>
 
@@ -174,24 +195,16 @@ export default {
                             <h4 v-if="locale === 'en'">{{ categoryData.name }}</h4>
                             <h4 v-else>{{ categoryData.name_bn }}</h4>
                         </a>
-                        <p  v-if="locale === 'en'">
-                            <span>50</span>
-                            Available position
-                        </p>
-                        <p  v-else>
-                            পদ শূন্য  আছে
-                        </p>
+                        <p v-if="locale === 'en'"><span>50</span> Available position</p>
+                        <p v-else>পদ শূন্য  আছে</p>
                     </div>
                 </div>
             </div>
 
-
         </div>
     </div>
 
-    <!-- job_listing_area_start  -->
-
-
+    <!-- Job Listing Area -->
     <div class="job_listing_area">
         <div class="container">
             <div class="row align-items-center">
@@ -211,18 +224,20 @@ export default {
                 </div>
             </div>
 
-                <div class="row cat_search">
-                    <div class="col-lg-12 col-md-4">
-                        <div class="single_input">
-                            <input
-                                type="text"
-                                :placeholder="locale === 'en' ? 'Search by title' : 'অনুসন্ধান করুন'"
-                                v-model="searchKeyword"
-                            />
-                        </div>
+            <!-- Job Search Area -->
+            <div class="row cat_search">
+                <div class="col-lg-12 col-md-4">
+                    <div class="single_input">
+                        <input
+                            type="text"
+                            :placeholder="locale === 'en' ? 'Search by title' : 'অনুসন্ধান করুন'"
+                            v-model="searchKeyword"
+                        />
                     </div>
                 </div>
+            </div>
 
+            <!-- Filtered Jobs List -->
             <div class="job_lists">
                 <div class="row">
                     <div v-for="jobData in filteredJobs" :key="jobData.id" class="col-lg-12 col-md-12">
@@ -260,7 +275,6 @@ export default {
                             <div class="jobs_right">
                                 <div class="apply_now">
                                     <a :href="`/job-details/${jobData.id}`" class="boxed-btn3">
-
                                         <span v-if="locale === 'en'">Apply Now</span>
                                         <span v-else>আবেদন করুন</span>
                                     </a>
@@ -303,7 +317,6 @@ export default {
         </div>
     </div>
 
-
 </template>
 
 <style scoped>
@@ -316,5 +329,4 @@ export default {
     border-radius: 5px;
     width: 100%;
 }
-
 </style>

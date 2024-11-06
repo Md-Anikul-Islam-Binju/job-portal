@@ -114,6 +114,13 @@ export default {
                                 </div>
 
                                 <div>
+                                    <a href="/company-registration-start" class="btn btn-danger mr-2" target="_blank">
+                                        <span v-if="locale === 'en'">Join Us</span>
+                                        <span v-else>যোগদান করুন</span>
+                                    </a>
+                                </div>
+
+                                <div>
                                     <button class="btn btn-dark" @click="changeLanguage(locale === 'en' ? 'bn' : 'en')">
                                         <span v-if="locale === 'en'">বাংলা</span>
                                         <span v-else>English</span>
