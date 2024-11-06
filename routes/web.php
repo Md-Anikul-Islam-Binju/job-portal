@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\CompanyController;
 use App\Http\Controllers\admin\LocationController;
+use App\Http\Controllers\admin\ReviewController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\SiteSettingController;
 use App\Http\Controllers\admin\SliderController;
@@ -98,6 +99,13 @@ Route::middleware('auth')->group(callback: function () {
         Route::post('/blog-store', [BlogController::class, 'store'])->name('admin.blog.store');
         Route::put('/blog-update/{id}', [BlogController::class, 'update'])->name('admin.blog.update');
         Route::get('/blog-delete/{id}', [BlogController::class, 'destroy'])->name('admin.blog.destroy');
+
+        //review Section
+        Route::get('/review-section', [ReviewController::class, 'index'])->name('admin.review');
+        Route::post('/review-store', [ReviewController::class, 'store'])->name('admin.review.store');
+        Route::put('/review-update/{id}', [ReviewController::class, 'update'])->name('admin.review.update');
+        Route::get('/review-delete/{id}', [ReviewController::class, 'destroy'])->name('admin.review.destroy');
+
 
 
 
