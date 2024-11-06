@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\admin\AboutController;
 use App\Http\Controllers\admin\AdminDashboardController;
+use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\CompanyController;
 use App\Http\Controllers\admin\LocationController;
@@ -91,6 +92,12 @@ Route::middleware('auth')->group(callback: function () {
         Route::post('/company-store', [CompanyController::class, 'store'])->name('admin.company.store');
         Route::put('/company-update/{id}', [CompanyController::class, 'update'])->name('admin.company.update');
         Route::get('/company-delete/{id}', [CompanyController::class, 'destroy'])->name('admin.company.destroy');
+
+        //Blog Section
+        Route::get('/blog-section', [BlogController::class, 'index'])->name('admin.blog');
+        Route::post('/blog-store', [BlogController::class, 'store'])->name('admin.blog.store');
+        Route::put('/blog-update/{id}', [BlogController::class, 'update'])->name('admin.blog.update');
+        Route::get('/blog-delete/{id}', [BlogController::class, 'destroy'])->name('admin.blog.destroy');
 
 
 
