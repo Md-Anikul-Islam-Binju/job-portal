@@ -1,6 +1,6 @@
 <template>
     <head>
-        <title>Job Details</title>
+        <title>GarmentsNiyog - Job Details</title>
     </head>
     <div class="bradcam_area bradcam_bg_1">
         <div class="container">

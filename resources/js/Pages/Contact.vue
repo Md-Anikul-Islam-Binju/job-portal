@@ -1,4 +1,7 @@
 <template>
+    <head>
+        <title>GarmentsNiyog - Contact Us</title>
+    </head>
     <div class="bradcam_area bradcam_bg_1">
         <div class="container">
             <div class="row">

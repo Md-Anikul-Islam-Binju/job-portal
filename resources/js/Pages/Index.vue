@@ -107,7 +107,7 @@ export default {
 
 <template>
     <head>
-        <title>Job</title>
+        <title>GarmentsNiyog - Home</title>
     </head>
 
     <!-- slider_area_start -->

@@ -1,4 +1,7 @@
 <template>
+    <head>
+        <title>GarmentsNiyog - Terms & Condition</title>
+    </head>
     <div class="bradcam_area bradcam_bg_1">
         <div class="container">
             <div class="row">
@@ -14,7 +17,6 @@
 
     <section class="sample-text-area">
         <div class="container box_1170">
-
             <span  v-if="locale === 'en'">
                  <p v-html="terms.details"></p>
             </span>

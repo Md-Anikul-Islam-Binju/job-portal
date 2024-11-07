@@ -121,7 +121,7 @@ export default {
 
 <template>
     <head>
-        <title>Job Board</title>
+        <title>GarmentsNiyog - Job</title>
     </head>
 
     <div class="job-board-container">

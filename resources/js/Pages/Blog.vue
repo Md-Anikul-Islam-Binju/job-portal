@@ -1,4 +1,7 @@
 <template>
+    <head>
+        <title>GarmentsNiyog - Blog</title>
+    </head>
     <div>
         <!-- Blog Header Area -->
         <div class="bradcam_area bradcam_bg_1">
