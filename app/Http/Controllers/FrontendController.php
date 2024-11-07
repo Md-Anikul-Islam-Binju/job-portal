@@ -15,7 +15,7 @@ class FrontendController extends Controller
 {
     public function frontend()
     {
-        $category = Category::latest()->get();
+        $category = Category::latest()->limit(20)->get();
         $job = Job::latest()->limit(50)->get();
         $siteSetting = SiteSetting::latest()->first();
         $slider = Slider::latest()->first();
