@@ -107,6 +107,13 @@ export default {
                 this.currentPage = pageNumber;
             }
         },
+
+        getCompanyImageUrl(imagePath) {
+            if (!imagePath) {
+                return 'frontend/img/company.png'; // You might want to return a default image directly here too
+            }
+            return `${window.location.origin}/images/logo/${imagePath}`; // Adjust the path as necessary
+        },
     },
     mounted() {
         if (this.job.length === 0) {
@@ -124,129 +131,122 @@ export default {
         <title>GarmentsNiyog - Job</title>
     </head>
 
-    <div class="job-board-container">
-        <!-- Header Section -->
-        <div class="bradcam_area bradcam_bg_1">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="bradcam_text">
-                            <h3 v-if="locale === 'en'" style="color: black">Jobs Available</h3>
-                            <h3 v-else style="color: black">জব পোস্ট খালি আছে </h3>
-                        </div>
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3 v-if="locale === 'en'" style="color: black">Jobs Available</h3>
+                        <h3 v-else style="color: black">জব পোস্ট খালি আছে </h3>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Job Listing Area -->
-        <div class="job_listing_area plus_padding flex-fill">
-            <div class="container h-100 d-flex">
-                <div class="row w-100">
-                    <!-- Filter Sidebar -->
-                    <div class="col-lg-3">
-                        <div class="job_filter white-bg">
-                            <div class="form_inner white-bg">
-                                <h3 v-if="locale === 'en'">Filter</h3>
-                                <h3 v-else>ফিল্টারিং </h3>
-                                <form action="#">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="single_field">
-                                                <input
-                                                    type="text"
-                                                    :placeholder="locale === 'en' ? 'Search by title' : 'অনুসন্ধান করুন'"
-                                                    v-model="searchKeyword" />
-                                            </div>
+    <div class="job_listing_area plus_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="job_filter white-bg">
+                        <div class="form_inner white-bg">
+                            <h3>Filter</h3>
+                            <form action="#">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="single_field">
+                                            <input
+                                                type="text"
+                                                :placeholder="locale === 'en' ? 'Search by title' : 'অনুসন্ধান করুন'"
+                                                v-model="searchKeyword" />
                                         </div>
                                     </div>
-                                </form>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="recent_joblist_wrap">
+                        <div class="recent_joblist white-bg ">
+                            <div class="row align-items-center">
+                                <div class="col-md-4">
+                                    <h4> {{ locale === 'en' ? 'Job List' : 'জব লিস্ট' }}</h4>
+                                </div>
+                                <div class="col-md-4">
+                                    <!-- Category Dropdown -->
+                                    <div class="custom-dropdown d-flex justify-content-end">
+                                        <select v-model="selectedCategory" class="custom-select">
+                                            <option v-if="locale === 'en'" value="all">All Categories</option>
+                                            <option v-else value="all">সকল  ক্যাটাগরি </option>
+                                            <option v-for="cat in category" :key="cat.id" :value="cat.id">
+                                                {{ locale === 'en' ? cat.name : cat.name_bn }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <!-- Location Dropdown -->
+                                    <div class="custom-dropdown d-flex justify-content-end">
+                                        <select v-model="selectedLocation" class="custom-select">
+                                            <option v-if="locale === 'en'"   value="all">All Locations</option>
+                                            <option v-else value="all">সকল  লোকেশন</option>
+                                            <option v-for="loc in locations" :key="loc.id" :value="loc.id">
+                                                {{ locale === 'en' ? loc.name : loc.name_bn }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Main Job List Section -->
-                    <div class="col-lg-9 d-flex flex-column">
-                        <div class="recent_joblist_wrap">
-                            <div class="recent_joblist white-bg ">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h4 v-if="locale === 'en'">Job List</h4>
-                                        <h4 v-else>জব লিস্ট</h4>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <!-- Category Dropdown -->
-                                            <div class="custom-dropdown d-flex justify-content-end">
-                                                <select v-model="selectedCategory" class="custom-select">
-                                                    <option v-if="locale === 'en'" value="all">All Categories</option>
-                                                    <option v-else value="all">সকল  ক্যাটাগরি </option>
-                                                    <option v-for="cat in category" :key="cat.id" :value="cat.id">
-                                                        {{ locale === 'en' ? cat.name : cat.name_bn }}
-                                                    </option>
-                                                </select>
-                                            </div>
+                    <!-- Job List Display -->
+                    <p v-if="job.length === 0">Loading jobs...</p>
+                    <p v-else-if="paginatedJobs.length > 0">Showing {{ paginatedJobs.length }} jobs</p>
+                    <p v-else>No jobs available in this category.</p>
+
+                    <div class="job_lists m-0">
+                        <div class="row">
+                            <div v-if="paginatedJobs.length > 0" v-for="jobData in paginatedJobs" :key="jobData.id" class="col-lg-12 col-md-12">
+                                <div class="single_jobs white-bg d-flex justify-content-between">
+                                    <div class="jobs_left d-flex align-items-center">
+                                        <div class="thumb">
+                                            <img :src="jobData.company.profile ? getCompanyImageUrl(jobData.company.profile) : 'frontend/img/company.png'" alt="" style="height: 50px;">
                                         </div>
-                                        <div class="col-md-6">
-                                            <!-- Location Dropdown -->
-                                            <div class="custom-dropdown d-flex justify-content-end">
-                                                <select v-model="selectedLocation" class="custom-select">
-                                                    <option v-if="locale === 'en'"   value="all">All Locations</option>
-                                                    <option v-else value="all">সকল  লোকেশন</option>
-                                                    <option v-for="loc in locations" :key="loc.id" :value="loc.id">
-                                                        {{ locale === 'en' ? loc.name : loc.name_bn }}
-                                                    </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <!-- Job List Display -->
-                        <p v-if="job.length === 0">Loading jobs...</p>
-                        <p v-else-if="paginatedJobs.length > 0">Showing {{ paginatedJobs.length }} jobs</p>
-                        <p v-else>No jobs available in this category.</p>
-
-                        <!-- Display Paginated Jobs -->
-                        <div class="job_lists m-0 flex-grow-1 overflow-auto">
-                            <div class="row">
-                                <div v-if="paginatedJobs.length > 0" v-for="jobData in paginatedJobs" :key="jobData.id" class="col-lg-12 col-md-12">
-                                    <div class="single_jobs white-bg d-flex justify-content-between">
-                                        <div class="jobs_left d-flex align-items-center">
-                                            <div class="jobs_conetent">
-                                                <Link :href="`/job-details/${jobData.id}`">
-                                                    <h4 v-if="locale === 'en'">{{ jobData.title }}</h4>
-                                                    <h4 v-else>{{ jobData.title_bn }}</h4>
-                                                </Link>
-                                                <div class="links_locat d-flex align-items-center">
-                                                    <div class="location">
-                                                        <p v-if="locale === 'en'">
-                                                            <i class="fa fa-map-marker"></i> {{ jobData.address }}
-                                                        </p>
-                                                        <p v-else>
-                                                            <i class="fa fa-map-marker"></i> {{ jobData.address_bn }}
-                                                        </p>
-                                                    </div>
+                                        <div class="jobs_conetent">
+                                            <Link :href="`/job-details/${jobData.id}`">
+                                                <h5>{{ locale === 'en' ? jobData.title : jobData.title_bn }}</h5>
+                                                <h6>{{ locale === 'en' ? jobData.company.name : jobData.company.name_bn }}</h6>
+                                            </Link>
+                                            <div class="links_locat d-flex align-items-center">
+                                                <div class="location">
+                                                    <p> <i class="fa fa-map-marker"></i>
+                                                        {{ locale === 'en' ? jobData.address : jobData.address_bn }}
+                                                    </p>
+                                                </div>
+                                                <div class="location">
+                                                    <p> <i class="fa fa-clock-o"></i>
+                                                        <span v-if="locale === 'en'">{{ formatDateEnglish(jobData.deadline) }}</span>
+                                                        <span v-else>{{ formatDateBengali(jobData.deadline) }}</span>
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="jobs_right">
-                                            <div class="apply_now">
-                                                <Link :href="`/job-details/${jobData.id}`" class="boxed-btn3">
-                                                    <span v-if="locale === 'en'">Apply Now</span>
-                                                    <span v-else>আবেদন করুন</span>
-                                                </Link>
-                                            </div>
+                                    </div>
+                                    <div class="jobs_right">
+                                        <div class="apply_now">
+                                            <Link :href="`/job-details/${jobData.id}`" class="boxed-btn3">
+                                                <span v-if="locale === 'en'">Apply Now</span>
+                                                <span v-else>আবেদন করুন</span>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Pagination Controls -->
+
                         <div class="pagination-controls mt-4 d-flex justify-content-center" v-if="totalPages > 1">
                             <button class="btn btn-primary mx-1" @click="goToPage(currentPage - 1)" :disabled="currentPage === 1">
                                 Previous
@@ -264,11 +264,15 @@ export default {
                                 Next
                             </button>
                         </div>
+
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
 </template>
 
 

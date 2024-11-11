@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="bradcam_text">
-                            <h3>{{ locale === 'en' ? 'Blog' : 'ব্লগ' }}</h3>
+                            <h3 style="color: black">{{ locale === 'en' ? 'Blog' : 'ব্লগ' }}</h3>
                         </div>
                     </div>
                 </div>
@@ -51,9 +51,9 @@
                                     </a>
                                 </div>
                                 <div class="blog_details">
-                                    <a class="d-inline-block" :href="`/blog-details/${blogData.id}`">
+                                    <Link class="d-inline-block" :href="`/blog-details/${blogData.id}`">
                                         <h2>{{ locale === 'en' ? blogData.title : blogData.title_bn }}</h2>
-                                    </a>
+                                    </Link>
                                     <p v-html="locale === 'en' ? blogData.details : blogData.details_bn"></p>
                                 </div>
                             </div>

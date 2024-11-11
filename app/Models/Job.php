@@ -23,4 +23,9 @@ class Job extends Model
         'details_bn',
         'status',
     ];
+
+    public function company()
+    {
+        return $this->belongsTo(User::class,'company_id');
+    }
 }

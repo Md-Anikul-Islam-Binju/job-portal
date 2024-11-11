@@ -28,9 +28,11 @@ export default {
                 <div class="row">
                     <div class="col-xl-3 col-md-6 col-lg-3">
                         <div class="footer_widget wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
-                            <div class="footer_logo">
-                              <img :src="getLogoUrl(siteSetting?.logo)" alt="Logo" height="100">
-                            </div>
+                            <p>
+                                {{ siteSetting.email }} <br>
+                                {{ siteSetting.phone }} <br>
+                                {{ siteSetting.address }}
+                            </p>
                             <div class="socail_links">
                                 <ul>
                                     <li>
@@ -45,18 +47,14 @@ export default {
                                     </li>
                                 </ul>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-6 col-lg-2">
-                        <div class="footer_widget wow fadeInUp" data-wow-duration="1.1s" data-wow-delay=".4s">
-
 
                         </div>
                     </div>
                     <div class="col-xl-3 col-md-6 col-lg-3">
                         <div class="footer_widget wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".5s">
-                            <h3 v-if="locale === 'en'" class="footer_title">Company</h3>
-                            <h3 v-else class="footer_title">কোম্পানি </h3>
+                            <h3 class="footer_title">
+                                Important Link
+                            </h3>
                             <ul>
                                 <li>
                                     <Link  href="/about-us">
@@ -75,18 +73,7 @@ export default {
                     </div>
                     <div class="col-xl-4 col-md-6 col-lg-4">
                         <div class="footer_widget wow fadeInUp" data-wow-duration="1.3s" data-wow-delay=".6s">
-                            <h3 v-if="locale === 'en'" class="footer_title">
-                                Subscribe
-                            </h3>
-                            <h3 v-else class="footer_title">
-                                সাবস্ক্রিভেশন
-                            </h3>
-                            <form action="#" class="newsletter_form">
-                                <input type="text" placeholder="Enter your mail">
-                                <button type="submit">Subscribe</button>
-                            </form>
-                            <p v-if="locale === 'en'" class="newsletter_text">Please Connect with Us</p>
-                            <p v-else class="newsletter_text">আমাদের সাথে সংযোগ করুন</p>
+                            <img :src="getLogoUrl(siteSetting?.logo)" style="height: 70px;" alt="">
                         </div>
                     </div>
                 </div>

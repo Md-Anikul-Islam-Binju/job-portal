@@ -9,7 +9,8 @@ export default {
         location: Array,
         job: Array,
         slider:Object,
-        company: Array
+        company: Array,
+        review: Array
     },
     data() {
         return {
@@ -73,6 +74,13 @@ export default {
                 return 'frontend/img/company.png'; // You might want to return a default image directly here too
             }
             return `${window.location.origin}/images/logo/${imagePath}`; // Adjust the path as necessary
+        },
+
+        getReviewUserImageUrl(imagePath) {
+            if (!imagePath) {
+                return 'No Image'; // You might want to return a default image directly here too
+            }
+            return `${window.location.origin}/images/review/${imagePath}`; // Adjust the path as necessary
         }
 
     },
@@ -110,7 +118,6 @@ export default {
         <title>GarmentsNiyog - Home</title>
     </head>
 
-    <!-- slider_area_start -->
     <div class="slider_area">
         <div class="single_slider  d-flex align-items-center slider_bg_1">
             <div class="container">
@@ -132,32 +139,19 @@ export default {
         </div>
     </div>
 
-    <!-- Location Filter -->
     <div class="catagory_area">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="popular_search d-flex align-items-center">
-                        <!-- Location label -->
-                        <span v-if="locale === 'en'">Popular Location:</span>
-                        <span v-else>জনপ্রিয় লোকেশন </span>
-
-                        <!-- Location filter list displayed on the same line -->
-                        <ul class="d-flex list-inline m-0">
-                            <!-- 'All' location option -->
-                            <li class="mr-3">
-                                <a href="#" @click.prevent="selectLocation(null)">
-                                    <h4 v-if="locale === 'en'">All</h4>
-                                    <h4 v-else>সব</h4>
-                                </a>
+                        <span v-if="locale === 'en'">Location:</span>
+                        <span v-else>লোকেশন </span>
+                        <ul>
+                            <li>
+                                <a href="#" @click.prevent="selectLocation(null)">{{ locale === 'en' ? 'All' : 'সব' }}</a>
                             </li>
-
-                            <!-- Dynamic Location options -->
-                            <li v-for="locationData in location" :key="locationData.id" class="mr-3">
-                                <a href="#" @click.prevent="selectLocation(locationData.id)">
-                                    <span v-if="locale === 'en'">{{ locationData.name }}</span>
-                                    <span v-else>{{ locationData.name_bn }}</span>
-                                </a>
+                            <li v-for="locationData in location" :key="locationData.id">
+                                <a href="#" @click.prevent="selectLocation(locationData.id)">{{ locale === 'en' ? locationData.name : locationData.name_bn }}</a>
                             </li>
                         </ul>
                     </div>
@@ -166,8 +160,6 @@ export default {
         </div>
     </div>
 
-
-    <!-- Job Categories Area -->
     <div class="popular_catagory_area">
         <div class="container">
             <div class="row">
@@ -180,13 +172,15 @@ export default {
             </div>
 
             <div class="row">
-                <div class="single_catagory">
-                    <a href="#" @click.prevent="selectCategory(null)">
-                        <h4 v-if="locale === 'en'">All</h4>
-                        <h4 v-else>সব</h4>
-                        <p v-if="locale === 'en'">Available position</p>
-                        <p v-else>পদ শূন্য  আছে</p>
-                    </a>
+                <div class="col-lg-4 col-xl-3 col-md-6">
+                    <div class="single_catagory">
+                        <a href="#" @click.prevent="selectCategory(null)">
+                            <h4 v-if="locale === 'en'">All</h4>
+                            <h4 v-else>সব</h4>
+                            <p v-if="locale === 'en'">Available position</p>
+                            <p v-else>পদ শূন্য  আছে</p>
+                        </a>
+                    </div>
                 </div>
 
                 <div v-for="categoryData in category" :key="categoryData.id" class="col-lg-4 col-xl-3 col-md-6">
@@ -204,22 +198,12 @@ export default {
         </div>
     </div>
 
-    <!-- Job Listing Area -->
     <div class="job_listing_area">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="section_title">
-                        <h4 v-if="locale === 'en'">Job Listing</h4>
-                        <h4 v-else>কাজের তালিকা</h4>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="job text-right">
-                        <Link href="/job-board">
-                            <h4 v-if="locale === 'en'">More Job</h4>
-                            <h4 v-else>আরও কাজ</h4>
-                        </Link>
+                        <h4>{{ locale === 'en' ? 'Job Listing' : 'কাজের তালিকা' }}</h4>
                     </div>
                 </div>
             </div>
@@ -244,22 +228,18 @@ export default {
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="thumb">
-                                    <img src="frontend/img/company.png" alt="" style="height: 50px;">
+                                    <img :src="jobData.company.profile ? getCompanyImageUrl(jobData.company.profile) : 'frontend/img/company.png'" alt="" style="height: 50px;">
                                 </div>
                                 <div class="jobs_conetent">
                                     <a :href="`/job-details/${jobData.id}`">
-                                        <h4 v-if="locale === 'en'">{{ jobData.title }}</h4>
-                                        <h4 v-else>{{ jobData.title_bn }}</h4>
+                                        <h5>{{ locale === 'en' ? jobData.title : jobData.title_bn }}</h5>
+                                        <h6>{{ locale === 'en' ? jobData.company.name : jobData.company.name_bn }}</h6>
                                     </a>
                                     <div class="links_locat d-flex align-items-center">
                                         <div class="location">
-                                            <p v-if="locale === 'en'">
+                                            <p>
                                                 <i class="fa fa-map-marker"></i>
-                                                {{ jobData.address }}
-                                            </p>
-                                            <p v-else>
-                                                <i class="fa fa-map-marker"></i>
-                                                {{ jobData.address_bn }}
+                                                {{ locale === 'en' ? jobData.address : jobData.address_bn }}
                                             </p>
                                         </div>
                                         <div class="location">
@@ -287,30 +267,49 @@ export default {
         </div>
     </div>
 
+    <div class="featured_candidates_area candidate_page_padding">
+        <div class="container">
+            <div class="row align-items-center mb-40">
+                <div class="col-lg-6 col-md-6">
+                    <div class="section_title">
+                        <h4> {{ locale === 'en' ? 'Companies' : 'কোম্পানি' }}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div v-for="companyData in company" :key="companyData.id" class="col-md-6 col-lg-3">
+                    <div class="single_candidates text-center">
+                        <div class="thumb">
+                            <img :src="companyData.profile ? getCompanyImageUrl(companyData.profile) : 'frontend/img/company.png'" alt="">
+                        </div>
+                        <h4> {{ locale === 'en' ? companyData.name : companyData.name_bn }}</h4>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <div class="top_companies_area">
         <div class="container">
             <div class="row align-items-center mb-40">
                 <div class="col-lg-6 col-md-6">
                     <div class="section_title">
-                        <h3></h3>
-                        <h4 v-if="locale === 'en'">Top Companies</h4>
-                        <h4 v-else>শীর্ষ কোম্পানি</h4>
+                        <h4> {{ locale === 'en' ? 'User Feedback' : 'ব্যবহারকারীর প্রতিক্রিয়া' }}</h4>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div v-for="companyData in company" :key="companyData.id" class="col-lg-4 col-xl-3 col-md-6">
+                <div v-for="reviewData in review" :key="reviewData.id" class="col-lg-4 col-xl-3 col-md-6">
                     <div class="single_company">
                         <div class="thumb">
-                            <img
-                                :src="companyData.profile ? getCompanyImageUrl(companyData.profile) : 'frontend/img/company.png'"
-                                alt="Company Image" style="height: 35px;"
-                            >
+                            <img :src="reviewData.image ? getReviewUserImageUrl(reviewData.image) : 'No Image'" style="height: 65px;">
                         </div>
-                        <a href="jobs.html">
-                            <h3 v-if="locale === 'en'">{{ companyData.name }}</h3>
-                            <h3 v-else>{{ companyData.name_bn }}</h3>
-                        </a>
+                        <h3>{{ locale === 'en' ? reviewData.name : reviewData.name_bn }}</h3>
+                        <p
+                            v-html="locale === 'en' ? reviewData.details : reviewData.details_bn"
+                            class="truncate-text">
+                        </p>
                     </div>
                 </div>
             </div>
@@ -328,5 +327,12 @@ export default {
     -moz-border-radius: 5px;
     border-radius: 5px;
     width: 100%;
+}
+.truncate-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Limits to 4 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 </style>

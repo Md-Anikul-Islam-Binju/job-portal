@@ -7,7 +7,8 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="bradcam_text">
-                        <h3>Software Engineer</h3>
+                        <h3 v-if="locale === 'en'" style="color: black">Job Details</h3>
+                        <h3 v-else style="color: black">কাজের বিবরণ</h3>
                     </div>
                 </div>
             </div>
