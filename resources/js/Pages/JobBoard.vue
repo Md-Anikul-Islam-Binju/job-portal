@@ -275,4 +275,21 @@ export default {
 
 </template>
 
+<style  scoped>
+.custom-dropdown {
+    margin-bottom: 10px; /* Adds gap on larger screens */
+}
 
+/* Responsive adjustments */
+@media (max-width: 767px) { /* Adjust for screens less than 768px wide */
+    .custom-dropdown {
+        margin-bottom: 0; /* Removes gap between dropdowns on mobile */
+    }
+    .recent_joblist_wrap .col-md-4 {
+        margin-bottom: 10px; /* Adds spacing between sections on mobile */
+    }
+    .recent_joblist_wrap .row {
+        flex-direction: column; /* Stack elements vertically */
+    }
+}
+</style>

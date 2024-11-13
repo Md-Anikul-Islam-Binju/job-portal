@@ -56,6 +56,7 @@ Route::post('/message', [ContactController::class, 'store'])->name('message.stor
 
 //blog
 Route::get('/blog', [BlogPageController::class, 'blog'])->name('blog');
+Route::get('/blog-details/{id}', [BlogPageController::class, 'blogDetails'])->name('blog.details');
 
 //User Account
 Route::get('/user-registration-start', [UserController::class, 'showRegistrationForm'])->name('user.registration.start');

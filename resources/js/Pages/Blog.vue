@@ -100,6 +100,7 @@ export default {
     props: {
         siteSetting: Object,
         blogs: Array, // All blog data passed from the backend
+        auth: Object,
     },
     data() {
         return {
