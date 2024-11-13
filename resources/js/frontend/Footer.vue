@@ -1,6 +1,11 @@
 <script>
+import QrcodeVue from 'qrcode.vue';
+
 export default {
     name: "Footer",
+    components: {
+        QrcodeVue,
+    },
     props:{
         siteSetting: Object
     },
@@ -28,6 +33,7 @@ export default {
                 <div class="row">
                     <div class="col-xl-3 col-md-6 col-lg-3">
                         <div class="footer_widget wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
+                            <QrcodeVue :value="siteSetting.site_link" :size="100" class="qr-code" />
                             <p>
                                 {{ siteSetting.email }} <br>
                                 {{ siteSetting.phone }} <br>
@@ -74,6 +80,7 @@ export default {
                     <div class="col-xl-4 col-md-6 col-lg-4">
                         <div class="footer_widget wow fadeInUp" data-wow-duration="1.3s" data-wow-delay=".6s">
                             <img :src="getLogoUrl(siteSetting?.logo)" style="height: 70px;" alt="">
+
                         </div>
                     </div>
                 </div>
@@ -95,5 +102,7 @@ export default {
 </template>
 
 <style scoped>
-
+.qr-code {
+    margin-left: 155px;
+}
 </style>
