@@ -135,6 +135,8 @@ class UserController extends Controller
             'resume' => 'nullable|mimes:pdf,doc,docx|max:5120',
             'address' => 'nullable',
             'address_bn' => 'nullable',
+            'details' => 'nullable',
+            'details_bn' => 'nullable',
         ];
 
         // Validate the request data

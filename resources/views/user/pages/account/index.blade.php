@@ -121,6 +121,16 @@
                                                placeholder="Enter Address (Bn)">
                                     </div>
 
+                                    <div class="mb-3 col-md-4">
+                                        <label class="form-label">Short Bio (En)</label>
+                                        <textarea type="text" class="form-control" name="details">{{$user?$user->details:''}}</textarea>
+                                    </div>
+
+                                    <div class="mb-3 col-md-4">
+                                        <label class="form-label">Short Bio (Bn)</label>
+                                        <textarea type="text" class="form-control" name="details_bn">{{$user?$user->details_bn:''}}</textarea>
+                                    </div>
+
 
                                     <div class="mb-3 col-md-4">
                                         <label for="profile" class="form-label">Profile Image</label>

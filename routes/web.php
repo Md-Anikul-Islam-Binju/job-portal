@@ -20,6 +20,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\JobBoardController;
 use App\Http\Controllers\TermsConditionController;
+use App\Http\Controllers\user\CvController;
 use App\Http\Controllers\user\EducationController;
 use App\Http\Controllers\user\ExperiencesController;
 use App\Http\Controllers\user\SkillController;
@@ -183,6 +184,9 @@ Route::middleware('auth')->group(callback: function () {
 
 
         Route::get('/applied-job-list', [UserController::class, 'applyJobList'])->name('user.job.apply');
+
+        Route::get('/bangle-cv', [CvController::class, 'bangleCv'])->name('user.bangle.cv');
+        Route::get('/english-cv', [CvController::class, 'englishCv'])->name('user.english.cv');
 
 
 

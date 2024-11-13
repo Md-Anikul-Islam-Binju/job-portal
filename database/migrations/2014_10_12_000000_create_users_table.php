@@ -36,6 +36,11 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('address_bn')->nullable();
             $table->string('licence')->nullable();
+
+            $table->text('details')->nullable();
+            $table->text('details_bn')->nullable();
+
+
             $table->integer('status')->default(1);
 
             $table->rememberToken();

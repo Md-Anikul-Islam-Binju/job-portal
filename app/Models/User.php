@@ -35,6 +35,11 @@ class User extends Authenticatable
         'address',
         'address_bn',
         'licence',
+
+        'details',
+        'details_bn',
+
+
         'status'
     ];
 

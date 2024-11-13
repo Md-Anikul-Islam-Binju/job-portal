@@ -148,6 +148,20 @@
                 </li>
 
                 <li class="side-nav-item">
+                    <a href="{{route('user.bangle.cv')}}" target="_blank" class="side-nav-link">
+                        <i class="ri-dashboard-3-line"></i>
+                        <span> Bangle CV </span>
+                    </a>
+                </li>
+
+                <li class="side-nav-item">
+                    <a href="{{route('user.english.cv')}}" target="_blank" class="side-nav-link">
+                        <i class="ri-dashboard-3-line"></i>
+                        <span> English CV </span>
+                    </a>
+                </li>
+
+                <li class="side-nav-item">
                     <a href="{{route('home')}}" class="side-nav-link" target="_blank">
                         <i class="ri-dashboard-3-line"></i>
                         <b style="color: red"> Our Site </b>
