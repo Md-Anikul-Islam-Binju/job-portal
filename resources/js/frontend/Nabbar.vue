@@ -90,6 +90,24 @@ export default {
                                                         <h5 style="color: orangered" v-else>শর্তাবলী</h5>
                                                     </Link>
                                                 </li>
+
+
+
+                                                <li>
+                                                    <Link href="/login">
+                                                        <h5 style="color: orangered" v-if="locale === 'en'">Login / Registration</h5>
+                                                        <h5 style="color: orangered" v-else>লগইন/রেজিস্ট্রেশন করুন</h5>
+                                                    </Link>
+                                                </li>
+
+                                                <li>
+                                                    <Link href="/company-registration-start">
+                                                        <h5 style="color: orangered" v-if="locale === 'en'">Join Us</h5>
+                                                        <h5 style="color: orangered" v-else>যোগদান করুন</h5>
+                                                    </Link>
+                                                </li>
+
+
                                             </ul>
                                         </li>
                                     </ul>
