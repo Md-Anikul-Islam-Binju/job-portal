@@ -117,7 +117,7 @@
                                                placeholder="Short Description Bangle">
                                     </div>
                                     <div class="mb-3 col-md-4">
-                                        <label for="site_link" class="form-label">Website Link</label>
+                                        <label for="site_link" class="form-label">App Link</label>
                                         <input type="text" class="form-control" name="site_link" value="{{$siteSettings?$siteSettings->site_link:''}}"
                                                placeholder="Enter Link">
                                     </div>
