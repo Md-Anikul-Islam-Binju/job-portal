@@ -17,7 +17,19 @@ export default {
             locale: localStorage.getItem('locale') || 'bn',
             selectedCategory: null,
             selectedLocation: null,
-            searchKeyword: ''
+            searchKeyword: '',
+            englishToBengaliDigits: {
+                "0": "০",
+                "1": "১",
+                "2": "২",
+                "3": "৩",
+                "4": "৪",
+                "5": "৫",
+                "6": "৬",
+                "7": "৭",
+                "8": "৮",
+                "9": "৯"
+            }
         };
     },
     methods: {
@@ -81,7 +93,11 @@ export default {
                 return 'No Image'; // You might want to return a default image directly here too
             }
             return `${window.location.origin}/images/review/${imagePath}`; // Adjust the path as necessary
-        }
+        },
+
+        convertToBengaliDigits(number) {
+            return number.toString().replace(/\d/g, (digit) => this.englishToBengaliDigits[digit]);
+        },
 
     },
     computed: {
@@ -189,8 +205,8 @@ export default {
                             <h4 v-if="locale === 'en'">{{ categoryData.name }}</h4>
                             <h4 v-else>{{ categoryData.name_bn }}</h4>
                         </a>
-                        <p v-if="locale === 'en'"><span>50</span> Available position</p>
-                        <p v-else>পদ শূন্য  আছে</p>
+                        <p v-if="locale === 'en'"><span>{{ categoryData.jobs_count }}</span> Available position</p>
+                        <p v-else><span>{{ convertToBengaliDigits(categoryData.jobs_count) }}</span>পদ শূন্য  আছে</p>
                     </div>
                 </div>
             </div>
@@ -231,10 +247,10 @@ export default {
                                     <img :src="jobData.company.profile ? getCompanyImageUrl(jobData.company.profile) : 'frontend/img/company.png'" alt="" style="height: 50px;">
                                 </div>
                                 <div class="jobs_conetent">
-                                    <a :href="`/job-details/${jobData.id}`">
+                                    <Link :href="`/job-details/${jobData.id}`">
                                         <h5>{{ locale === 'en' ? jobData.title : jobData.title_bn }}</h5>
                                         <h6>{{ locale === 'en' ? jobData.company.name : jobData.company.name_bn }}</h6>
-                                    </a>
+                                    </Link>
                                     <div class="links_locat d-flex align-items-center">
                                         <div class="location">
                                             <p>
@@ -249,15 +265,36 @@ export default {
                                                 <span v-else>{{ formatDateBengali(jobData.deadline) }}</span>
                                             </p>
                                         </div>
+
+                                        <div class="location">
+                                            <p>
+                                                <i class="fa fa-money"></i>
+                                                <span v-if="locale === 'en'">
+                                                    {{ jobData.salary ? jobData.salary : 'Negotiable' }}
+                                                </span>
+                                                                                        <span v-else>
+                                                    {{ jobData.salary ? convertToBengaliDigits(jobData.salary) : 'আলোচনা সাপেক্ষে' }}
+                                                </span>
+                                            </p>
+                                        </div>
+
+                                        <div class="location">
+                                            <p>
+                                                <i class="fa fa-user"></i>
+                                                <span v-if="locale === 'en'">{{ (jobData.vacancy) }}</span>
+                                                <span v-else>{{ convertToBengaliDigits(jobData.vacancy) }}</span>
+                                            </p>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                    <a :href="`/job-details/${jobData.id}`" class="boxed-btn3">
+                                    <Link :href="`/job-details/${jobData.id}`" class="boxed-btn3">
                                         <span v-if="locale === 'en'">Apply Now</span>
                                         <span v-else>আবেদন করুন</span>
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

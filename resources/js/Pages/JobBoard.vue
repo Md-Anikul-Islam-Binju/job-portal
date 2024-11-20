@@ -20,6 +20,18 @@ export default {
             filteredJobs: [],
             currentPage: 1,   // Track current page
             jobsPerPage: 50,  // Number of jobs to show per page
+            englishToBengaliDigits: {
+                "0": "০",
+                "1": "১",
+                "2": "২",
+                "3": "৩",
+                "4": "৪",
+                "5": "৫",
+                "6": "৬",
+                "7": "৭",
+                "8": "৮",
+                "9": "৯"
+            }
         };
     },
     watch: {
@@ -43,6 +55,7 @@ export default {
         searchKeyword() {
             this.filterJobs();
         },
+
     },
     computed: {
         // Paginate filtered jobs based on currentPage and jobsPerPage
@@ -113,6 +126,9 @@ export default {
                 return 'frontend/img/company.png'; // You might want to return a default image directly here too
             }
             return `${window.location.origin}/images/logo/${imagePath}`; // Adjust the path as necessary
+        },
+        convertToBengaliDigits(number) {
+            return number.toString().replace(/\d/g, (digit) => this.englishToBengaliDigits[digit]);
         },
     },
     mounted() {
@@ -229,6 +245,18 @@ export default {
                                                     <p> <i class="fa fa-clock-o"></i>
                                                         <span v-if="locale === 'en'">{{ formatDateEnglish(jobData.deadline) }}</span>
                                                         <span v-else>{{ formatDateBengali(jobData.deadline) }}</span>
+                                                    </p>
+                                                </div>
+
+                                                <div class="location">
+                                                    <p>
+                                                        <i class="fa fa-money"></i>
+                                                        <span v-if="locale === 'en'">
+                                                          {{ jobData.salary ? jobData.salary : 'Negotiable' }}
+                                                        </span>
+                                                        <span v-else>
+                                                            {{ jobData.salary ? convertToBengaliDigits(jobData.salary) : 'আলোচনা সাপেক্ষে' }}
+                                                        </span>
                                                     </p>
                                                 </div>
                                             </div>

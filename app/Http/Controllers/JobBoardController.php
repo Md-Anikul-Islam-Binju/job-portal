@@ -16,7 +16,7 @@ class JobBoardController extends Controller
     {
         $category = Category::latest()->get();
         $locations = Location::latest()->get();
-        $job = Job::with('company')->latest()->get();
+        $job = Job::with('company')->where('deadline', '>=', now()->toDateString())->latest()->get();
         $siteSetting = SiteSetting::latest()->first();
         $auth = Auth::user() ? [
             'name' => Auth::user()->name,

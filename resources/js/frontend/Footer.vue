@@ -51,6 +51,11 @@ export default {
                                             <i class="fa fa-linkedin"></i>
                                         </a>
                                     </li>
+                                    <li>
+                                        <a :href="siteSetting.youtube_link">
+                                            <i class="fa fa-youtube"></i>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
 
@@ -63,9 +68,21 @@ export default {
                             </h3>
                             <ul>
                                 <li>
+                                    <Link  href="/blog">
+                                        <b v-if="locale === 'en'">Blog</b>
+                                        <b v-else>ব্লগ</b>
+                                    </Link>
+                                </li>
+                                <li>
                                     <Link  href="/about-us">
                                         <b v-if="locale === 'en'">About Us</b>
                                         <b v-else>আমাদের সম্পর্কে</b>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/contact">
+                                        <b v-if="locale === 'en'">Contact Us</b>
+                                        <b v-else>যোগাযোগ</b>
                                     </Link>
                                 </li>
                                 <li>
@@ -92,7 +109,7 @@ export default {
                 <div class="row">
                     <div class="col-xl-12">
                         <p class="copy_right text-center">
-                            Copyright 2024 All rights reserved <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">CoderNetix</a>
+                            Copyright 2024 All rights reserved <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">Bhawal Tech Ltd</a>
                         </p>
                     </div>
                 </div>

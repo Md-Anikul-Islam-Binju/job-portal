@@ -19,48 +19,88 @@ class AuthenticatedSessionController extends Controller
     }
 
 
+//    public function store(LoginRequest $request): RedirectResponse
+//    {
+//        $request->authenticate();
+//        $request->session()->regenerate();
+//        $user = Auth::user();
+//
+//        if ($user->role == 'user' && is_null($user->email_verified_at)) {
+//            return redirect()->route('user.verification');
+//        }
+//
+//        if ($user->role == 'company' && is_null($user->email_verified_at)) {
+//            return redirect()->route('company.verification');
+//        }
+//
+//        if ($user->role == 'admin') {
+//            return redirect()->intended('/admin/dashboard');
+//        } elseif ($user->role == 'company') {
+//            if($user->status == 'inactive'){
+//                Auth::guard('web')->logout();
+//                $request->session()->invalidate();
+//                $request->session()->regenerateToken();
+//                return redirect()->route('message');
+//            }
+//            return redirect()->intended('/company/dashboard');
+//        }elseif ($user->role == 'user'){
+//
+//            if($user->status == 'inactive'){
+//                Auth::guard('web')->logout();
+//                $request->session()->invalidate();
+//                $request->session()->regenerateToken();
+//                return redirect()->route('message');
+//            }
+//            return redirect()->intended('/user/dashboard');
+//        }
+//        return redirect()->intended(RouteServiceProvider::HOME);
+//    }
+
+
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
-        $request->session()->regenerate();
-        $user = Auth::user();
+        try {
+            $request->authenticate();
+            $request->session()->regenerate();
 
+            $user = Auth::user();
 
-        // Check if the user is a 'user' role and email is not verified
-        if ($user->role == 'user' && is_null($user->email_verified_at)) {
-            // Redirect to the verification page if email is not verified
-            return redirect()->route('user.verification');
-        }
-
-        // Check if the user is a 'user' role and email is not verified
-        if ($user->role == 'company' && is_null($user->email_verified_at)) {
-            // Redirect to the verification page if email is not verified
-            return redirect()->route('company.verification');
-        }
-
-
-        // Redirect based on user role
-        if ($user->role == 'admin') {
-            return redirect()->intended('/admin/dashboard');
-        } elseif ($user->role == 'company') {
-            if($user->status == 'inactive'){
-                Auth::guard('web')->logout();
-                $request->session()->invalidate();
-                $request->session()->regenerateToken();
-                return redirect()->route('message');
+            // Redirect based on user role and status checks
+            if ($user->role == 'user' && is_null($user->email_verified_at)) {
+                return redirect()->route('user.verification');
             }
-            return redirect()->intended('/company/dashboard');
-        }elseif ($user->role == 'user'){
 
-            if($user->status == 'inactive'){
-                Auth::guard('web')->logout();
-                $request->session()->invalidate();
-                $request->session()->regenerateToken();
-                return redirect()->route('message');
+            if ($user->role == 'company' && is_null($user->email_verified_at)) {
+                return redirect()->route('company.verification');
             }
-            return redirect()->intended('/user/dashboard');
+
+            if ($user->role == 'admin') {
+                return redirect()->intended('/admin/dashboard');
+            } elseif ($user->role == 'company') {
+                if ($user->status == 'inactive') {
+                    Auth::guard('web')->logout();
+                    $request->session()->invalidate();
+                    $request->session()->regenerateToken();
+                    return redirect()->route('message');
+                }
+                return redirect()->intended('/company/dashboard');
+            } elseif ($user->role == 'user') {
+                if ($user->status == 'inactive') {
+                    Auth::guard('web')->logout();
+                    $request->session()->invalidate();
+                    $request->session()->regenerateToken();
+                    return redirect()->route('message');
+                }
+                return redirect()->intended('/user/dashboard');
+            }
+
+            return redirect()->intended(RouteServiceProvider::HOME);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Handle failed login attempts
+            return back()->withErrors([
+                'email' => 'The provided email or password is incorrect.',
+            ])->withInput($request->only('email'));
         }
-        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
 

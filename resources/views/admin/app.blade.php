@@ -95,7 +95,7 @@
                 <img src="{{asset($siteSetting->logo)}}" alt="logo" style="height: 50px;">
             </span>
             <span class="logo-sm">
-                <img src="{{asset($siteSetting->logo)}}" alt="small logo">
+                <img src="{{asset($siteSetting->favicon)}}" alt="small logo">
             </span>
         </a>
         @endif

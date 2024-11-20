@@ -40,11 +40,15 @@
                                     <p class="text-muted mb-3">Enter your email address and password to access
                                         the admin.
                                     </p>
+                                    @error('email')
+                                       <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                     <form method="POST" action="{{ route('login') }}">
                                         @csrf
                                         <div class="mb-3">
                                             <label for="emailaddress" class="form-label">Email address</label>
                                             <input class="form-control" type="email" id="emailaddress" name="email" value="{{ old('email') }}" required placeholder="Enter your email">
+
                                         </div>
                                         <div class="mb-3">
                                             {{--<a href="{{ route('password.request') }}" class="text-muted float-end"><small>Forgot your password?</small></a>--}}
