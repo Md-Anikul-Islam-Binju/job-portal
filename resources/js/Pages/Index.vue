@@ -135,23 +135,26 @@ export default {
     </head>
 
     <div class="slider_area">
-        <div class="single_slider  d-flex align-items-center slider_bg_1">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-7 col-md-6">
-                        <div class="slider_text">
-                            <h3 v-if="locale === 'en'" class="wow fadeInLeft" style="color: #0a0a0a" data-wow-duration="1s" data-wow-delay=".3s">
-                                {{ slider.title }}</h3>
-                            <h3 v-else class="wow fadeInLeft" style="color: #0a0a0a" data-wow-duration="1s" data-wow-delay=".3s"> {{ slider.title_bn }}</h3>
-                            <div class="sldier_btn wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
+        <div class="banner-slider">
+            <div class="single_slider  d-flex align-items-center">
+                <img :src="getSliderUrl(slider.image)" class="position-absolute w-100 h-100 top-0 left-0" alt="">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 col-md-6">
+                            <div class="slider_text">
+                                <h3 v-if="locale === 'en'" class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">
+                                    {{ slider.title }}</h3>
+                                <h3 v-else class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s"> {{ slider.title_bn }}</h3>
+                                <p class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".4s">We provide online
+                                    instant cash loans with quick approval that suit your term length</p>
+                                <div class="sldier_btn wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
+                                    <a href="#job" class="boxed-btn3">Find Dream Job</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="ilstration_img wow fadeInRight d-none d-lg-block text-right" data-wow-duration="1s" data-wow-delay=".2s">
-            <img :src="getSliderUrl(slider?.image)" alt="">
         </div>
     </div>
 
@@ -214,18 +217,18 @@ export default {
         </div>
     </div>
 
-    <div class="job_listing_area">
+    <div  class="job_listing_area">
         <div class="container">
-            <div class="row align-items-center">
+            <div  class="row align-items-center">
                 <div class="col-lg-6">
-                    <div class="section_title">
+                    <div id="job" class="section_title">
                         <h4>{{ locale === 'en' ? 'Job Listing' : 'কাজের তালিকা' }}</h4>
                     </div>
                 </div>
             </div>
 
             <!-- Job Search Area -->
-            <div class="row cat_search">
+            <div  class="row cat_search">
                 <div class="col-lg-12 col-md-4">
                     <div class="single_input">
                         <input

@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="{{asset('frontend/css/animate.min.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/slicknav.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/slick.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/slick-theme.css')}}">
     {{-- Frontend Template Styles End--}}
 
     @inertiaHead
@@ -57,6 +59,7 @@
 <script src="{{asset('frontend/js/jquery.validate.min.js')}}"></script>
 <script src="{{asset('frontend/js/mail-script.js')}}"></script>
 <script src="{{asset('frontend/js/main.js')}}"></script>
+<script src="{{asset('frontend/js/slick.min.js')}}"></script>
 {{-- End Frontend Template Scripts --}}
 </body>
 </html>

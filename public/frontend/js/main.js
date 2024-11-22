@@ -17,6 +17,16 @@ $(window).on('scroll', function () {
 
 
 $(document).ready(function(){
+    // for banner slider
+    $('.banner-slider').slick({
+        infinite: true,
+        dots: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        speed: 2000,
+    });
 
 // mobile_menu
 var menu = $('ul#navigation');
@@ -175,11 +185,11 @@ if(candidate.length){
     $(this).addClass('active');
     event.preventDefault();
 	});
-  
+
   // wow js
   new WOW().init();
 
-  // counter 
+  // counter
   $('.counter').counterUp({
     delay: 10,
     time: 10000
@@ -296,7 +306,7 @@ $(document).ready(function() {
 
 
 
-//------- Mailchimp js --------//  
+//------- Mailchimp js --------//
 function mailChimp() {
   $('#mc_embed_signup').find('form').ajaxChimp();
 }
@@ -335,4 +345,4 @@ mailChimp();
 
 
 
-})(jQuery);	
+})(jQuery);
