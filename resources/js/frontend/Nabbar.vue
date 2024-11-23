@@ -31,130 +31,124 @@ export default {
 </script>
 
 <template>
-    <div class="header-area ">
-        <div id="sticky-header" class="main-header-area">
-            <div class="container-fluid ">
-                <div class="header_bottom_border">
-                    <div class="row align-items-center">
-                        <div class="col-xl-3 col-lg-2">
-                            <div class="logo">
-                                <Link href="/">
-                                    <img :src="getLogoUrl(siteSetting?.logo)" alt="Logo" height="100">
-                                </Link>
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-7">
-                            <div class="main-menu  d-none d-lg-block">
-                                <nav>
-                                    <ul id="navigation" >
-                                        <li>
-                                            <Link href="/">
-                                                <h5 style="color: orangered" v-if="locale === 'en'">Home</h5>
-                                                <h5 style="color: orangered" v-else>হোম</h5>
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/job-board">
-                                                <h5 style="color: orangered" v-if="locale === 'en'">Job</h5>
-                                                <h5 style="color: orangered" v-else>জব</h5>
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/contact">
-                                                <h5 style="color: orangered" v-if="locale === 'en'">Contact Us</h5>
-                                                <h5 style="color: orangered" v-else>যোগাযোগ</h5>
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span style="color: orangered" v-if="locale === 'en'">Our Page</span>
-                                                <span style="color: orangered" v-else>আমাদের পেজ</span>
-                                                <i class="ti-angle-down ml-1"></i>
-                                            </a>
-                                            <ul class="submenu">
-                                                <li>
-                                                    <Link href="/blog">
-                                                        <h5 style="color: orangered" v-if="locale === 'en'">Blog</h5>
-                                                        <h5 style="color: orangered" v-else>ব্লগ</h5>
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <Link href="/about-us">
-                                                        <h5 style="color: orangered" v-if="locale === 'en'">About Us</h5>
-                                                        <h5 style="color: orangered" v-else>আমাদের সম্পর্কে</h5>
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <Link href="/terms-condition">
-                                                        <h5 style="color: orangered" v-if="locale === 'en'">Terms & Condition</h5>
-                                                        <h5 style="color: orangered" v-else>শর্তাবলী</h5>
-                                                    </Link>
-                                                </li>
-
-
-
-                                                <li>
-                                                    <Link href="/login">
-                                                        <h5 style="color: orangered" v-if="locale === 'en'">Login / Registration</h5>
-                                                        <h5 style="color: orangered" v-else>লগইন/রেজিস্ট্রেশন করুন</h5>
-                                                    </Link>
-                                                </li>
-
-                                                <li>
-                                                    <Link href="/company-registration-start">
-                                                        <h5 style="color: orangered" v-if="locale === 'en'">Join Us</h5>
-                                                        <h5 style="color: orangered" v-else>যোগদান করুন</h5>
-                                                    </Link>
-                                                </li>
-
-
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                            <div class="Appointment">
-                                <div v-if="auth && auth.role === 'user'">
-                                    <a @click="redirectToDashboard" class="btn btn-success mr-2">
-
-                                        <span v-if="locale === 'en'"> {{ auth.name }}</span>
-                                        <span v-else> {{ auth.name_bn }}</span>
-                                    </a>
-                                </div>
-                                <div v-else>
-                                    <a href="/login" class="btn btn-warning mr-2" target="_blank">
-                                        <span v-if="locale === 'en'">Login / Registration</span>
-                                        <span v-else>লগইন/রেজিস্ট্রেশন করুন</span>
-                                    </a>
-                                </div>
-
-                                <div>
-                                    <a href="/company-registration-start" class="btn btn-danger mr-2" target="_blank">
-                                        <span v-if="locale === 'en'">Join Us</span>
-                                        <span v-else>যোগদান করুন</span>
-                                    </a>
-                                </div>
-
-                                <div>
-                                    <button class="btn btn-dark" @click="changeLanguage(locale === 'en' ? 'bn' : 'en')">
-                                        <span v-if="locale === 'en'">বাংলা</span>
-                                        <span v-else>English</span>
-                                    </button>
+        <div class="header-area ">
+            <div id="sticky-header" class="main-header-area">
+                <div class="container-fluid ">
+                    <div class="header_bottom_border">
+                        <div class="row align-items-center">
+                            <div class="col-xl-3 col-lg-2">
+                                <div class="logo">
+                                    <Link href="/">
+                                        <img :src="getLogoUrl(siteSetting?.logo)" alt="">
+                                    </Link>
                                 </div>
                             </div>
-                        </div>
+                            <div class="col-xl-6 col-lg-7">
+                                <div class="main-menu  d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">
+                                            <li>
+                                                <Link href="/">
+                                                    <b>{{ locale === 'en' ? 'Home' : 'হোম' }}</b>
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <Link href="/about-us">
+                                                    <b>{{ locale === 'en' ? 'About Us' : 'আমাদের সম্পর্কে' }}</b>
+                                                </Link>
+                                            </li>
 
-                        <div class="col-12">
-                            <div class="mobile_menu d-block d-lg-none"></div>
+                                            <li>
+                                                <Link href="/job-board">
+                                                    <b>{{ locale === 'en' ? 'Browse Job' : 'জব' }}</b>
+                                                </Link>
+                                            </li>
+
+                                            <li>
+                                                <a href="#">
+                                                    <b>{{ locale === 'en' ? 'Page' : 'পেজ' }}</b>
+                                                    <i class="ti-angle-down"></i>
+                                                </a>
+                                                <ul class="submenu">
+                                                    <li>
+                                                        <Link href="/blog">
+                                                            <b>{{ locale === 'en' ? 'Blog' : 'ব্লগ' }}</b>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link href="/terms-condition">
+                                                            <b>{{ locale === 'en' ? 'Terms & Condition' : 'শর্তাবলী' }}</b>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link href="/loginn">
+                                                            <b>{{ locale === 'en' ? 'SignUp / SignIn' : 'লগইন/রেজিস্ট্রেশন' }}</b>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link href="/company-registration-start">
+                                                            <b>{{ locale === 'en' ? 'Company Join ' : 'কোম্পানি যোগদান' }}</b>
+                                                        </Link>
+                                                    </li>
+
+                                                    <li>
+                                                        <a @click="changeLanguage(locale === 'en' ? 'bn' : 'en')">
+                                                            <b>{{ locale === 'en' ? 'বাংলা' : 'English' }}</b>
+                                                        </a>
+                                                    </li>
+
+
+
+                                                </ul>
+                                            </li>
+
+                                            <li>
+                                                <Link href="/contact">
+                                                    <b>{{ locale === 'en' ? 'Contact Us' : 'যোগাযোগ' }}</b>
+                                                </Link>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                                <div class="Appointment">
+                                    <div v-if="auth && auth.role === 'user'">
+                                        <a @click="redirectToDashboard" class="btn btn-success mr-2">
+
+                                            <span v-if="locale === 'en'"> {{ auth.name }}</span>
+                                            <span v-else> {{ auth.name_bn }}</span>
+                                        </a>
+                                    </div>
+                                    <div v-else>
+                                        <a href="/login" class="btn btn-warning mr-2" target="_blank">
+                                            <span>{{ locale === 'en' ? 'SignUp / SignIn ' : 'লগইন/রেজিস্ট্রেশন' }}</span>
+                                        </a>
+                                    </div>
+
+
+
+                                    <div>
+                                        <a class="btn btn-warning mr-2" href="/company-registration-start" target="_blank">
+                                            <span>{{ locale === 'en' ? 'Company ' : 'কোম্পানি' }}</span>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a class="btn btn-dark" @click="changeLanguage(locale === 'en' ? 'bn' : 'en')">
+                                            <b>{{ locale === 'en' ? 'বাংলা' : 'English' }}</b>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
-    </div>
 </template>
 
 
