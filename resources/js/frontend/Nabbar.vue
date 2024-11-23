@@ -81,7 +81,7 @@ export default {
                                                         </Link>
                                                     </li>
                                                     <li>
-                                                        <Link href="/loginn">
+                                                        <Link href="/login">
                                                             <b>{{ locale === 'en' ? 'SignUp / SignIn' : 'লগইন/রেজিস্ট্রেশন' }}</b>
                                                         </Link>
                                                     </li>
