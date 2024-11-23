@@ -145,10 +145,14 @@ export default {
                                 <h3 v-if="locale === 'en'" class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">
                                     {{ slider.title }}</h3>
                                 <h3 v-else class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s"> {{ slider.title_bn }}</h3>
-                                <p class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".4s">We provide online
-                                    instant cash loans with quick approval that suit your term length</p>
+                                <p class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".4s" v-html="locale === 'en' ? slider.details : slider.details_bn">
+
+                                </p>
                                 <div class="sldier_btn wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
-                                    <a href="#job" class="boxed-btn3">Find Dream Job</a>
+                                    <a href="#job" class="boxed-btn3">
+
+                                        {{ locale === 'en' ? 'Find Dream Job' : 'স্বপ্নের চাকরি খুঁজুন' }}
+                                    </a>
                                 </div>
                             </div>
                         </div>

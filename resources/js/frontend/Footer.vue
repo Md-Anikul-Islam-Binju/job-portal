@@ -33,7 +33,11 @@ export default {
                 <div class="row">
                     <div class="col-xl-3 col-md-6 col-lg-3">
                         <div class="footer_widget wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
-                            <QrcodeVue :value="siteSetting.site_link" :size="100" class="qr-code" />
+                            <div class="footer_logo">
+                                <Link href="/">
+                                    <img :src="getLogoUrl(siteSetting?.logo)" alt="">
+                                </Link>
+                            </div>
                             <p>
                                 {{ siteSetting.email }} <br>
                                 {{ siteSetting.phone }} <br>
@@ -61,34 +65,57 @@ export default {
 
                         </div>
                     </div>
-                    <div class="col-xl-3 col-md-6 col-lg-3">
-                        <div class="footer_widget wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".5s">
+                    <div class="col-xl-2 col-md-6 col-lg-2">
+                        <div class="footer_widget wow fadeInUp" data-wow-duration="1.1s" data-wow-delay=".4s">
                             <h3 class="footer_title">
-                                Important Link
+                                {{ locale === 'en' ? 'Important Link' : 'গুরুত্বপূর্ণ লিঙ্ক' }}
                             </h3>
                             <ul>
                                 <li>
-                                    <Link  href="/blog">
-                                        <b v-if="locale === 'en'">Blog</b>
-                                        <b v-else>ব্লগ</b>
+                                    <Link href="/">
+                                        <b>{{ locale === 'en' ? 'Home' : 'হোম' }}</b>
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link  href="/about-us">
-                                        <b v-if="locale === 'en'">About Us</b>
-                                        <b v-else>আমাদের সম্পর্কে</b>
+                                    <Link href="/about-us">
+                                        <b>{{ locale === 'en' ? 'About Us' : 'আমাদের সম্পর্কে' }}</b>
+                                    </Link>
+                                </li>
+
+                                <li>
+                                    <Link href="/job-board">
+                                        <b>{{ locale === 'en' ? 'Browse Job' : 'জব' }}</b>
+                                    </Link>
+                                </li>
+
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-lg-3">
+                        <div class="footer_widget wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".5s">
+                            <h3 class="footer_title">
+                                {{ locale === 'en' ? 'Important Link' : 'গুরুত্বপূর্ণ লিঙ্ক' }}
+                            </h3>
+                            <ul>
+                                <li>
+                                    <Link href="/blog">
+                                        <b>{{ locale === 'en' ? 'Blog' : 'ব্লগ' }}</b>
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/contact">
-                                        <b v-if="locale === 'en'">Contact Us</b>
-                                        <b v-else>যোগাযোগ</b>
+                                    <Link href="/terms-condition">
+                                        <b>{{ locale === 'en' ? 'Terms & Condition' : 'শর্তাবলী' }}</b>
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link  href="/terms-condition">
-                                        <b v-if="locale === 'en'">Terms & Condition</b>
-                                        <b v-else>শর্তাবলী</b>
+                                    <Link href="/login">
+                                        <b>{{ locale === 'en' ? 'SignUp / SignIn' : 'লগইন/রেজিস্ট্রেশন' }}</b>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/company-registration-start">
+                                        <b>{{ locale === 'en' ? 'Company Join' : 'কোম্পানি যোগদান' }}</b>
                                     </Link>
                                 </li>
                             </ul>
@@ -96,8 +123,10 @@ export default {
                     </div>
                     <div class="col-xl-4 col-md-6 col-lg-4">
                         <div class="footer_widget wow fadeInUp" data-wow-duration="1.3s" data-wow-delay=".6s">
-                            <img :src="getLogoUrl(siteSetting?.logo)" style="height: 70px;" alt="">
-
+                            <h3 class="footer_title">
+                                {{ locale === 'en' ? 'Scan The QR cODE & Download The App' : 'QR কোড স্ক্যান করুন এবং অ্যাপটি ডাউনলোড করুন' }}
+                            </h3>
+                            <QrcodeVue :value="siteSetting.site_link" :size="100" class="qr-code" />
                         </div>
                     </div>
                 </div>
@@ -109,7 +138,7 @@ export default {
                 <div class="row">
                     <div class="col-xl-12">
                         <p class="copy_right text-center">
-                            Copyright 2024 All rights reserved <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">Bhawal Tech Ltd</a>
+                            Copyright All rights reserved | This is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://www.facebook.com/BDBhawalIT/" target="_blank">Bhawal Tech Ltd</a>
                         </p>
                     </div>
                 </div>
