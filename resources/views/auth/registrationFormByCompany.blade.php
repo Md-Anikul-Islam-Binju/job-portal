@@ -39,7 +39,7 @@ $siteSetting = DB::table('site_settings')->first();
                                     <h4 class="fs-20">Sign Up</h4>
                                     <p class="text-muted mb-3">Create Your Account And Post Job.
                                     </p>
-                                    <form method="post" action="{{route('company.registration')}}">
+                                    <form method="post" action="{{route('company.registration')}}" enctype="multipart/form-data">
                                         @csrf
 
                                         <div class="mb-3">

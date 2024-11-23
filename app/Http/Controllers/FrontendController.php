@@ -23,12 +23,14 @@ class FrontendController extends Controller
         $company = User::where('role','=','company')->latest()->limit(4)->get();
         $location = Location::latest()->get();
         $review = Review::latest()->limit(4)->get();
+        $jobTotal = Job::where('deadline', '>=', now()->toDateString())->count();
         $auth = Auth::user() ? [
             'name' => Auth::user()->name,
             'name_bn' => Auth::user()->name_bn,
             'email' => Auth::user()->email,
             'role' => Auth::user()->role,
         ] : null;
-        return inertia('Index',compact('category','job','siteSetting','auth','slider','company','location','review'));
+        return inertia('Index',compact('category','job','siteSetting','auth',
+            'slider','company','location','review','jobTotal'));
     }
 }

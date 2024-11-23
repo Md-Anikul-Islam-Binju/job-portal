@@ -99,7 +99,7 @@
                                                         <div class="mb-3">
                                                             <label for="address" class="form-label">Address</label>
                                                             <input type="text" id="address" name="address" value="{{$companyData->address}}"
-                                                                   class="form-control" placeholder="Enter address" required>
+                                                                   class="form-control" placeholder="Enter address">
                                                         </div>
                                                     </div>
                                                     <div class="col-6">

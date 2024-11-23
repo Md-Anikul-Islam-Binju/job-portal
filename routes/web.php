@@ -140,7 +140,7 @@ Route::middleware('auth')->group(callback: function () {
     Route::middleware(['company'])->prefix('company')->group(function () {
         //dashboard
         Route::get('/dashboard', [CompanyDashboardController::class, 'index'])->name('company.dashboard');
-
+        Route::get('/message', [CompanyDashboardController::class, 'message'])->name('company.message');
         //Job Section
         Route::get('/job-section', [JobController::class, 'index'])->name('company.job.section');
         Route::post('/job-store', [JobController::class, 'store'])->name('company.job.store');

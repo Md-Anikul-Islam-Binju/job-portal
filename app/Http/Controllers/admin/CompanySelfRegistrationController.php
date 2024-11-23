@@ -29,7 +29,6 @@ class CompanySelfRegistrationController extends Controller
             'licence' => 'required',
             'address' => 'required',
         ]);
-
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
         $verificationCode = rand(100000, 999999);
@@ -37,7 +36,7 @@ class CompanySelfRegistrationController extends Controller
         try {
             if ($request->hasFile('licence')) {
                 $licenceFile = time() . '.' . $request->licence->extension();
-                $request->licence->move(public_path('uploads/licences'), $licenceFile);
+                $request->licence->move(public_path('images/licence'), $licenceFile);
                 $input['licence'] = $licenceFile; // Store file name in input array
             }
             // Create user with verification code
@@ -82,7 +81,7 @@ class CompanySelfRegistrationController extends Controller
         $user = User::where('verification_code', $request->verification_code)->first();
         if ($user) {
             $user->update([
-                'status' => 1,
+                'status' => 0,
                 'verification_code' => null,
             ]);
             $user = User::where('email', $user->email)->first();

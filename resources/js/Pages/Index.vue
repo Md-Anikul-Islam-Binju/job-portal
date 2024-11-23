@@ -10,7 +10,8 @@ export default {
         job: Array,
         slider:Object,
         company: Array,
-        review: Array
+        review: Array,
+        jobTotal:Object
     },
     data() {
         return {
@@ -142,6 +143,7 @@ export default {
                     <div class="row align-items-center">
                         <div class="col-lg-7 col-md-6">
                             <div class="slider_text">
+                                <h5 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".2s">{{ locale === 'en' ? 'Total' : 'মোট' }} {{ locale === 'en' ? jobTotal : convertToBengaliDigits(jobTotal) }} {{ locale === 'en' ? 'Jobs listed' : 'তালিকাভুক্ত চাকরি' }}</h5>
                                 <h3 v-if="locale === 'en'" class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">
                                     {{ slider.title }}</h3>
                                 <h3 v-else class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s"> {{ slider.title_bn }}</h3>
