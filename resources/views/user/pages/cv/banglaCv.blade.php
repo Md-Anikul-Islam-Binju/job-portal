@@ -34,6 +34,13 @@
             border-radius: 50%;
             margin-bottom: 20px;
         }
+        .no-pdf {
+            display: block;
+        }
+
+        .no-pdf-hidden {
+            display: none !important;
+        }
     </style>
 </head>
 
@@ -42,8 +49,9 @@
 <div class="container mt-5 printable">
 
     <div class="text-right mb-3">
-        <button onclick="downloadPDF()" class="btn btn-primary">Download as PDF</button>
+        <button onclick="downloadPDF()" class="btn btn-primary no-pdf">ডাউনলোড পিডিএফ</button>
     </div>
+
 
     <!-- Header Section -->
     <div class="resume-header">
@@ -129,15 +137,29 @@
 <script>
     function downloadPDF() {
         const element = document.querySelector('.printable'); // Select the content to convert to PDF
+        const button = document.querySelector('.no-pdf'); // Select the button to hide
+
+        // Hide the button
+        button.classList.add('no-pdf-hidden');
+
         const options = {
-            margin:       0.5,
-            filename:     'Resume.pdf',
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2 },
-            jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+            margin: 0.5,
+            filename: 'Resume.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
         };
-        html2pdf().set(options).from(element).save();
+
+        html2pdf()
+            .set(options)
+            .from(element)
+            .save()
+            .then(() => {
+                // Show the button back after PDF generation
+                button.classList.remove('no-pdf-hidden');
+            });
     }
+
 </script>
 
 </body>

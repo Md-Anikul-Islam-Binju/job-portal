@@ -43,7 +43,7 @@ class ReviewController extends Controller
 
         try {
             $request->validate([
-                'title' => 'required',
+                'name' => 'required',
             ]);
             $review = Review::find($id);
             $review->name = $request->name;
