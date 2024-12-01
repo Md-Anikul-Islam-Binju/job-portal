@@ -168,6 +168,13 @@
                     </a>
                 </li>
 
+                <li class="side-nav-item">
+                    <a href="{{route('admin.training')}}" class="side-nav-link">
+                        <i class="ri-dashboard-3-line"></i>
+                        <span> Training </span>
+                    </a>
+                </li>
+
 
 
 

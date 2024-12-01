@@ -13,6 +13,7 @@ use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\SiteSettingController;
 use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\TermsAndConditionController;
+use App\Http\Controllers\admin\TrainingController;
 use App\Http\Controllers\BlogPageController;
 use App\Http\Controllers\company\CompanyDashboardController;
 use App\Http\Controllers\company\JobController;
@@ -119,6 +120,11 @@ Route::middleware('auth')->group(callback: function () {
         Route::post('/review-store', [ReviewController::class, 'store'])->name('admin.review.store');
         Route::put('/review-update/{id}', [ReviewController::class, 'update'])->name('admin.review.update');
         Route::get('/review-delete/{id}', [ReviewController::class, 'destroy'])->name('admin.review.destroy');
+
+        Route::get('/training-list', [TrainingController::class, 'index'])->name('admin.training');
+        Route::post('/training-store', [TrainingController::class, 'store'])->name('admin.training.store');
+        Route::put('/training-update/{id}', [TrainingController::class, 'update'])->name('admin.training.update');
+        Route::get('/training-delete/{id}', [TrainingController::class, 'destroy'])->name('admin.training.destroy');
 
 
 

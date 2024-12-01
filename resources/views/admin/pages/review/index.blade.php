@@ -6,8 +6,7 @@
             <div class="page-title-box">
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Wings</a></li>
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Review</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Garments Niyog</a></li>
                         <li class="breadcrumb-item active">Review!</li>
                     </ol>
                 </div>
