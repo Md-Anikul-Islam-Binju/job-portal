@@ -164,7 +164,10 @@
                 <li class="side-nav-item">
                     <a href="{{route('home')}}" class="side-nav-link" target="_blank">
                         <i class="ri-dashboard-3-line"></i>
-                        <b style="color: red"> Our Site </b>
+                        <span>
+                             <b style="color: red"> Our Site </b>
+                        </span>
+
                     </a>
                 </li>
 

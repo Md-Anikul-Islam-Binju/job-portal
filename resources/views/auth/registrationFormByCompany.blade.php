@@ -97,7 +97,7 @@ $siteSetting = DB::table('site_settings')->first();
 </div>
 <footer class="footer footer-alt fw-medium">
     <span class="text-dark">
-        <script>document.write(new Date().getFullYear())</script> © Powered By CoderNetix
+        <script>document.write(new Date().getFullYear())</script> © Powered By  Bhawal Tech Ltd
     </span>
 </footer>
 <script src="{{ asset('backend/js/vendor.min.js') }}"></script>
