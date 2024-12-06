@@ -23,6 +23,11 @@ class CategoryController extends Controller
             $category = new Category();
             $category->name = $request->name;
             $category->name_bn = $request->name_bn;
+            if ($request->image) {
+                $file = time() . '.' . $request->image->extension();
+                $request->image->move(public_path('images/category'), $file);
+                $category->image = $file;
+            }
             $category->save();
             Toastr::success('Category Added Successfully', 'Success');
             return redirect()->back();
@@ -42,6 +47,11 @@ class CategoryController extends Controller
             $category->name = $request->name;
             $category->name_bn = $request->name_bn;
             $category->status = $request->status;
+            if ($request->image) {
+                $file = time() . '.' . $request->image->extension();
+                $request->image->move(public_path('images/category'), $file);
+                $category->image = $file;
+            }
             $category->save();
             Toastr::success('Category Updated Successfully', 'Success');
             return redirect()->back();
@@ -50,10 +60,16 @@ class CategoryController extends Controller
         }
     }
 
+
+
     public function destroy($id)
     {
         try {
             $category = Category::find($id);
+            $filePath = public_path('images/category/' . $category->image);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
             $category->delete();
             Toastr::success('Category Deleted Successfully', 'Success');
             return redirect()->back();
