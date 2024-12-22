@@ -63,6 +63,7 @@ class CompanyController extends Controller
 
     public function update(Request $request, $id)
     {
+
         try {
             $request->validate([
                 'name' => 'required',
@@ -88,10 +89,13 @@ class CompanyController extends Controller
             // Licence image upload if provided
             if ($request->hasFile('licence')) {
                 $licenceFilePath = public_path('images/licence/' . $company->licence);
-                if (file_exists($licenceFilePath)) {
+
+                // Check if file exists and is not a directory before unlinking
+                if (!empty($company->licence) && file_exists($licenceFilePath) && !is_dir($licenceFilePath)) {
                     unlink($licenceFilePath);
                 }
-                $licenceFile = time() . '.' . $request->licence->extension();
+
+                $licenceFile = time() . '_licence.' . $request->licence->extension();
                 $request->licence->move(public_path('images/licence'), $licenceFile);
                 $company->licence = $licenceFile;
             }
@@ -99,10 +103,10 @@ class CompanyController extends Controller
             // Profile image upload if provided
             if ($request->hasFile('profile')) {
                 $profileFilePath = public_path('images/logo/' . $company->profile);
-                if (file_exists($profileFilePath)) {
+                if (!empty($company->profile) && file_exists($profileFilePath)) {
                     unlink($profileFilePath);
                 }
-                $profileFile = time() . '.' . $request->profile->extension();
+                $profileFile = time() . '_profile.' . $request->profile->extension();
                 $request->profile->move(public_path('images/logo'), $profileFile);
                 $company->profile = $profileFile;
             }

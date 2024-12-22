@@ -27,119 +27,132 @@ export default {
 
 </script>
 <template>
-    <footer class="footer">
-        <div class="footer_top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-3 col-md-6 col-lg-3">
-                        <div class="footer_widget wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
-                            <div class="footer_logo">
+    <footer class="footer-area">
+        <div class="container">
+            <div class="footer-content-wrap">
+                <div class="footer-about">
+                    <div class="footer-logo-area">
+                        <Link href="/">
+                            <img :src="getLogoUrl(siteSetting?.logo)" alt="">
+                        </Link>
+                    </div>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                        elit. Nullam dictum aliquet accumsan porta lectus
+                        ridiculus in mattis. Netus sodales in volutpat
+                        ullamcorper amet adipiscing fermentum.
+                    </p>
+                    <ul>
+                        <li>
+                            <a href="#" target="_blank">
+                                <svg
+                                    width="16"
+                                    height="14"
+                                    viewBox="0 0 16 14"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M15.9991 2.20027C15.3991 2.46565 14.7658 2.63151 14.0992 2.73103C14.7658 2.33296 15.2991 1.70269 15.5325 0.939726C14.8992 1.30462 14.1992 1.57 13.4326 1.73586C12.8326 1.10559 11.966 0.70752 11.0327 0.70752C9.23282 0.70752 7.76623 2.1671 7.76623 3.9584C7.76623 4.22378 7.79957 4.45599 7.86623 4.68819C5.16638 4.55551 2.73318 3.26179 1.09994 1.27145C0.833287 1.76903 0.666629 2.29979 0.666629 2.89689C0.666629 4.02475 1.23326 5.01992 2.13321 5.61702C1.59991 5.58385 1.09994 5.45116 0.633298 5.21895V5.25212C0.633298 6.84439 1.76657 8.17128 3.26648 8.46983C2.99983 8.53618 2.69985 8.56935 2.39987 8.56935C2.19988 8.56935 1.96656 8.53618 1.76657 8.50301C2.19988 9.79673 3.39981 10.7587 4.83306 10.7587C3.69979 11.6212 2.29987 12.152 0.766624 12.152C0.499972 12.152 0.23332 12.152 0 12.1188C1.46658 13.0476 3.16649 13.5784 5.03305 13.5784C11.066 13.5784 14.3659 8.60252 14.3659 4.29013C14.3659 4.15744 14.3659 3.99158 14.3659 3.85889C14.9992 3.42765 15.5658 2.86372 15.9991 2.20027Z"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a :href="siteSetting.facebook_link" target="_blank">
+                                <svg
+                                    width="10"
+                                    height="18"
+                                    viewBox="0 0 10 18"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M3.01283 17.4824V9.56865H0.336914V6.48451H3.01283V4.21005C3.01283 1.57056 4.63268 0.133301 6.99859 0.133301C8.13188 0.133301 9.10589 0.217274 9.38974 0.254807V3.01323L7.74886 3.01398C6.46214 3.01398 6.213 3.62248 6.213 4.51543V6.48451H9.2817L8.88214 9.56865H6.213V17.4824H3.01283Z"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">
+                                <svg
+                                    width="21"
+                                    height="21"
+                                    viewBox="0 0 21 21"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M10.427 2.58559C13.0168 2.58559 13.3234 2.59525 14.3465 2.64167C14.9616 2.64917 15.5709 2.76158 16.1478 2.97402C16.5662 3.1346 16.9462 3.3806 17.2633 3.69616C17.5804 4.01173 17.8275 4.38988 17.9889 4.80627C18.2023 5.38046 18.3153 5.98682 18.3228 6.599C18.369 7.61718 18.3792 7.9224 18.3792 10.4998C18.3792 13.0772 18.3695 13.3824 18.3228 14.4006C18.3153 15.0128 18.2023 15.6191 17.9889 16.1933C17.8275 16.6097 17.5804 16.9878 17.2633 17.3034C16.9462 17.619 16.5662 17.865 16.1478 18.0256C15.5709 18.238 14.9616 18.3504 14.3465 18.3579C13.3239 18.4039 13.0172 18.414 10.427 18.414C7.83678 18.414 7.53009 18.4043 6.50749 18.3579C5.89238 18.3504 5.28311 18.238 4.70617 18.0256C4.28778 17.865 3.90781 17.619 3.59073 17.3034C3.27364 16.9878 3.02647 16.6097 2.86512 16.1933C2.65165 15.6191 2.5387 15.0128 2.53118 14.4006C2.48499 13.3824 2.47483 13.0772 2.47483 10.4998C2.47483 7.9224 2.48453 7.61718 2.53118 6.599C2.5387 5.98682 2.65165 5.38046 2.86512 4.80627C3.02647 4.38988 3.27364 4.01173 3.59073 3.69616C3.90781 3.3806 4.28778 3.1346 4.70617 2.97402C5.28311 2.76158 5.89238 2.64917 6.50749 2.64167C7.53056 2.59571 7.83724 2.58559 10.427 2.58559ZM10.427 0.846191C7.79429 0.846191 7.46266 0.857224 6.42805 0.90411C5.62302 0.920046 4.82653 1.07174 4.07247 1.35275C3.4256 1.5953 2.83971 1.97541 2.35566 2.46654C1.86173 2.94845 1.47948 3.53188 1.23561 4.17606C0.95325 4.92652 0.800824 5.71921 0.784812 6.5204C0.738624 7.54914 0.727539 7.87919 0.727539 10.4993C0.727539 13.1195 0.738624 13.4495 0.785736 14.4792C0.801748 15.2804 0.954174 16.073 1.23653 16.8235C1.48013 17.4676 1.86206 18.051 2.35566 18.533C2.83998 19.0243 3.4262 19.4044 4.07339 19.6468C4.82745 19.9278 5.62394 20.0795 6.42897 20.0955C7.46358 20.1414 7.79383 20.1534 10.4279 20.1534C13.062 20.1534 13.3923 20.1423 14.4269 20.0955C15.2319 20.0795 16.0284 19.9278 16.7825 19.6468C17.4266 19.3983 18.0115 19.0188 18.4998 18.5325C18.9882 18.0462 19.3691 17.4638 19.6184 16.8226C19.9007 16.0721 20.0532 15.2794 20.0692 14.4783C20.1154 13.4495 20.1265 13.1195 20.1265 10.4993C20.1265 7.87919 20.1154 7.54914 20.0683 6.51948C20.0522 5.71829 19.8998 4.9256 19.6175 4.17514C19.3739 3.53104 18.9919 2.94762 18.4983 2.46562C18.014 1.97438 17.4278 1.59427 16.7806 1.35183C16.0265 1.07082 15.2301 0.919127 14.425 0.903191C13.3913 0.857224 13.0597 0.846191 10.427 0.846191Z"
+                                        fill="currentColor"
+                                    />
+                                    <path
+                                        d="M10.4252 5.54248C9.44011 5.54248 8.47711 5.83321 7.658 6.37791C6.83889 6.9226 6.20048 7.6968 5.82349 8.60259C5.44649 9.50838 5.34786 10.5051 5.54004 11.4667C5.73223 12.4283 6.20662 13.3115 6.90321 14.0048C7.5998 14.6981 8.48732 15.1702 9.45352 15.3615C10.4197 15.5527 11.4212 15.4546 12.3314 15.0794C13.2415 14.7042 14.0194 14.0688 14.5667 13.2536C15.114 12.4384 15.4061 11.48 15.4061 10.4996C15.4061 9.18489 14.8814 7.92403 13.9473 6.99439C13.0132 6.06475 11.7463 5.54248 10.4252 5.54248ZM10.4252 13.7173C9.78578 13.7173 9.16069 13.5286 8.629 13.175C8.09731 12.8215 7.68291 12.3189 7.4382 11.731C7.19349 11.143 7.12946 10.496 7.25421 9.87185C7.37896 9.24768 7.68689 8.67433 8.13906 8.22433C8.59122 7.77432 9.16731 7.46787 9.79448 7.34371C10.4217 7.21955 11.0717 7.28328 11.6625 7.52682C12.2533 7.77036 12.7582 8.18278 13.1135 8.71193C13.4688 9.24108 13.6584 9.86319 13.6584 10.4996C13.6584 11.353 13.3178 12.1714 12.7114 12.7749C12.1051 13.3783 11.2827 13.7173 10.4252 13.7173Z"
+                                        fill="currentColor"
+                                    />
+                                    <path
+                                        d="M15.6034 6.50474C16.2462 6.50474 16.7673 5.98612 16.7673 5.34636C16.7673 4.70661 16.2462 4.18799 15.6034 4.18799C14.9606 4.18799 14.4395 4.70661 14.4395 5.34636C14.4395 5.98612 14.9606 6.50474 15.6034 6.50474Z"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-others-info">
+                    <div class="company-link">
+                        <h2> {{ locale === 'en' ? 'Important Link' : 'গুরুত্বপূর্ণ লিঙ্ক' }}</h2>
+                        <ul>
+                            <li>
                                 <Link href="/">
-                                    <img :src="getLogoUrl(siteSetting?.logo)" alt="">
+                                    {{ locale === 'en' ? 'Home' : 'হোম' }}
                                 </Link>
-                            </div>
-                            <p>
-                                {{ siteSetting.email }} <br>
-                                {{ siteSetting.phone }} <br>
-                                {{ siteSetting.address }}
-                            </p>
-                            <div class="socail_links">
-                                <ul>
-                                    <li>
-                                        <a :href="siteSetting.facebook_link">
-                                            <i class="ti-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a :href="siteSetting.linkedin_link">
-                                            <i class="fa fa-linkedin"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a :href="siteSetting.youtube_link">
-                                            <i class="fa fa-youtube"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                            </li>
+                            <li>
+                                <Link href="/about-us">
+                                    {{ locale === 'en' ? 'About Us' : 'আমাদের সম্পর্কে' }}
+                                </Link>
+                            </li>
 
-                        </div>
+                            <li>
+                                <Link href="/job-board">
+                                    {{ locale === 'en' ? 'Browse Job' : 'জব' }}
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/blog">
+                                    {{ locale === 'en' ? 'Blog' : 'ব্লগ' }}
+                                </Link>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="col-xl-2 col-md-6 col-lg-2">
-                        <div class="footer_widget wow fadeInUp" data-wow-duration="1.1s" data-wow-delay=".4s">
-                            <h3 class="footer_title">
-                                {{ locale === 'en' ? 'Important Link' : 'গুরুত্বপূর্ণ লিঙ্ক' }}
-                            </h3>
-                            <ul>
-                                <li>
-                                    <Link href="/">
-                                        <b>{{ locale === 'en' ? 'Home' : 'হোম' }}</b>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/about-us">
-                                        <b>{{ locale === 'en' ? 'About Us' : 'আমাদের সম্পর্কে' }}</b>
-                                    </Link>
-                                </li>
-
-                                <li>
-                                    <Link href="/job-board">
-                                        <b>{{ locale === 'en' ? 'Browse Job' : 'জব' }}</b>
-                                    </Link>
-                                </li>
-
-                            </ul>
-
-                        </div>
+                    <div class="help-link">
+                        <h2>{{ locale === 'en' ? 'Help' : 'সাহায্য' }}</h2>
+                        <ul>
+                            <li>
+                                <Link href="/terms-condition">
+                                    {{ locale === 'en' ? 'Terms & Condition' : 'শর্তাবলী' }}
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/login">
+                                    {{ locale === 'en' ? 'SignUp / SignIn' : 'লগইন/রেজিস্ট্রেশন' }}
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/company-registration-start">
+                                    {{ locale === 'en' ? 'Company Join' : 'কোম্পানি যোগদান' }}
+                                </Link>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="col-xl-3 col-md-6 col-lg-3">
-                        <div class="footer_widget wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".5s">
-                            <h3 class="footer_title">
-                                {{ locale === 'en' ? 'Important Link' : 'গুরুত্বপূর্ণ লিঙ্ক' }}
-                            </h3>
-                            <ul>
-                                <li>
-                                    <Link href="/blog">
-                                        <b>{{ locale === 'en' ? 'Blog' : 'ব্লগ' }}</b>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/terms-condition">
-                                        <b>{{ locale === 'en' ? 'Terms & Condition' : 'শর্তাবলী' }}</b>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/login">
-                                        <b>{{ locale === 'en' ? 'SignUp / SignIn' : 'লগইন/রেজিস্ট্রেশন' }}</b>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/company-registration-start">
-                                        <b>{{ locale === 'en' ? 'Company Join' : 'কোম্পানি যোগদান' }}</b>
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6 col-lg-4">
-                        <div class="footer_widget wow fadeInUp" data-wow-duration="1.3s" data-wow-delay=".6s">
-                            <h3 class="footer_title">
-                                {{ locale === 'en' ? 'Scan The QR cODE & Download The App' : 'QR কোড স্ক্যান করুন এবং অ্যাপটি ডাউনলোড করুন' }}
-                            </h3>
+                    <div class="qr-code">
+                        <div class="qr-code-img">
                             <QrcodeVue :value="siteSetting.site_link" :size="100" class="qr-code" />
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="copy-right_text wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".3s">
-            <div class="container">
-                <div class="footer_border"></div>
-                <div class="row">
-                    <div class="col-xl-12">
-                        <p class="copy_right text-center">
-                            Copyright All rights reserved | This is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://www.facebook.com/BDBhawalIT/" target="_blank">Bhawal Tech Ltd</a>
-                        </p>
+                        <p>{{ locale === 'en' ? 'Scan The QR code & Download The App' : 'QR কোড স্ক্যান করুন এবং অ্যাপটি ডাউনলোড করুন' }}</p>
                     </div>
                 </div>
             </div>
