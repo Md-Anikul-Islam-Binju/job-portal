@@ -228,10 +228,6 @@ export default {
                     </div>
 
                     <div v-if="auth && auth.role === 'user'">
-                        <a href="/login" class="theme-btn d-none d-lg-block"
-                        >{{ locale === 'en' ? 'SignUp / SignIn' : 'লগইন/রেজিস্ট্রেশন' }}</a
-                        >
-
                         <a @click="redirectToDashboard" class="theme-btn d-none d-lg-block">
 
                             <span v-if="locale === 'en'"> {{ auth.name }}</span>

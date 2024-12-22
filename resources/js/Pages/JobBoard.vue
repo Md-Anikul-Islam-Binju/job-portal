@@ -18,8 +18,8 @@ export default {
             selectedLocation: 'all',
             searchKeyword: '',
             filteredJobs: [],
-            currentPage: 1,   // Track current page
-            jobsPerPage: 50,  // Number of jobs to show per page
+            currentPage: 1,
+            jobsPerPage: 50,
             englishToBengaliDigits: {
                 "0": "০",
                 "1": "১",
@@ -156,39 +156,37 @@ export default {
                         <form class="jobs-search-form">
                             <input
                                 type="text"
-                                name="job_title"
-                                placeholder="Job Title"
-                            />
-                            <select name="locationId">
-                                <option value="">Select Location</option>
-                                <option value="dhaka">Dhaka</option>
-                                <option value="chittagong">
-                                    Chittagong
-                                </option>
-                                <option value="sylhet">Sylhet</option>
-                                <option value="rajshahi">Rajshahi</option>
-                                <option value="khulna">Khulna</option>
-                            </select>
-                            <select name="categoryId">
-                                <option value="">Select Category</option>
-                                <option value="developer">Developer</option>
-                                <option value="designer">Designer</option>
-                                <option value="marketing">Marketing</option>
-                                <option value="accounting">
-                                    Accounting
-                                </option>
-                                <option value="management">
-                                    Management
+                                :placeholder="locale === 'en' ? 'Search by title' : 'অনুসন্ধান করুন'"
+                                v-model="searchKeyword" />
+
+                            <select v-model="selectedLocation" name="locationId">
+                                <option v-if="locale === 'en'"   value="all">All Locations</option>
+                                <option v-else value="all">সকল  লোকেশন</option>
+                                <option v-for="loc in locations" :key="loc.id" :value="loc.id">
+                                    {{ locale === 'en' ? loc.name : loc.name_bn }}
                                 </option>
                             </select>
-                            <button type="submit">Search</button>
+
+                            <select v-model="selectedCategory" name="categoryId">
+                                <option v-if="locale === 'en'" value="all">All Categories</option>
+                                <option v-else value="all">সকল  ক্যাটাগরি </option>
+                                <option v-for="cat in category" :key="cat.id" :value="cat.id">
+                                    {{ locale === 'en' ? cat.name : cat.name_bn }}
+                                </option>
+                            </select>
                         </form>
                     </div>
                 </div>
+
+                <!-- Job List Display -->
+
+
                 <div class="col-lg-9 col-md-8">
                     <div class="jobs-card-wrapper">
                         <div class="found-jobs-count-wrap">
-                            <h3>We found <span>40</span> jobs</h3>
+                            <h3 v-if="job.length === 0">Loading jobs...</h3>
+                            <h3 v-else-if="paginatedJobs.length > 0">We found {{ paginatedJobs.length }} jobs</h3>
+                            <h3 v-else>No jobs available in this category.</h3>
                         </div>
                         <div class="jobs-card-wrap">
                             <div class="row">
@@ -284,7 +282,23 @@ export default {
                                         </div>
                                     </div>
                                 </div>
-
+                            </div>
+                            <div class="pagination-controls mt-4 d-flex justify-content-center" v-if="totalPages > 1">
+                                <button class="btn btn-primary mx-1" @click="goToPage(currentPage - 1)" :disabled="currentPage === 1">
+                                    Previous
+                                </button>
+                                <button
+                                    v-for="page in totalPages"
+                                    :key="page"
+                                    class="btn"
+                                    :class="{ 'btn-primary': page === currentPage, 'btn-secondary': page !== currentPage }"
+                                    @click="goToPage(page)"
+                                >
+                                    {{ page }}
+                                </button>
+                                <button class="btn btn-primary mx-1" @click="goToPage(currentPage + 1)" :disabled="currentPage === totalPages">
+                                    Next
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -305,7 +319,7 @@ export default {
                     </h5>
                 </div>
                 <div class="right-content">
-                    <a href="#">Register as Candidate</a>
+                    <a href="/login" target="_blank">Register as Candidate</a>
                 </div>
             </div>
         </div>

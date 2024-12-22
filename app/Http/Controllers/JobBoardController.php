@@ -30,7 +30,8 @@ class JobBoardController extends Controller
 
     public function jobDetails($id)
     {
-        $job = Job::where('id', $id)->first();
+        $jobNew = Job::with('company')->where('deadline', '>=', now()->toDateString())->latest()->limit(4)->get();
+        $job = Job::where('id', $id)->with('company')->first();
         $siteSetting = SiteSetting::latest()->first();
         $auth = Auth::user() ? [
             'name' => Auth::user()->name,
@@ -43,7 +44,7 @@ class JobBoardController extends Controller
             $appliedJobs = JobApplication::where('user_id', auth()->id())->pluck('job_id')->toArray();
         }
 
-        return inertia('JobDetails', compact('job', 'siteSetting', 'auth', 'appliedJobs'));
+        return inertia('JobDetails', compact('job', 'siteSetting', 'auth', 'appliedJobs', 'jobNew'));
     }
 
 
