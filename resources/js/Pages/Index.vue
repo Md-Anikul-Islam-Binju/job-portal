@@ -1,9 +1,9 @@
 <script>
 import Layout from "../frontend/Layout.vue";
-
 export default {
     name: "Index",
     layout: Layout,
+
     props: {
         category: Array,
         location: Array,
@@ -122,6 +122,101 @@ export default {
     <head>
         <title>GarmentsNiyog - Home</title>
     </head>
+
+
+<!--    <section class="hero-section">-->
+<!--        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-touch="true" data-bs-interval="5000">-->
+<!--            <div class="carousel-indicators">-->
+<!--                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>-->
+<!--                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>-->
+<!--            </div>-->
+<!--            <div class="carousel-inner">-->
+<!--                <div v-for="(sliderData, index) in slider" :key="sliderData.id" :class="['carousel-item', { active: index === 0 }]">-->
+<!--                    <div class="slider-image slider-bg-image" :style="{ backgroundImage: 'url(' + getSliderUrl(sliderData?.image) + ')' }">-->
+<!--                        <div class="container">-->
+<!--                            <div class="slider-content">-->
+<!--                                <h2>{{ locale === 'en' ? sliderData.title : sliderData.title_bn }}</h2>-->
+<!--                                <p>{{ locale === 'en' ? sliderData.description : sliderData.description_bn }}</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">-->
+<!--                <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+<!--                <span class="visually-hidden">Previous</span>-->
+<!--            </button>-->
+<!--            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">-->
+<!--                <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+<!--                <span class="visually-hidden">Next</span>-->
+<!--            </button>-->
+<!--        </div>-->
+<!--    </section>-->
+
+    <section class="hero-section">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-touch="true" data-bs-interval="5000">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            </div>
+            <div class="carousel-inner">
+                <div v-for="(sliderData, index) in slider" :key="sliderData.id" :class="['carousel-item', { active: index === 0 }]">
+                    <!-- Slider Image -->
+                    <div class="slider-image slider-bg-image" :style="{ backgroundImage: 'url(' + getSliderUrl(sliderData?.image) + ')' }">
+                        <div class="container">
+                            <div class="slider-content">
+                                <h2>{{ locale === 'en' ? sliderData.title : sliderData.title_bn }}</h2>
+                                <p v-html="locale === 'en' ? sliderData.details : sliderData.details_bn"></p>
+                            </div>
+                            <div class="hero-container-wrapper">
+                                <div class="hero-content">
+                                    <form class="find-a-jobs-wrap" method="GET" action="https://jobshubglobal.com/all-jobs">
+                                        <div class="input-group search-jobs">
+                                            <div class="search-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M21.0002 21L16.6572 16.657M16.6572 16.657C17.4001 15.9141 17.9894 15.0322 18.3914 14.0616C18.7935 13.0909 19.0004 12.0506 19.0004 11C19.0004 9.94942 18.7935 8.90911 18.3914 7.93848C17.9894 6.96785 17.4001 6.08591 16.6572 5.34302C15.9143 4.60014 15.0324 4.01084 14.0618 3.6088C13.0911 3.20675 12.0508 2.99982 11.0002 2.99982C9.9496 2.99982 8.90929 3.20675 7.93866 3.6088C6.96803 4.01084 6.08609 4.60014 5.34321 5.34302C3.84288 6.84335 3 8.87824 3 11C3 13.1218 3.84288 15.1567 5.34321 16.657C6.84354 18.1574 8.87842 19.0002 11.0002 19.0002C13.122 19.0002 15.1569 18.1574 16.6572 16.657Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </div>
+                                            <input type="text" name="job_title" class="form-control" placeholder="Job Title" value="" />
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content inside the Slider -->
+
+
+                    <!-- Jobs Information inside the Carousel Item -->
+                    <div class="jobs-information">
+                        <div class="info-card">
+                            <h2><span class="number">3</span></h2>
+                            <h4>Vacancies</h4>
+                        </div>
+                        <div class="info-card">
+                            <h2><span class="number">2</span>+</h2>
+                            <h4>Company</h4>
+                        </div>
+                        <div class="info-card">
+                            <h2><span class="number">3</span>+</h2>
+                            <h4>Live Jobs</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carousel Navigation Buttons -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
 
     <div class="district-section-wrapper">
         <div class="container">
@@ -345,20 +440,6 @@ export default {
 </template>
 
 <style scoped>
-.single_input input{
-    height: 50px;
-    border: 1px solid #E8E8E8;
-    padding: 20px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    width: 100%;
-}
-.truncate-text {
-    display: -webkit-box;
-    -webkit-line-clamp: 4; /* Limits to 4 lines */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+
+
 </style>
