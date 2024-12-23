@@ -2,40 +2,42 @@
     <head>
         <title>GarmentsNiyog - Blog</title>
     </head>
-    <div class="bradcam_area bradcam_bg_1">
+
+    <div class="blog-hero-area">
         <div class="container">
             <div class="row">
-                <div class="col-xl-12">
-                    <div class="bradcam_text">
-                        <h3></h3>
-                        <h3 style="color: black">{{ locale === 'en' ? 'single blog' : 'একক ব্লগ' }}</h3>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="jobs-card-wrapper">
+                                <div class="found-jobs-count-wrap">
+                                    <h3>{{ locale === 'en' ? 'single blog' : 'একক ব্লগ' }}</h3>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!--================Blog Area =================-->
-    <section class="blog_area single-post-area section-padding">
+    <div class="single-blog-details">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 posts-list">
-                    <div class="single-post">
+                <div class="col-12">
+                    <div class="single-blog-details-content">
                         <div class="feature-img">
                             <img
                                 :src="blogs.image ? getBlogImageUrl(blogs.image) : 'frontend/img/defult.png'"
-                                alt="Blog Image"  class="img-fluid" style="width: 1200px;"
+                                alt="Blog Image"  class="img-fluid" style="width: 1500px;"
                             >
                         </div>
-                        <div class="blog_details">
-                            <h2>{{ locale === 'en' ? blogs.title : blogs.title_bn }}</h2>
-                            <p v-html="locale === 'en' ? blogs.details : blogs.details_bn"></p>
-                        </div>
+                        <h2>{{ locale === 'en' ? blogs.title : blogs.title_bn }}</h2>
+                        <p v-html="locale === 'en' ? blogs.details : blogs.details_bn"></p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 </template>
 
 <script>

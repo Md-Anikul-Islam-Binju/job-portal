@@ -21,6 +21,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\JobBoardController;
 use App\Http\Controllers\TermsConditionController;
+use App\Http\Controllers\TrainingManageController;
 use App\Http\Controllers\user\CvController;
 use App\Http\Controllers\user\EducationController;
 use App\Http\Controllers\user\ExperiencesController;
@@ -59,6 +60,10 @@ Route::post('/message', [ContactController::class, 'store'])->name('message.stor
 //blog
 Route::get('/blog', [BlogPageController::class, 'blog'])->name('blog');
 Route::get('/blog-details/{id}', [BlogPageController::class, 'blogDetails'])->name('blog.details');
+
+//training
+Route::get('/training', [TrainingManageController::class, 'training'])->name('training');
+Route::get('/training-details/{id}', [TrainingManageController::class, 'trainingDetails'])->name('training.details');
 
 //User Account
 Route::get('/user-registration-start', [UserController::class, 'showRegistrationForm'])->name('user.registration.start');

@@ -2,94 +2,133 @@
     <head>
         <title>GarmentsNiyog - Blog</title>
     </head>
-    <div>
-        <!-- Blog Header Area -->
-        <div class="bradcam_area bradcam_bg_1">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="bradcam_text">
-                            <h3 style="color: black">{{ locale === 'en' ? 'Blog' : 'ব্লগ' }}</h3>
+
+    <div class="blog-hero-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="jobs-card-wrapper">
+                                <div class="found-jobs-count-wrap">
+                                    <h3>{{ locale === 'en' ? 'Blog' : 'ব্লগ' }}</h3>
+                                    <div class="">
+                                        <!-- search -->
+                                        <div class="search-wrap">
+                                            <input
+                                                type="text"
+                                                class="search-input"
+                                                :placeholder="locale === 'en' ? 'Search by title' : 'অনুসন্ধান করুন'"
+                                                v-model="searchKeyword"
+                                                @input="onSearch"
+
+                                            />
+                                            <button class="search-btn">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="14"
+                                                    height="15"
+                                                    viewBox="0 0 14 15"
+                                                    fill="none"
+                                                >
+                                                    <path
+                                                        d="M10.208 10.7083L12.833 13.3333"
+                                                        stroke="#388EA9"
+                                                        stroke-width="1.125"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                    />
+                                                    <path
+                                                        d="M11.667 6.91667C11.667 4.01717 9.31651 1.66667 6.41699 1.66667C3.5175 1.66667 1.16699 4.01717 1.16699 6.91667C1.16699 9.81618 3.5175 12.1667 6.41699 12.1667C9.31651 12.1667 11.667 9.81618 11.667 6.91667Z"
+                                                        stroke="#388EA9"
+                                                        stroke-width="1.125"
+                                                        stroke-linejoin="round"
+                                                    />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Blog Area Section -->
-        <section class="blog_area section-padding">
-            <div class="container">
-                <div class="row">
-                    <!-- Blog List (Main Content) -->
-                    <div class="col-lg-12 mb-5 mb-lg-0">
-                        <div class="blog_left_sidebar">
-                            <!-- Search Input -->
-                            <div class="row cat_search">
-                                <div class="col-lg-12 col-md-4">
-                                    <div class="single_input">
-                                        <input
-                                            type="text"
-                                            :placeholder="locale === 'en' ? 'Search by title' : 'অনুসন্ধান করুন'"
-                                            v-model="searchKeyword"
-                                            @input="onSearch"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-
-                            <!-- Blog List Display -->
-                            <div v-for="blogData in paginatedBlogs" :key="blogData.id" class="blog_item">
-                                <div class="blog_item_img">
-                                    <img
-                                        :src="blogData.image ? getBlogImageUrl(blogData.image) : 'frontend/img/defult.png'"
-                                        alt="Blog Image"  class="img-fluid" style="width: 1200px;"
-                                    >
-                                    <a href="#" class="blog_item_date">
-                                        <h3>{{ formatDate(blogData.created_at) }}</h3>
-                                        <p>{{ formatMonth(blogData.created_at) }}</p>
-                                    </a>
-                                </div>
-                                <div class="blog_details">
-                                    <Link class="d-inline-block" :href="`/blog-details/${blogData.id}`">
-                                        <h2>{{ locale === 'en' ? blogData.title : blogData.title_bn }}</h2>
-                                    </Link>
-                                    <p v-html="locale === 'en' ? blogData.details : blogData.details_bn"></p>
-                                </div>
-                            </div>
-
-                            <!-- Pagination -->
-                            <nav class="blog-pagination justify-content-center d-flex">
-                                <ul class="pagination">
-                                    <li class="page-item" :class="{ disabled: currentPage === 1 }">
-                                        <a href="#" class="page-link" @click.prevent="changePage(currentPage - 1)">
-                                            <i class="ti-angle-left"></i>
-                                        </a>
-                                    </li>
-                                    <li
-                                        v-for="page in totalPages"
-                                        :key="page"
-                                        :class="{ active: page === currentPage }"
-                                        class="page-item"
-                                    >
-                                        <a href="#" class="page-link" @click.prevent="changePage(page)">
-                                            {{ page }}
-                                        </a>
-                                    </li>
-                                    <li class="page-item" :class="{ disabled: currentPage === totalPages }">
-                                        <a href="#" class="page-link" @click.prevent="changePage(currentPage + 1)">
-                                            <i class="ti-angle-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
+    </div>
+    <div class="blog-card-area">
+        <div class="container">
+            <div class="row">
+                <div v-for="blogData in paginatedBlogs" :key="blogData.id" class="col-md-6">
+                    <Link class="blog-card":href="`/blog-details/${blogData.id}`">
+                        <div class="blog-card-image">
+                            <img
+                                :src="blogData.image ? getBlogImageUrl(blogData.image) : 'frontend/img/defult.png'"
+                                draggable="false"
+                                class="img-fluid"
+                                alt="Blog Card"
+                            />
                         </div>
+                        <div class="blog-card-details">
+                            <h4>{{ formatDate(blogData.created_at) }}</h4>
+                            <Link class="d-inline-block" :href="`/blog-details/${blogData.id}`">
+                                <h4>{{ locale === 'en' ? blogData.title : blogData.title_bn }}</h4>
+                            </Link>
+                            <p v-html="locale === 'en' ? blogData.details : blogData.details_bn"></p>
+                        </div>
+                    </Link>
+                </div>
+
+                <div class="pagination-area">
+                    <div class="prev-next">
+                        <!-- Previous Button -->
+                        <a
+                            href="#"
+                            class="prev"
+                            :class="{ disabled: currentPage === 1 }"
+                            @click.prevent="changePage(currentPage - 1)"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path
+                                    d="M15.8337 9.99996H4.16699M4.16699 9.99996L10.0003 15.8333M4.16699 9.99996L10.0003 4.16663"
+                                    stroke="currentColor"
+                                    stroke-width="1.67"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+                            Previous
+                        </a>
+                    </div>
+                    <div class="prev-next">
+                        <!-- Next Button -->
+                        <a
+                            href="#"
+                            class="next"
+                            :class="{ disabled: currentPage === totalPages }"
+                            @click.prevent="changePage(currentPage + 1)"
+                        >
+                            Next
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path
+                                    d="M4.16699 9.99996H15.8337M15.8337 9.99996L10.0003 4.16663M15.8337 9.99996L10.0003 15.8333"
+                                    stroke="currentColor"
+                                    stroke-width="1.67"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+                        </a>
                     </div>
                 </div>
+
             </div>
-        </section>
+        </div>
     </div>
 </template>
+
+
+
 
 <script>
 import Layout from "../frontend/Layout.vue";
@@ -107,7 +146,7 @@ export default {
             locale: localStorage.getItem("locale") || "bn",
             searchKeyword: "",
             currentPage: 1,
-            itemsPerPage: 10, // Adjust as needed
+            itemsPerPage: 8, // Adjust as needed
         };
     },
     computed: {

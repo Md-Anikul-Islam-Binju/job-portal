@@ -56,7 +56,7 @@ export default {
                                 </Link>
                             </li>
                             <li>
-                                <a href="training.html">Training</a>
+                                <Link href="/training">Training</Link>
                             </li>
                             <li class="dropdown">
                                 <a
@@ -102,7 +102,7 @@ export default {
                                     </li>
 
                                     <li>
-                                        <a href="blog.html">
+                                        <Link href="/blog">
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 width="16"
@@ -116,7 +116,7 @@ export default {
                                                 />
                                             </svg>
                                             Blogs
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             </li>

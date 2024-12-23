@@ -27,6 +27,7 @@
                     <thead>
                     <tr>
                         <th>S/N</th>
+                        <th>Cover</th>
                         <th>Title En</th>
                         <th>Title Bn</th>
                         <th>Training Date</th>
@@ -41,6 +42,9 @@
                     @foreach($training as $key=>$trainingData)
                         <tr>
                             <td>{{$key+1}}</td>
+                            <td>
+                                <img src="{{asset('images/training/'. $trainingData->image )}}" alt="Current Image" style="max-width: 50px;">
+                            </td>
                             <td>{{$trainingData->title}}</td>
                             <td>{{$trainingData->title_bn}}</td>
                             <td>{{$trainingData->training_date}}</td>
@@ -111,6 +115,14 @@
                                                             <label for="training_fee" class="form-label">Training Fees</label>
                                                             <input type="text"  name="training_fee"
                                                                    class="form-control" placeholder="Enter Training Fees" value="{{$trainingData->training_fee}}" required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-6">
+                                                        <div class="mb-3">
+                                                            <label for="example-fileinput" class="form-label">File</label>
+                                                            <input type="file" name="image" id="example-fileinput" class="form-control" >
+                                                            <img src="{{asset('images/training/'. $trainingData->image )}}" alt="File or  Image" class="mt-2" style="max-width: 50px;">
                                                         </div>
                                                     </div>
 
@@ -226,6 +238,13 @@
                                     <label for="training_fee" class="form-label">Training Fees</label>
                                     <input type="text"  name="training_fee"
                                            class="form-control" placeholder="Enter Training Fees" required>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="example-fileinput" class="form-label">File</label>
+                                    <input type="file" name="image" id="example-fileinput" class="form-control" >
                                 </div>
                             </div>
                         </div>

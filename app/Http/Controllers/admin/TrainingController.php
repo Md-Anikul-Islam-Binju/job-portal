@@ -38,6 +38,11 @@ class TrainingController extends Controller
             $training->training_time = $request->training_time;
             $training->training_duration = $request->training_duration;
             $training->training_fee = $request->training_fee;
+            if ($request->image) {
+                $file = time() . '.' . $request->image->extension();
+                $request->image->move(public_path('images/training'), $file);
+                $training->image = $file;
+            }
             $training->save();
 
             Toastr::success('Training Added Successfully', 'Success');
@@ -69,6 +74,11 @@ class TrainingController extends Controller
             $training->training_duration = $request->training_duration;
             $training->training_fee = $request->training_fee;
             $training->status = $request->status;
+            if ($request->image) {
+                $file = time() . '.' . $request->image->extension();
+                $request->image->move(public_path('images/training'), $file);
+                $training->image = $file;
+            }
             $training->save();
             Toastr::success('Training Updated Successfully', 'Success');
             return redirect()->back();
