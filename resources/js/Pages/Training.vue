@@ -48,17 +48,17 @@
             <div class="row">
                 <div v-for="trainingData in paginatedTrainings" :key="trainingData.id" class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <div class="training-card">
-                        <div class="training-card-img">
-                            <img
-                                :src="trainingData.image ? getTrainingImageUrl(trainingData.image) : 'frontend/img/defult.png'"
-                                alt="Training"
-                            >
-                        </div>
+                        <Link class="d-inline-block" :href="`/training-details/${trainingData.id}`">
+                            <div class="training-card-img">
+                                <img
+                                    :src="trainingData.image ? getTrainingImageUrl(trainingData.image) : 'frontend/img/defult.png'"
+                                    alt="Training"
+                                >
+                            </div>
+                        </Link>
                         <div class="training-card-content">
-                            <Link class="d-inline-block" :href="`/training-details/${trainingData.id}`">
-                                <hh4>{{ locale === 'en' ? trainingData.title : trainingData.title_bn }}</hh4>
-                            </Link>
-                            <p v-html="locale === 'en' ? trainingData.details : trainingData.details_bn"></p>
+                            <h4>{{ locale === 'en' ? trainingData.title : trainingData.title_bn }}</h4>
+                            <p v-html="(locale === 'en' ? trainingData.details : trainingData.details_bn).length > 250 ? (locale === 'en' ? trainingData.details : trainingData.details_bn).substring(0, 100) + '...' : (locale === 'en' ? trainingData.details : trainingData.details_bn)"></p>
                             <div class="trainer">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"

@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\CompanyController;
 use App\Http\Controllers\admin\CompanySelfRegistrationController;
+use App\Http\Controllers\admin\EventController;
 use App\Http\Controllers\admin\LocationController;
 use App\Http\Controllers\admin\ReviewController;
 use App\Http\Controllers\admin\ServiceController;
@@ -131,7 +132,10 @@ Route::middleware('auth')->group(callback: function () {
         Route::put('/training-update/{id}', [TrainingController::class, 'update'])->name('admin.training.update');
         Route::get('/training-delete/{id}', [TrainingController::class, 'destroy'])->name('admin.training.destroy');
 
-
+        Route::get('/event-list', [EventController::class, 'index'])->name('admin.event');
+        Route::post('/event-store', [EventController::class, 'store'])->name('admin.event.store');
+        Route::put('/event-update/{id}', [EventController::class, 'update'])->name('admin.event.update');
+        Route::get('/event-delete/{id}', [EventController::class, 'destroy'])->name('admin.event.destroy');
 
 
         //Site Setting

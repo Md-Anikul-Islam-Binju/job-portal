@@ -17,7 +17,7 @@ class TrainingController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
+
         try {
             $request->validate([
                 'title' => 'required',
@@ -74,11 +74,6 @@ class TrainingController extends Controller
             $training->training_duration = $request->training_duration;
             $training->training_fee = $request->training_fee;
             $training->status = $request->status;
-            if ($request->image) {
-                $file = time() . '.' . $request->image->extension();
-                $request->image->move(public_path('images/training'), $file);
-                $training->image = $file;
-            }
             $training->save();
             Toastr::success('Training Updated Successfully', 'Success');
             return redirect()->back();
