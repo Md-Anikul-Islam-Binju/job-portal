@@ -620,6 +620,102 @@ export default {
             </div>
         </div>
     </div>
+
+    <!-- review -->
+    <div class="user-review-area">
+        <div class="container">
+            <div class="user-review-heading">
+                <h2>User Reviews</h2>
+            </div>
+        </div>
+        <div class="user-review-slider-wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-12">
+                        <div class="user-review-card">
+                            <div class="user-review-content">
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur.
+                                    Aliquet diam non pellentesque ut senectus
+                                    viverra nec. Pharetra augue purus imperdiet
+                                    convallis. Hendrerit lectus sit tempor dui
+                                    cras leo lorem. Dolor quis feugiat purus.
+                                </p>
+                                <div class="user-name">
+                                    <div class="user-image">
+                                        <img
+                                            src="frontend/images/user-review.png"
+                                            class="img-fluid"
+                                            alt="User Review"
+                                            draggable="false"
+                                        />
+                                    </div>
+                                    <div>
+                                        <h5>John Doe</h5>
+                                        <span>DLDesign.co</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                        <div class="user-review-card">
+                            <div class="user-review-content">
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur.
+                                    Aliquet diam non pellentesque ut senectus
+                                    viverra nec. Pharetra augue purus imperdiet
+                                    convallis. Hendrerit lectus sit tempor dui
+                                    cras leo lorem. Dolor quis feugiat purus.
+                                </p>
+                                <div class="user-name">
+                                    <div class="user-image">
+                                        <img
+                                            src="frontend/images/user-review.png"
+                                            class="img-fluid"
+                                            alt="User Review"
+                                            draggable="false"
+                                        />
+                                    </div>
+                                    <div>
+                                        <h5>John Doe</h5>
+                                        <span>DLDesign.co</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                        <div class="user-review-card">
+                            <div class="user-review-content">
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur.
+                                    Aliquet diam non pellentesque ut senectus
+                                    viverra nec. Pharetra augue purus imperdiet
+                                    convallis. Hendrerit lectus sit tempor dui
+                                    cras leo lorem. Dolor quis feugiat purus.
+                                </p>
+                                <div class="user-name">
+                                    <div class="user-image">
+                                        <img
+                                            src="frontend/images/user-review.png"
+                                            class="img-fluid"
+                                            alt="User Review"
+                                            draggable="false"
+                                        />
+                                    </div>
+                                    <div>
+                                        <h5>John Doe</h5>
+                                        <span>DLDesign.co</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <style scoped></style>
