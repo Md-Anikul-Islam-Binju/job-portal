@@ -8,29 +8,29 @@ export default {
         category: Array,
         location: Array,
         job: Array,
-        slider:Array,
+        slider: Array,
         company: Array,
         review: Array,
-        jobTotal:Object
+        jobTotal: Object,
     },
     data() {
         return {
-            locale: localStorage.getItem('locale') || 'bn',
+            locale: localStorage.getItem("locale") || "bn",
             selectedCategory: null,
             selectedLocation: null,
-            searchKeyword: '',
+            searchKeyword: "",
             englishToBengaliDigits: {
-                "0": "০",
-                "1": "১",
-                "2": "২",
-                "3": "৩",
-                "4": "৪",
-                "5": "৫",
-                "6": "৬",
-                "7": "৭",
-                "8": "৮",
-                "9": "৯"
-            }
+                0: "০",
+                1: "১",
+                2: "২",
+                3: "৩",
+                4: "৪",
+                5: "৫",
+                6: "৬",
+                7: "৭",
+                8: "৮",
+                9: "৯",
+            },
         };
     },
     methods: {
@@ -38,7 +38,7 @@ export default {
         formatDateEnglish(date) {
             const dateObj = new Date(date);
             const day = dateObj.getDate();
-            const month = dateObj.toLocaleString('en-US', { month: 'long' });
+            const month = dateObj.toLocaleString("en-US", { month: "long" });
             const year = dateObj.getFullYear();
             return `${day} ${month} ${year}`;
         },
@@ -46,22 +46,44 @@ export default {
         // Convert to Bengali Date Format (e.g., "২০ অক্টোবর ২০২৪")
         formatDateBengali(date) {
             const englishToBengaliDigits = {
-                "0": "০", "1": "১", "2": "২", "3": "৩", "4": "৪",
-                "5": "৫", "6": "৬", "7": "৭", "8": "৮", "9": "৯"
+                0: "০",
+                1: "১",
+                2: "২",
+                3: "৩",
+                4: "৪",
+                5: "৫",
+                6: "৬",
+                7: "৭",
+                8: "৮",
+                9: "৯",
             };
 
             const englishToBengaliMonths = {
-                "January": "জানুয়ারি", "February": "ফেব্রুয়ারি", "March": "মার্চ",
-                "April": "এপ্রিল", "May": "মে", "June": "জুন", "July": "জুলাই",
-                "August": "আগস্ট", "September": "সেপ্টেম্বর", "October": "অক্টোবর",
-                "November": "নভেম্বর", "December": "ডিসেম্বর"
+                January: "জানুয়ারি",
+                February: "ফেব্রুয়ারি",
+                March: "মার্চ",
+                April: "এপ্রিল",
+                May: "মে",
+                June: "জুন",
+                July: "জুলাই",
+                August: "আগস্ট",
+                September: "সেপ্টেম্বর",
+                October: "অক্টোবর",
+                November: "নভেম্বর",
+                December: "ডিসেম্বর",
             };
 
             const dateObj = new Date(date);
-            const day = dateObj.getDate().toString().replace(/\d/g, (digit) => englishToBengaliDigits[digit]);
-            const month = dateObj.toLocaleString('en-US', { month: 'long' });
+            const day = dateObj
+                .getDate()
+                .toString()
+                .replace(/\d/g, (digit) => englishToBengaliDigits[digit]);
+            const month = dateObj.toLocaleString("en-US", { month: "long" });
             const bengaliMonth = englishToBengaliMonths[month];
-            const year = dateObj.getFullYear().toString().replace(/\d/g, (digit) => englishToBengaliDigits[digit]);
+            const year = dateObj
+                .getFullYear()
+                .toString()
+                .replace(/\d/g, (digit) => englishToBengaliDigits[digit]);
 
             return `${day} ${bengaliMonth} ${year}`;
         },
@@ -75,47 +97,57 @@ export default {
         },
         getSliderUrl(sliderPath) {
             if (!sliderPath) {
-                return 'default-slider.png'; // Ensure this default image path is correct
+                return "default-slider.png"; // Ensure this default image path is correct
             }
             // Update this line to prepend the correct path
             const fullUrl = `${window.location.origin}/images/slider/${sliderPath}`;
-            console.log('Slider URL:', fullUrl); // Debugging output
+            console.log("Slider URL:", fullUrl); // Debugging output
             return fullUrl;
         },
         getCompanyImageUrl(imagePath) {
             if (!imagePath) {
-                return 'frontend/img/company.png'; // You might want to return a default image directly here too
+                return "frontend/img/company.png"; // You might want to return a default image directly here too
             }
             return `${window.location.origin}/images/logo/${imagePath}`; // Adjust the path as necessary
         },
 
         getReviewUserImageUrl(imagePath) {
             if (!imagePath) {
-                return 'No Image'; // You might want to return a default image directly here too
+                return "No Image"; // You might want to return a default image directly here too
             }
             return `${window.location.origin}/images/review/${imagePath}`; // Adjust the path as necessary
         },
 
         convertToBengaliDigits(number) {
-            return number.toString().replace(/\d/g, (digit) => this.englishToBengaliDigits[digit]);
+            return number
+                .toString()
+                .replace(/\d/g, (digit) => this.englishToBengaliDigits[digit]);
         },
-
     },
     computed: {
         filteredJobs() {
             return this.job.filter((jobData) => {
-                const matchesCategory = !this.selectedCategory || jobData.category_id === this.selectedCategory;
-                const matchesLocation = !this.selectedLocation || jobData.location_id === this.selectedLocation;
+                const matchesCategory =
+                    !this.selectedCategory ||
+                    jobData.category_id === this.selectedCategory;
+                const matchesLocation =
+                    !this.selectedLocation ||
+                    jobData.location_id === this.selectedLocation;
                 const matchesKeyword =
                     !this.searchKeyword ||
-                    jobData.title.toLowerCase().includes(this.searchKeyword.toLowerCase()) ||
-                    (jobData.title_bn && jobData.title_bn.toLowerCase().includes(this.searchKeyword.toLowerCase()));
+                    jobData.title
+                        .toLowerCase()
+                        .includes(this.searchKeyword.toLowerCase()) ||
+                    (jobData.title_bn &&
+                        jobData.title_bn
+                            .toLowerCase()
+                            .includes(this.searchKeyword.toLowerCase()));
 
                 return matchesCategory && matchesLocation && matchesKeyword;
             });
-        }
-    }
-}
+        },
+    },
+};
 </script>
 
 <template>
@@ -123,6 +155,15 @@ export default {
         <title>GarmentsNiyog - Home</title>
     </head>
 
+    <!-- Slider -->
+    <div class="hero-section-slider position-relative">
+        <div
+            id="carouselExampleIndicators"
+            class="carousel slide"
+            data-bs-ride="carousel"
+            data-bs-touch="true"
+            data-bs-interval="5000"
+        >
    <!-- Hero Section -->
     <div class="hero-section-slider position-relative">
         <div
@@ -268,14 +309,30 @@ export default {
         <div class="container">
             <ul class="district-wrap">
                 <li>
-                    <a href="#" @click.prevent="selectLocation(null)">{{ locale === 'en' ? 'All' : 'সব' }}</a>
+                    <a href="#" @click.prevent="selectLocation(null)">{{
+                        locale === "en" ? "All" : "সব"
+                    }}</a>
                 </li>
                 <li v-for="locationData in location" :key="locationData.id">
-                    <a href="#" @click.prevent="selectLocation(locationData.id)">{{ locale === 'en' ? locationData.name : locationData.name_bn }}</a>
+                    <a
+                        href="#"
+                        @click.prevent="selectLocation(locationData.id)"
+                        >{{
+                            locale === "en"
+                                ? locationData.name
+                                : locationData.name_bn
+                        }}</a
+                    >
                 </li>
             </ul>
             <div class="explore-by-category">
-                <h2>{{ locale === 'en' ? 'Explore by Category' : 'বিভাগ অনুসারে অন্বেষণ করুন' }}</h2>
+                <h2>
+                    {{
+                        locale === "en"
+                            ? "Explore by Category"
+                            : "বিভাগ অনুসারে অন্বেষণ করুন"
+                    }}
+                </h2>
                 <a href="#">View All</a>
             </div>
         </div>
@@ -283,9 +340,14 @@ export default {
 
     <div class="category-section-area section-padding">
         <div class="container">
-            <div  class="category-card-wrap d-flex flex-wrap">
-
-                <a v-for="categoryData in category" :key="categoryData.id"  href="#" @click.prevent="selectCategory(categoryData.id)" class="category-card d-flex align-items-center">
+            <div class="category-card-wrap d-flex flex-wrap">
+                <a
+                    v-for="categoryData in category"
+                    :key="categoryData.id"
+                    href="#"
+                    @click.prevent="selectCategory(categoryData.id)"
+                    class="category-card d-flex align-items-center"
+                >
                     <div class="category-image-wrap">
                         <img
                             src="https://jobshubglobal.com/images/category/1733758409.jpg"
@@ -296,15 +358,33 @@ export default {
                     <div
                         class="category-content d-flex flex-column justify-content-between"
                     >
-                        <h3>{{ locale === 'en' ? categoryData.name : categoryData.name_bn }}</h3>
+                        <h3>
+                            {{
+                                locale === "en"
+                                    ? categoryData.name
+                                    : categoryData.name_bn
+                            }}
+                        </h3>
                         <div
                             class="category-content-bottom d-flex align-items-end justify-content-between"
                         >
-                            <div
-                                class="available-position d-flex flex-column"
-                            >
-                                <h4> {{ locale === 'en' ? 'Available Position' : 'পদ শূন্য  আছে' }}</h4>
-                                <h5>{{ locale === 'en' ? categoryData.jobs_count :   convertToBengaliDigits(categoryData.jobs_count) }}</h5>
+                            <div class="available-position d-flex flex-column">
+                                <h4>
+                                    {{
+                                        locale === "en"
+                                            ? "Available Position"
+                                            : "পদ শূন্য  আছে"
+                                    }}
+                                </h4>
+                                <h5>
+                                    {{
+                                        locale === "en"
+                                            ? categoryData.jobs_count
+                                            : convertToBengaliDigits(
+                                                  categoryData.jobs_count
+                                              )
+                                    }}
+                                </h5>
                             </div>
                             <div class="svg-icon">
                                 <svg
@@ -332,8 +412,6 @@ export default {
                         </div>
                     </div>
                 </a>
-
-
             </div>
         </div>
     </div>
@@ -353,7 +431,11 @@ export default {
                             type="text"
                             name="job_title"
                             class="form-control"
-                            :placeholder="locale === 'en' ? 'Search by title' : 'অনুসন্ধান করুন'"
+                            :placeholder="
+                                locale === 'en'
+                                    ? 'Search by title'
+                                    : 'অনুসন্ধান করুন'
+                            "
                             v-model="searchKeyword"
                         />
                     </div>
@@ -363,21 +445,52 @@ export default {
         <div class="jobs-list-area">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6" v-for="jobData in filteredJobs" :key="jobData.id">
-                        <div  class="home-job-card">
+                    <div
+                        class="col-md-6 col-12"
+                        v-for="jobData in filteredJobs"
+                        :key="jobData.id"
+                    >
+                        <div class="home-job-card">
                             <div class="home-job-card-img">
-                                <img :src="jobData.company.profile ? getCompanyImageUrl(jobData.company.profile) : 'frontend/img/company.png'" alt=""/>
+                                <img
+                                    :src="
+                                        jobData.company.profile
+                                            ? getCompanyImageUrl(
+                                                  jobData.company.profile
+                                              )
+                                            : 'frontend/img/company.png'
+                                    "
+                                    alt=""
+                                />
                             </div>
                             <div class="home-job-card-details">
                                 <div class="home-job-card-top">
                                     <div class="job-card-title">
-                                        <Link :href="`/job-details/${jobData.id}`">
-                                            <h2>{{ locale === 'en' ? jobData.title : jobData.title_bn }}</h2>
+                                        <Link
+                                            :href="`/job-details/${jobData.id}`"
+                                        >
+                                            <h2>
+                                                {{
+                                                    locale === "en"
+                                                        ? jobData.title
+                                                        : jobData.title_bn
+                                                }}
+                                            </h2>
                                         </Link>
-                                            <p>{{ locale === 'en' ? jobData.company.name : jobData.company.name_bn }}</p>
+                                        <p>
+                                            {{
+                                                locale === "en"
+                                                    ? jobData.company.name
+                                                    : jobData.company.name_bn
+                                            }}
+                                        </p>
                                     </div>
                                     <Link :href="`/job-details/${jobData.id}`">
-                                        {{ locale === 'en' ? 'Apply Now' : 'আবেদন করুন' }}
+                                        {{
+                                            locale === "en"
+                                                ? "Apply Now"
+                                                : "আবেদন করুন"
+                                        }}
                                     </Link>
                                 </div>
                                 <ul>
@@ -396,7 +509,11 @@ export default {
                                                 />
                                             </svg>
                                         </div>
-                                        {{ locale === 'en' ? jobData.address : jobData.address_bn }}
+                                        {{
+                                            locale === "en"
+                                                ? jobData.address
+                                                : jobData.address_bn
+                                        }}
                                     </li>
                                     <li>
                                         <div class="icon-wrap">
@@ -413,7 +530,15 @@ export default {
                                                 />
                                             </svg>
                                         </div>
-                                        {{ locale === 'en' ? formatDateEnglish(jobData.deadline) : formatDateBengali(jobData.deadline) }}
+                                        {{
+                                            locale === "en"
+                                                ? formatDateEnglish(
+                                                      jobData.deadline
+                                                  )
+                                                : formatDateBengali(
+                                                      jobData.deadline
+                                                  )
+                                        }}
                                     </li>
                                     <li>
                                         <div class="icon-wrap">
@@ -436,7 +561,15 @@ export default {
                                                 />
                                             </svg>
                                         </div>
-                                        {{ locale === 'en' ? (jobData.salary || 'Negotiable') : (jobData.salary ? convertToBengaliDigits(jobData.salary) : 'আলোচনা সাপেক্ষে') }}
+                                        {{
+                                            locale === "en"
+                                                ? jobData.salary || "Negotiable"
+                                                : jobData.salary
+                                                ? convertToBengaliDigits(
+                                                      jobData.salary
+                                                  )
+                                                : "আলোচনা সাপেক্ষে"
+                                        }}
                                     </li>
                                     <li>
                                         <div class="icon-wrap">
@@ -457,7 +590,13 @@ export default {
                                                 />
                                             </svg>
                                         </div>
-                                        {{ locale === 'en' ? jobData.vacancy : convertToBengaliDigits(jobData.vacancy) }}
+                                        {{
+                                            locale === "en"
+                                                ? jobData.vacancy
+                                                : convertToBengaliDigits(
+                                                      jobData.vacancy
+                                                  )
+                                        }}
                                     </li>
                                 </ul>
                             </div>
@@ -474,18 +613,120 @@ export default {
             <div class="trusted-company-content">
                 <h4>Trusted by Leading Companies</h4>
                 <div class="d-flex align-items-center justify-content-between">
-                    <div v-for="companyData in company" :key="companyData.id" class="company-logo-img">
-                        <img :src="companyData.profile ? getCompanyImageUrl(companyData.profile) : 'frontend/img/company.png'" alt="">
+                    <div
+                        v-for="companyData in company"
+                        :key="companyData.id"
+                        class="company-logo-img"
+                    >
+                        <img
+                            :src="
+                                companyData.profile
+                                    ? getCompanyImageUrl(companyData.profile)
+                                    : 'frontend/img/company.png'
+                            "
+                            alt=""
+                        />
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-
+    <!-- review -->
+    <div class="user-review-area">
+        <div class="container">
+            <div class="user-review-heading">
+                <h2>User Reviews</h2>
+            </div>
+        </div>
+        <div class="user-review-slider-wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-12">
+                        <div class="user-review-card">
+                            <div class="user-review-content">
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur.
+                                    Aliquet diam non pellentesque ut senectus
+                                    viverra nec. Pharetra augue purus imperdiet
+                                    convallis. Hendrerit lectus sit tempor dui
+                                    cras leo lorem. Dolor quis feugiat purus.
+                                </p>
+                                <div class="user-name">
+                                    <div class="user-image">
+                                        <img
+                                            src="frontend/images/user-review.png"
+                                            class="img-fluid"
+                                            alt="User Review"
+                                            draggable="false"
+                                        />
+                                    </div>
+                                    <div>
+                                        <h5>John Doe</h5>
+                                        <span>DLDesign.co</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                        <div class="user-review-card">
+                            <div class="user-review-content">
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur.
+                                    Aliquet diam non pellentesque ut senectus
+                                    viverra nec. Pharetra augue purus imperdiet
+                                    convallis. Hendrerit lectus sit tempor dui
+                                    cras leo lorem. Dolor quis feugiat purus.
+                                </p>
+                                <div class="user-name">
+                                    <div class="user-image">
+                                        <img
+                                            src="frontend/images/user-review.png"
+                                            class="img-fluid"
+                                            alt="User Review"
+                                            draggable="false"
+                                        />
+                                    </div>
+                                    <div>
+                                        <h5>John Doe</h5>
+                                        <span>DLDesign.co</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                        <div class="user-review-card">
+                            <div class="user-review-content">
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur.
+                                    Aliquet diam non pellentesque ut senectus
+                                    viverra nec. Pharetra augue purus imperdiet
+                                    convallis. Hendrerit lectus sit tempor dui
+                                    cras leo lorem. Dolor quis feugiat purus.
+                                </p>
+                                <div class="user-name">
+                                    <div class="user-image">
+                                        <img
+                                            src="frontend/images/user-review.png"
+                                            class="img-fluid"
+                                            alt="User Review"
+                                            draggable="false"
+                                        />
+                                    </div>
+                                    <div>
+                                        <h5>John Doe</h5>
+                                        <span>DLDesign.co</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
-<style scoped>
-
-
-</style>
+<style scoped></style>
