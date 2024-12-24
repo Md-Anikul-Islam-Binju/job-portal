@@ -22,7 +22,7 @@ class FrontendController extends Controller
         $slider = Slider::latest()->get();
         $company = User::where('role','=','company')->latest()->limit(5)->get();
         $location = Location::latest()->get();
-        $review = Review::latest()->limit(4)->get();
+        $review = Review::latest()->limit(3)->get();
         $jobTotal = Job::where('deadline', '>=', now()->toDateString())->count();
         $auth = Auth::user() ? [
             'name' => Auth::user()->name,

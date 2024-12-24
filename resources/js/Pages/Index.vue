@@ -155,15 +155,6 @@ export default {
         <title>GarmentsNiyog - Home</title>
     </head>
 
-    <!-- Slider -->
-    <div class="hero-section-slider position-relative">
-        <div
-            id="carouselExampleIndicators"
-            class="carousel slide"
-            data-bs-ride="carousel"
-            data-bs-touch="true"
-            data-bs-interval="5000"
-        >
    <!-- Hero Section -->
     <div class="hero-section-slider position-relative">
         <div
@@ -302,8 +293,6 @@ export default {
             </div>
         </div>
     </div>
-
-
 
     <div class="district-section-wrapper">
         <div class="container">
@@ -642,82 +631,23 @@ export default {
         <div class="user-review-slider-wrap">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4 col-12">
+                    <div  v-for="reviewData in review" :key="reviewData.id" class="col-md-4 col-12">
                         <div class="user-review-card">
                             <div class="user-review-content">
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur.
-                                    Aliquet diam non pellentesque ut senectus
-                                    viverra nec. Pharetra augue purus imperdiet
-                                    convallis. Hendrerit lectus sit tempor dui
-                                    cras leo lorem. Dolor quis feugiat purus.
-                                </p>
+                                <p v-html="locale === 'en' ? reviewData.details : reviewData.details_bn"></p>
                                 <div class="user-name">
                                     <div class="user-image">
                                         <img
-                                            src="frontend/images/user-review.png"
-                                            class="img-fluid"
-                                            alt="User Review"
-                                            draggable="false"
+                                            :src="
+                                                    reviewData.image
+                                                    ? getReviewUserImageUrl(reviewData.image)
+                                                     : 'frontend/img/company.png'
+                                                "
+                                                 alt=""
                                         />
                                     </div>
                                     <div>
-                                        <h5>John Doe</h5>
-                                        <span>DLDesign.co</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-12">
-                        <div class="user-review-card">
-                            <div class="user-review-content">
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur.
-                                    Aliquet diam non pellentesque ut senectus
-                                    viverra nec. Pharetra augue purus imperdiet
-                                    convallis. Hendrerit lectus sit tempor dui
-                                    cras leo lorem. Dolor quis feugiat purus.
-                                </p>
-                                <div class="user-name">
-                                    <div class="user-image">
-                                        <img
-                                            src="frontend/images/user-review.png"
-                                            class="img-fluid"
-                                            alt="User Review"
-                                            draggable="false"
-                                        />
-                                    </div>
-                                    <div>
-                                        <h5>John Doe</h5>
-                                        <span>DLDesign.co</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-12">
-                        <div class="user-review-card">
-                            <div class="user-review-content">
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur.
-                                    Aliquet diam non pellentesque ut senectus
-                                    viverra nec. Pharetra augue purus imperdiet
-                                    convallis. Hendrerit lectus sit tempor dui
-                                    cras leo lorem. Dolor quis feugiat purus.
-                                </p>
-                                <div class="user-name">
-                                    <div class="user-image">
-                                        <img
-                                            src="frontend/images/user-review.png"
-                                            class="img-fluid"
-                                            alt="User Review"
-                                            draggable="false"
-                                        />
-                                    </div>
-                                    <div>
-                                        <h5>John Doe</h5>
-                                        <span>DLDesign.co</span>
+                                        <h5>{{ locale === 'en' ?  reviewData.name  : reviewData.name_bn }}</h5>
                                     </div>
                                 </div>
                             </div>
