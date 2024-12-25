@@ -614,8 +614,15 @@ select:focus {
 /* user review */
 .user-review-slider-wrap {
     overflow: hidden;
-
     padding: 32px 0px 56px;
+}
+.user-review-card {
+    height: 164px;
+}
+.user-review-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .userReview {
     width: 100%;
@@ -1241,6 +1248,7 @@ select:focus {
 .blog-card {
     margin-bottom: 20px;
     display: inline-block;
+    height: 502px;
 }
 .blog-card-image img {
     max-height: 398px;
@@ -1260,7 +1268,7 @@ select:focus {
     margin-bottom: 8px;
 }
 .blog-card-details p {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     color: #000;
     margin-bottom: 0px;
@@ -1799,9 +1807,13 @@ select:focus {
     /* user review */
     .user-review-card {
         margin-bottom: 24px;
+        height: auto;
     }
     .user-review-heading h2 {
         text-align: center;
+    }
+    .blog-card {
+        height: auto;
     }
     .user-image {
         width: 90%;

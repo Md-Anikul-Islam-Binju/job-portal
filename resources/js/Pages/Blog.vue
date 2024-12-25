@@ -11,17 +11,22 @@
                         <div class="col-12">
                             <div class="jobs-card-wrapper">
                                 <div class="found-jobs-count-wrap">
-                                    <h3>{{ locale === 'en' ? 'Blog' : 'ব্লগ' }}</h3>
+                                    <h3>
+                                        {{ locale === "en" ? "Blog" : "ব্লগ" }}
+                                    </h3>
                                     <div class="">
                                         <!-- search -->
                                         <div class="search-wrap">
                                             <input
                                                 type="text"
                                                 class="search-input"
-                                                :placeholder="locale === 'en' ? 'Search by title' : 'অনুসন্ধান করুন'"
+                                                :placeholder="
+                                                    locale === 'en'
+                                                        ? 'Search by title'
+                                                        : 'অনুসন্ধান করুন'
+                                                "
                                                 v-model="searchKeyword"
                                                 @input="onSearch"
-
                                             />
                                             <button class="search-btn">
                                                 <svg
@@ -59,22 +64,48 @@
     <div class="blog-card-area">
         <div class="container">
             <div class="row">
-                <div v-for="blogData in paginatedBlogs" :key="blogData.id" class="col-md-6">
-                    <Link class="blog-card":href="`/blog-details/${blogData.id}`">
+                <div
+                    v-for="blogData in paginatedBlogs"
+                    :key="blogData.id"
+                    class="col-md-6"
+                >
+                    <Link
+                        class="blog-card"
+                        :href="`/blog-details/${blogData.id}`"
+                    >
                         <div class="blog-card-image">
                             <img
-                                :src="blogData.image ? getBlogImageUrl(blogData.image) : 'frontend/img/defult.png'"
+                                :src="
+                                    blogData.image
+                                        ? getBlogImageUrl(blogData.image)
+                                        : 'frontend/img/defult.png'
+                                "
                                 draggable="false"
-                                class="img-fluid"
+                                class="img-fluid w-100"
                                 alt="Blog Card"
                             />
                         </div>
                         <div class="blog-card-details">
                             <h4>{{ formatDate(blogData.created_at) }}</h4>
-                            <Link class="d-inline-block" :href="`/blog-details/${blogData.id}`">
-                                <h4>{{ locale === 'en' ? blogData.title : blogData.title_bn }}</h4>
+                            <Link
+                                class="d-inline-block"
+                                :href="`/blog-details/${blogData.id}`"
+                            >
+                                <h4>
+                                    {{
+                                        locale === "en"
+                                            ? blogData.title
+                                            : blogData.title_bn
+                                    }}
+                                </h4>
                             </Link>
-                            <p v-html="locale === 'en' ? blogData.details : blogData.details_bn"></p>
+                            <p
+                                v-html="
+                                    locale === 'en'
+                                        ? blogData.details
+                                        : blogData.details_bn
+                                "
+                            ></p>
                         </div>
                     </Link>
                 </div>
@@ -88,7 +119,13 @@
                             :class="{ disabled: currentPage === 1 }"
                             @click.prevent="changePage(currentPage - 1)"
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 20 20"
+                                fill="none"
+                            >
                                 <path
                                     d="M15.8337 9.99996H4.16699M4.16699 9.99996L10.0003 15.8333M4.16699 9.99996L10.0003 4.16663"
                                     stroke="currentColor"
@@ -109,7 +146,13 @@
                             @click.prevent="changePage(currentPage + 1)"
                         >
                             Next
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 20 20"
+                                fill="none"
+                            >
                                 <path
                                     d="M4.16699 9.99996H15.8337M15.8337 9.99996L10.0003 4.16663M15.8337 9.99996L10.0003 15.8333"
                                     stroke="currentColor"
@@ -121,14 +164,10 @@
                         </a>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </template>
-
-
-
 
 <script>
 import Layout from "../frontend/Layout.vue";
@@ -155,9 +194,15 @@ export default {
             let filtered = this.blogs;
 
             if (this.searchKeyword) {
-                filtered = filtered.filter((blog) =>
-                    blog.title.toLowerCase().includes(this.searchKeyword.toLowerCase()) ||
-                    (blog.title_bn && blog.title_bn.toLowerCase().includes(this.searchKeyword.toLowerCase()))
+                filtered = filtered.filter(
+                    (blog) =>
+                        blog.title
+                            .toLowerCase()
+                            .includes(this.searchKeyword.toLowerCase()) ||
+                        (blog.title_bn &&
+                            blog.title_bn
+                                .toLowerCase()
+                                .includes(this.searchKeyword.toLowerCase()))
                 );
             }
 
@@ -183,7 +228,9 @@ export default {
         },
         formatDate(date) {
             const dateObj = new Date(date);
-            return `${dateObj.getDate()} ${dateObj.toLocaleString("en-US", { month: "short" })} ${dateObj.getFullYear()}`;
+            return `${dateObj.getDate()} ${dateObj.toLocaleString("en-US", {
+                month: "short",
+            })} ${dateObj.getFullYear()}`;
         },
         formatMonth(date) {
             const dateObj = new Date(date);
@@ -191,7 +238,7 @@ export default {
         },
         getBlogImageUrl(imagePath) {
             if (!imagePath) {
-                return 'frontend/img/defult.png';
+                return "frontend/img/defult.png";
             }
             return `${window.location.origin}/images/blog/${imagePath}`;
         },
