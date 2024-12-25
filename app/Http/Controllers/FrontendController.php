@@ -24,6 +24,8 @@ class FrontendController extends Controller
         $location = Location::latest()->get();
         $review = Review::latest()->limit(3)->get();
         $jobTotal = Job::where('deadline', '>=', now()->toDateString())->count();
+        $companyTotal = User::where('role', '=','company')->count();
+        $vacancyTotal = Job::where('deadline', '>=', now()->toDateString())->sum('vacancy');
         $auth = Auth::user() ? [
             'name' => Auth::user()->name,
             'name_bn' => Auth::user()->name_bn,
@@ -31,6 +33,6 @@ class FrontendController extends Controller
             'role' => Auth::user()->role,
         ] : null;
         return inertia('Index',compact('category','job','siteSetting','auth',
-            'slider','company','location','review','jobTotal'));
+            'slider','company','location','review','jobTotal','companyTotal','vacancyTotal'));
     }
 }

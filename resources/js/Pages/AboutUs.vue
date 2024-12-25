@@ -52,7 +52,7 @@
         <div class="container">
             <div class="what-we-value-area">
                 <div class="what-we-value-heading text-center">
-                    <h2>What we value</h2>
+                    <h2>{{ locale === "en" ? 'What we value' : 'আমরা যা মূল্য দিই' }}</h2>
                 </div>
                 <div class="what-we-value-wrapper">
                     <div class="value-card-left">
@@ -76,10 +76,13 @@
                                 </svg>
                             </div>
                             <div class="value-card-content">
-                                <h3>User Centricity</h3>
+                                <h3>{{ locale === "en" ? 'User Centrality' : 'ব্যবহারকারীর কেন্দ্রীভূততা' }}</h3>
                                 <p>
-                                    Placing the needs and satisfaction of
-                                    our users at the heart od everything
+                                    {{  locale === "en" ?
+                                        'Placing the needs and satisfaction of our users at the heart od everything' :
+                                        'আমাদের ব্যবহারকারীদের চাহিদা এবং সন্তুষ্টিকে সবকিছুর কেন্দ্রবিন্দুতে রেখে'
+                                    }}
+
                                 </p>
                             </div>
                         </div>
@@ -101,11 +104,17 @@
                                 </svg>
                             </div>
                             <div class="value-card-content">
-                                <h3>Growth Mindset</h3>
+
+                                <h3>{{ locale === "en" ? 'Growth Mindset' : 'বৃদ্ধির মানসিকতা' }}</h3>
                                 <p>
-                                    Placing the needs and satisfaction of
-                                    our users at the heart od everything
+                                    {{  locale === "en" ?
+                                    'A Growth Mindset is the belief that abilities and intelligence can be developed through dedication.' :
+                                    'একটি বৃদ্ধির মানসিকতা হল এই বিশ্বাস যে নিষ্ঠা, কঠোর পরিশ্রম '
+                                    }}
+
                                 </p>
+
+
                             </div>
                         </div>
                     </div>
@@ -126,10 +135,13 @@
                                 </svg>
                             </div>
                             <div class="value-card-content">
-                                <h3>Empathy</h3>
+                                <h3>{{ locale === "en" ? 'Empathy' : 'সহানুভূতি' }}</h3>
                                 <p>
-                                    Placing the needs and satisfaction of
-                                    our users at the heart od everything
+                                    {{  locale === "en" ?
+                                    'Empathy is the ability to recognize, understand, and share the feelings and perspectives of others.' :
+                                    'সহানুভূতি হলো অন্যদের অনুভূতি এবং দৃষ্টিভঙ্গি চিনতে, বুঝতে এবং ভাগ করে নেওয়ার ক্ষমতা।'
+                                    }}
+
                                 </p>
                             </div>
                         </div>
@@ -149,10 +161,14 @@
                                 </svg>
                             </div>
                             <div class="value-card-content">
-                                <h3>Collaborative Spirit</h3>
+
+                                <h3>{{ locale === "en" ? 'Collaborative Spirit' : 'সহযোগিতামূলক মনোভাব' }}</h3>
                                 <p>
-                                    Placing the needs and satisfaction of
-                                    our users at the heart od everything
+                                    {{  locale === "en" ?
+                                    'Collaborative Spirit is the mindset and approach that values teamwork' :
+                                    'সহযোগিতামূলক মনোভাব হল সেই মানসিকতা এবং দৃষ্টিভঙ্গি যা দলগত কাজ'
+                                    }}
+
                                 </p>
                             </div>
                         </div>

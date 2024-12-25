@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('name_bn')->nullable();
             $table->string('title')->nullable();
             $table->string('title_bn')->nullable();
-            $table->text('meta_description')->nullable();
-            $table->text('meta_description_bn')->nullable();
+            $table->text('short_description')->nullable();
+            $table->text('short_description_bn')->nullable();
             $table->string('favicon')->nullable();
             $table->string('logo')->nullable();
             $table->string('site_preview_image')->nullable();

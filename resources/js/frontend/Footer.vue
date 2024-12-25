@@ -36,12 +36,8 @@ export default {
                             <img :src="getLogoUrl(siteSetting?.logo)" alt="">
                         </Link>
                     </div>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit. Nullam dictum aliquet accumsan porta lectus
-                        ridiculus in mattis. Netus sodales in volutpat
-                        ullamcorper amet adipiscing fermentum.
-                    </p>
+                    <p v-html="locale === 'en' ? siteSetting.short_description : siteSetting.short_description_bn"></p>
+
                     <ul>
                         <li>
                             <a href="#" target="_blank">

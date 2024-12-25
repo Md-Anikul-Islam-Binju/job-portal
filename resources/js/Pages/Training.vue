@@ -89,10 +89,7 @@
                                     }}
                                 </h4>
                                 <p
-                                    v-html="
-                                        (locale === 'en'
-                                            ? trainingData.details
-                                            : trainingData.details_bn
+                                    v-html="(locale === 'en'? trainingData.details: trainingData.details_bn
                                         ).length > 250
                                             ? (locale === 'en'
                                                   ? trainingData.details
@@ -131,7 +128,16 @@
                                             fill="#FC8500"
                                         />
                                     </svg>
-                                    {{ formatDate(trainingData.training_date) }}
+
+                                    {{
+                                        locale === "en"
+                                            ? formatDateEnglish(
+                                                trainingData.training_date
+                                            )
+                                            : formatDateBengali(
+                                                trainingData.training_date
+                                            )
+                                    }}
                                 </div>
                                 <div class="training-price">
                                     <svg
@@ -152,11 +158,8 @@
                                             fill="#388EA9"
                                         />
                                     </svg>
-                                    {{
-                                        locale === "en"
-                                            ? trainingData.training_fee
-                                            : trainingData.training_fee
-                                    }}
+                                    {{locale === "en"?  trainingData.training_fee:  convertToBengaliDigits(trainingData.training_fee)}}
+
                                 </div>
                             </div>
                         </div>
@@ -251,6 +254,18 @@ export default {
             searchKeyword: "",
             currentPage: 1,
             itemsPerPage: 10, // Adjust as needed
+            englishToBengaliDigits: {
+                0: "০",
+                1: "১",
+                2: "২",
+                3: "৩",
+                4: "৪",
+                5: "৫",
+                6: "৬",
+                7: "৭",
+                8: "৮",
+                9: "৯",
+            },
         };
     },
     computed: {
@@ -306,6 +321,64 @@ export default {
                 return "frontend/img/defult.png";
             }
             return `${window.location.origin}/images/training/${imagePath}`;
+        },
+
+        formatDateEnglish(date) {
+            const dateObj = new Date(date);
+            const day = dateObj.getDate();
+            const month = dateObj.toLocaleString("en-US", { month: "long" });
+            const year = dateObj.getFullYear();
+            return `${day} ${month} ${year}`;
+        },
+
+        // Convert to Bengali Date Format (e.g., "২০ অক্টোবর ২০২৪")
+        formatDateBengali(date) {
+            const englishToBengaliDigits = {
+                0: "০",
+                1: "১",
+                2: "২",
+                3: "৩",
+                4: "৪",
+                5: "৫",
+                6: "৬",
+                7: "৭",
+                8: "৮",
+                9: "৯",
+            };
+
+            const englishToBengaliMonths = {
+                January: "জানুয়ারি",
+                February: "ফেব্রুয়ারি",
+                March: "মার্চ",
+                April: "এপ্রিল",
+                May: "মে",
+                June: "জুন",
+                July: "জুলাই",
+                August: "আগস্ট",
+                September: "সেপ্টেম্বর",
+                October: "অক্টোবর",
+                November: "নভেম্বর",
+                December: "ডিসেম্বর",
+            };
+
+            const dateObj = new Date(date);
+            const day = dateObj
+                .getDate()
+                .toString()
+                .replace(/\d/g, (digit) => englishToBengaliDigits[digit]);
+            const month = dateObj.toLocaleString("en-US", { month: "long" });
+            const bengaliMonth = englishToBengaliMonths[month];
+            const year = dateObj
+                .getFullYear()
+                .toString()
+                .replace(/\d/g, (digit) => englishToBengaliDigits[digit]);
+
+            return `${day} ${bengaliMonth} ${year}`;
+        },
+        convertToBengaliDigits(number) {
+            return number
+                .toString()
+                .replace(/\d/g, (digit) => this.englishToBengaliDigits[digit]);
         },
     },
 };

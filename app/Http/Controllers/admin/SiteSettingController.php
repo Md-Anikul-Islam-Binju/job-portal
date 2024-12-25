@@ -18,18 +18,18 @@ class SiteSettingController extends Controller
     public function createOrUpdate(Request $request, $id = null)
     {
         // Validation rules
-
+        //dd($request->all());
         $rules = [
             'name' => 'nullable',
             'title' => 'nullable',
-            'meta_description' => 'nullable',
+            'short_description' => 'nullable',
+            'short_description_bn' => 'nullable',
             'favicon' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:5120',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:5120',
             'site_preview_image' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:5120',
             'email' => 'nullable|email',
             'phone' => 'nullable',
             'address' => 'nullable',
-            'short_description' => 'nullable',
             'site_link' => 'nullable',
             'facebook_link' => 'nullable|url',
             'twitter_link' => 'nullable|url',
@@ -37,6 +37,7 @@ class SiteSettingController extends Controller
             'instagram_link' => 'nullable|url',
             'youtube_link' => 'nullable|url',
         ];
+
 
         // Validate the request data
         $validator = Validator::make($request->all(), $rules);

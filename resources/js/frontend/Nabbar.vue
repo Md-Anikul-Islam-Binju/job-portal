@@ -56,7 +56,10 @@ export default {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/training">Training</Link>
+                                <Link href="/training">
+                                    {{ locale === 'en' ? 'Training' : 'প্রশিক্ষণ' }}
+
+                                </Link>
                             </li>
                             <li class="dropdown">
                                 <a
@@ -65,7 +68,7 @@ export default {
                                     class="dropdown-toggle"
                                     data-bs-toggle="dropdown"
                                     aria-expanded="false"
-                                >Resources
+                                >  {{ locale === 'en' ? 'Resources' : 'রিসোর্স' }}
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="24"
@@ -97,8 +100,9 @@ export default {
                                                 fill="currentColor"
                                             />
                                         </svg>
-                                            Events</a
-                                        >
+
+                                            {{ locale === 'en' ? 'Events' : 'ইভেন্ট' }}
+                                        </a>
                                     </li>
 
                                     <li>
@@ -115,7 +119,8 @@ export default {
                                                     fill="currentColor"
                                                 />
                                             </svg>
-                                            Blogs
+
+                                            {{ locale === 'en' ? 'Blogs' : 'ব্লগ' }}
                                         </Link>
                                     </li>
                                 </ul>

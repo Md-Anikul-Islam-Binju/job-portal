@@ -34,6 +34,7 @@ class TrainingManageController extends Controller
     public function trainingDetails($id)
     {
         $siteSetting = SiteSetting::latest()->first();
+        $trainings = Training::latest()->limit(4)->get();
         $training = Training::where('id',$id)->first();
         $auth = Auth::user() ? [
             'name' => Auth::user()->name,
@@ -41,6 +42,6 @@ class TrainingManageController extends Controller
             'email' => Auth::user()->email,
             'role' => Auth::user()->role,
         ] : null;
-        return inertia('TrainingDetails', compact('siteSetting', 'training','auth'));
+        return inertia('TrainingDetails', compact('siteSetting', 'training','auth','trainings'));
     }
 }

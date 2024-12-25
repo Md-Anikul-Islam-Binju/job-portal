@@ -12,6 +12,8 @@ export default {
         company: Array,
         review: Array,
         jobTotal: Object,
+        companyTotal : Object,
+        vacancyTotal : Object,
     },
     data() {
         return {
@@ -106,7 +108,7 @@ export default {
         },
         getCompanyImageUrl(imagePath) {
             if (!imagePath) {
-                return "frontend/img/company.png"; // You might want to return a default image directly here too
+                return "frontend/images/logo.png"; // You might want to return a default image directly here too
             }
             return `${window.location.origin}/images/logo/${imagePath}`; // Adjust the path as necessary
         },
@@ -116,6 +118,13 @@ export default {
                 return "No Image"; // You might want to return a default image directly here too
             }
             return `${window.location.origin}/images/review/${imagePath}`; // Adjust the path as necessary
+        },
+
+        getCategoryImageUrl(imagePath) {
+            if (!imagePath) {
+                return "No Image"; // You might want to return a default image directly here too
+            }
+            return `${window.location.origin}/images/category/${imagePath}`; // Adjust the path as necessary
         },
 
         convertToBengaliDigits(number) {
@@ -268,10 +277,13 @@ export default {
                             </div>
                             <input
                                 type="text"
-                                name="job_title"
                                 class="form-control"
-                                placeholder="Job Title"
-                                value=""
+                                :placeholder="
+                                locale === 'en'
+                                    ? 'Search by title'
+                                    : 'অনুসন্ধান করুন'
+                            "
+                                v-model="searchKeyword"
                             />
                         </div>
                     </form>
@@ -279,16 +291,21 @@ export default {
             </div>
             <div class="jobs-information">
                 <div class="info-card">
-                    <h2><span class="number">3</span></h2>
-                    <h4>Vacancies</h4>
+                    <h2><span class="number">{{ locale === "en" ? vacancyTotal : convertToBengaliDigits( vacancyTotal ) }}</span></h2>
+                    <h4>{{ locale === "en" ? 'Vacancies' : 'শূন্যপদ' }}</h4>
                 </div>
                 <div class="info-card">
-                    <h2><span class="number">2</span>+</h2>
-                    <h4>Company</h4>
+                    <h2><span class="number">{{ locale === "en" ? companyTotal : convertToBengaliDigits( companyTotal ) }}</span>+</h2>
+                    <h4>{{ locale === "en" ? 'Company' : 'কোম্পানির' }}</h4>
                 </div>
                 <div class="info-card">
-                    <h2><span class="number">3</span>+</h2>
-                    <h4>Live Jobs</h4>
+                    <h2>
+                        <span class="number">
+                         {{ locale === "en" ? jobTotal : convertToBengaliDigits( jobTotal ) }}
+                        </span>
+                        +
+                    </h2>
+                    <h4>{{ locale === "en" ? 'Live Jobs' : 'লাইভ জবস' }}</h4>
                 </div>
             </div>
         </div>
@@ -338,11 +355,20 @@ export default {
                     class="category-card d-flex align-items-center"
                 >
                     <div class="category-image-wrap">
+
+
                         <img
-                            src="https://jobshubglobal.com/images/category/1733758409.jpg"
-                            draggable="false"
+                            :src="
+                                categoryData.image
+                                    ? getCategoryImageUrl(
+                                          categoryData.image
+                                      )
+                                    : 'frontend/images/logo.png'
+                            "
                             alt="Category Image"
                         />
+
+
                     </div>
                     <div
                         class="category-content d-flex flex-column justify-content-between"
@@ -409,7 +435,7 @@ export default {
     <section class="job-listing-area">
         <div class="container">
             <div class="job-listing-heading">
-                <h2>Job Listing</h2>
+                <h2> {{ locale === "en" ? "Job Listing" : "চাকরির তালিকা" }}</h2>
                 <form
                     class="find-a-jobs-wrap"
                     method="GET"
@@ -447,7 +473,7 @@ export default {
                                             ? getCompanyImageUrl(
                                                   jobData.company.profile
                                               )
-                                            : 'frontend/img/company.png'
+                                            : 'frontend/images/logo.png'
                                     "
                                     alt=""
                                 />
@@ -600,7 +626,7 @@ export default {
     <div class="trusted-company-area">
         <div class="container">
             <div class="trusted-company-content">
-                <h4>Trusted by Leading Companies</h4>
+                <h4> {{ locale === "en" ? "Trusted by Leading Companies" : "শীর্ষস্থানীয় কোম্পানিগুলির দ্বারা বিশ্বস্ত" }}</h4>
                 <div class="d-flex align-items-center justify-content-between">
                     <div
                         v-for="companyData in company"
@@ -611,7 +637,7 @@ export default {
                             :src="
                                 companyData.profile
                                     ? getCompanyImageUrl(companyData.profile)
-                                    : 'frontend/img/company.png'
+                                    : 'frontend/images/logo.png'
                             "
                             alt=""
                         />
@@ -625,7 +651,7 @@ export default {
     <div class="user-review-area">
         <div class="container">
             <div class="user-review-heading">
-                <h2>User Reviews</h2>
+                <h2> {{ locale === "en" ? "User Reviews" : "ব্যবহারকারী পর্যালোচনা" }}</h2>
             </div>
         </div>
         <div class="user-review-slider-wrap">
@@ -641,7 +667,7 @@ export default {
                                             :src="
                                                     reviewData.image
                                                     ? getReviewUserImageUrl(reviewData.image)
-                                                     : 'frontend/img/company.png'
+                                                     : 'frontend/images/logo.png'
                                                 "
                                                  alt=""
                                         />
