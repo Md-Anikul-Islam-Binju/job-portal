@@ -287,15 +287,14 @@
                 class="are-you-looking-for-a-job-content training-page-aylgfaj"
             >
                 <div class="left-content">
-                    <h4>Are you looking for a Job?</h4>
-                    <h2>GarmentsNiyog is your key to Success!</h2>
+                    <h4> {{ locale === 'en' ? 'Are you looking for a Job?' : 'আপনি কি চাকরি খুঁজছেন?' }}</h4>
+                    <h2>{{ locale === 'en' ? 'GarmentsNiyog is your key to Success!?' : 'গার্মেন্টস নিয়োগ আপনার সাফল্যের চাবিকাঠি!' }}</h2>
                     <h5>
-                        Our goal is to make your job search as easy as
-                        possible.
+                        {{ locale === 'en' ? 'Our goal is to make your job search as easy as possible.' : 'আমাদের লক্ষ্য হল আপনার চাকরি খোঁজা যতটা সম্ভব সহজ করা।' }}
                     </h5>
                 </div>
                 <div class="right-content">
-                    <a href="#">Register as Candidate</a>
+                    <a href="/user-registration-start" target="_blank">{{ locale === 'en' ? 'Register as Candidate' : 'প্রার্থী হিসেবে নিবন্ধন করুন' }}</a>
                 </div>
             </div>
         </div>

@@ -10,7 +10,7 @@
                         <div class="col-12">
                             <div class="jobs-card-wrapper">
                                 <div class="found-jobs-count-wrap">
-                                  <h3 style="color: black">{{ locale === 'en' ? '24/7 Customer Care for our valued Clients.' : 'যআমাদের মূল্যবান ক্লায়েন্টদের জন্য 24/7 গ্রাহক সেবা' }}</h3>
+                                  <h3 style="color: black">{{ locale === 'en' ? '24/7 Customer Care for our valued Clients.' : 'আমাদের মূল্যবান ক্লায়েন্টদের জন্য 24/7 গ্রাহক সেবা' }}</h3>
                                 </div>
                             </div>
                         </div>
