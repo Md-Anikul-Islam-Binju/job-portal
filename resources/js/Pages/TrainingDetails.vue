@@ -1,7 +1,7 @@
 <template>
     <div
         class="learning-details-section-area"
-        style="background-image: url('http://127.0.0.1:8000/frontend/images/bg-image.png')"
+        :style="{ backgroundImage: 'url(' + baseUrl + '/frontend/images/bg-image.png)' }"
     >
         <div class="container">
             <div class="row">
@@ -329,6 +329,11 @@ export default {
                 9: "৯",
             },
         };
+    },
+    computed: {
+        baseUrl() {
+            return window.location.origin;
+        },
     },
     methods: {
         formatDate(date) {
