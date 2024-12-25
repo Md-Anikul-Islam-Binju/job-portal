@@ -19,6 +19,7 @@ use App\Http\Controllers\BlogPageController;
 use App\Http\Controllers\company\CompanyDashboardController;
 use App\Http\Controllers\company\JobController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\EventManageController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\JobBoardController;
 use App\Http\Controllers\TermsConditionController;
@@ -65,6 +66,12 @@ Route::get('/blog-details/{id}', [BlogPageController::class, 'blogDetails'])->na
 //training
 Route::get('/training', [TrainingManageController::class, 'training'])->name('training');
 Route::get('/training-details/{id}', [TrainingManageController::class, 'trainingDetails'])->name('training.details');
+
+
+//event
+Route::get('/event', [EventManageController::class, 'event'])->name('event');
+Route::get('/event-details/{id}', [EventManageController::class, 'eventDetails'])->name('event.details');
+
 
 //User Account
 Route::get('/user-registration-start', [UserController::class, 'showRegistrationForm'])->name('user.registration.start');
