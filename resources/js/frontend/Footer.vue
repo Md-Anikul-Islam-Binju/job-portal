@@ -40,7 +40,7 @@ export default {
 
                     <ul>
                         <li>
-                            <a href="#" target="_blank">
+                            <a :href="siteSetting.twitter_link" target="_blank">
                                 <svg
                                     width="16"
                                     height="14"
@@ -72,7 +72,7 @@ export default {
                             </a>
                         </li>
                         <li>
-                            <a href="#" target="_blank">
+                            <a :href="siteSetting.linkedin_link" target="_blank">
                                 <svg
                                     width="21"
                                     height="21"

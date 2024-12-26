@@ -3,8 +3,10 @@
 use App\Http\Controllers\api\AccountController;
 use App\Http\Controllers\api\CategoryController;
 use App\Http\Controllers\api\EducationController;
+use App\Http\Controllers\api\EventController;
 use App\Http\Controllers\api\ExperiencesController;
 use App\Http\Controllers\api\SkillController;
+use App\Http\Controllers\api\TrainingController;
 use App\Http\Controllers\api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +27,8 @@ Route::post('/user-registration', [UserController::class, 'storeRegistration']);
 Route::post('/verify', [UserController::class, 'verify']);
 Route::post('/login', [UserController::class, 'login']);
 Route::get('/job-list', [AccountController::class, 'jobList']);
+Route::get('/event', [EventController::class, 'event']);
+Route::get('/training', [TrainingController::class, 'training']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/account', [AccountController::class, 'account']);

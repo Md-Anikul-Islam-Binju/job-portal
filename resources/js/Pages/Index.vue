@@ -339,7 +339,10 @@ export default {
                             : "বিভাগ অনুসারে অন্বেষণ করুন"
                     }}
                 </h2>
-                <a href="#">View All</a>
+                <Link href="/job-board">
+
+                    {{ locale === "en" ? 'View All' : 'সবগুলো দেখুন' }}
+                </Link>
             </div>
         </div>
     </div>
