@@ -3,14 +3,15 @@
     $siteSetting = DB::table('site_settings')->first();
 @endphp
 <head>
-    <meta charset="utf-8" />
     <title>Garments Niyog</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     @vite('resources/js/app.js')
-    {{-- Frontend Template Styles Start--}}
     @if(!empty($siteSetting))
-    <link rel="shortcut icon" href="{{asset($siteSetting->favicon)}}">
+        <link rel="shortcut icon" href="{{asset($siteSetting->favicon)}}">
     @endif
-    <!-- CSS here -->
+
+    {{-- Frontend Template Styles Start--}}
     <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}" />
     <link rel="stylesheet" href="{{asset('frontend/css/swiper-bundle.min.css')}}" />
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}" />
@@ -19,9 +20,7 @@
 </head>
 <body>
 @inertia
-
 {{-- Frontend Template Scripts --}}
-<!-- JS here -->
 <script src="{{asset('frontend/js/jquery.min.js')}}"></script>
 <script src="{{asset('frontend/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('frontend/js/swiper-bundle.min.js')}}"></script>
