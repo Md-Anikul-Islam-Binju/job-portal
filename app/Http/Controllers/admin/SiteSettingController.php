@@ -48,9 +48,9 @@ class SiteSettingController extends Controller
         // Check if the setting with the provided ID exists
         if ($id) {
             $setting = SiteSetting::findOrFail($id);
-            $setting->update($request->except(['favicon', 'logo', 'site_preview_image'])); // Exclude image fields from update
+            $setting->update($request->except(['favicon', 'logo', 'site_preview_image','advisement_banner'])); // Exclude image fields from update
         } else {
-            $setting = new SiteSetting($request->except(['favicon', 'logo', 'site_preview_image'])); // Exclude image fields from creation
+            $setting = new SiteSetting($request->except(['favicon', 'logo', 'site_preview_image','advisement_banner'])); // Exclude image fields from creation
         }
 
         // Handle favicon upload
@@ -59,6 +59,8 @@ class SiteSettingController extends Controller
             $request->file('favicon')->move(public_path('images/favicons'), $faviconName);
             $setting->favicon = 'images/favicons/'.$faviconName;
         }
+
+
 
         // Handle logo upload
         if ($request->hasFile('logo')) {
@@ -72,6 +74,12 @@ class SiteSettingController extends Controller
             $request->file('site_preview_image')->move(public_path('images/site_preview_image'), $previewName);
             $setting->site_preview_image = 'images/site_preview_image/'.$previewName;
         }
+
+          if ($request->hasFile('advisement_banner')) {
+              $bannerName = time().'.'.$request->file('advisement_banner')->extension();
+              $request->file('advisement_banner')->move(public_path('images/banner'), $bannerName);
+              $setting->advisement_banner = 'images/banner/'.$bannerName;
+          }
         $setting->save();
         $message = $id ? 'Site settings updated successfully!' : 'Site settings created successfully!';
         return redirect()->back()->with('success', $message);

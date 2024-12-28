@@ -146,6 +146,15 @@
                                                placeholder="Linkedin Link">
                                     </div>
 
+                                    <div class="mb-3 col-md-4">
+                                        <label for="advisement_banner" class="form-label">Advisement Banner</label>
+                                        <input type="file" class="form-control" name="advisement_banner" value="{{$siteSettings?$siteSettings->advisement_banner:''}}"
+                                               placeholder="Enter Logo">
+                                        @if($siteSettings? $siteSettings->advisement_banner:'')
+                                            <img src="{{asset($siteSettings?$siteSettings->advisement_banner:'')}}" alt="Current Image" class="mt-2" style="max-width: 50px;">
+                                        @endif
+                                    </div>
+
                                 </div>
                                 <button type="submit" class="btn btn-primary">Save</button>
                             </form>

@@ -28,5 +28,6 @@ class SiteSetting extends Model
         'twitter_link',
         'linkedin_link',
         'youtube_link',
+        'advisement_banner',
     ];
 }

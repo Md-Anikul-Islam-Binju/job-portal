@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('twitter_link')->nullable();
             $table->string('linkedin_link')->nullable();
             $table->string('youtube_link')->nullable();
+            $table->string('advisement_banner')->nullable();
             $table->timestamps();
         });
     }

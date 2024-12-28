@@ -623,6 +623,10 @@ select:focus {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    box-shadow: 0px 0px 20px rgb(0 0 0 / 8%);
+    padding: 10px;
+    border-radius: 8px;
+    height: 185px;
 }
 .userReview {
     width: 100%;
@@ -1251,7 +1255,7 @@ select:focus {
     height: 502px;
 }
 .blog-card-image img {
-    max-height: 398px;
+    height: 280px;
     border-radius: 8px;
     width: 100%;
     margin-bottom: 16px;
@@ -1522,7 +1526,7 @@ select:focus {
 .job-details-top-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 .job-details-section {
     padding: 40px 0px;
@@ -1616,7 +1620,8 @@ select:focus {
 /*=======================================
 			Responsive Style
 =========================================*/
-@media screen and (max-width: 1300px) {
+
+@media screen and (max-width: 1399px) {
     body {
         font-size: 14px;
     }
@@ -1658,11 +1663,27 @@ select:focus {
     .mission-vision-content p {
         font-size: 17px;
     }
-    .theme-btn,
-    .menu-list li a {
-        font-size: 13px;
+    .theme-btn  {
+        font-size: 12px;
     }
+    .menu-list li a {
+        font-size: 11px;
+    }
+    .home-job-card-img {
+        width: 100px;
+    }
+    .home-job-card-details ul {
+        gap: 10px;
+    }
+    .home-job-card-details ul li {
+        font-size: 14px;
+        text-transform: capitalize;
+    }
+
 }
+
+
+
 @media screen and (max-width: 991px) {
     .alert-wrap a img {
         width: 90%;
@@ -1972,5 +1993,8 @@ select:focus {
     }
     .training-card {
         min-height: auto;
+    }
+    .blog-card-image img {
+        height: auto;
     }
 }

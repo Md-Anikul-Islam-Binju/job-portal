@@ -164,6 +164,8 @@ export default {
         <title>GarmentsNiyog - Home</title>
     </head>
 
+
+
    <!-- Hero Section -->
     <div class="hero-section-slider position-relative">
         <div
@@ -256,7 +258,7 @@ export default {
                     <form
                         class="find-a-jobs-wrap"
                         method="GET"
-                        action="https://jobshubglobal.com/all-jobs"
+                        action="https://www.garmentsniyog.com/job-board"
                     >
                         <div class="input-group search-jobs">
                             <div class="search-icon">
@@ -663,7 +665,10 @@ export default {
                     <div  v-for="reviewData in review" :key="reviewData.id" class="col-md-4 col-12">
                         <div class="user-review-card">
                             <div class="user-review-content">
-                                <p v-html="locale === 'en' ? reviewData.details : reviewData.details_bn"></p>
+                                <div v-html="locale === 'en' ? reviewData.details : reviewData.details_bn">
+
+                                </div>
+
                                 <div class="user-name">
                                     <div class="user-image">
                                         <img
