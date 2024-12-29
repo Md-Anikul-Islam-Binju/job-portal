@@ -1764,8 +1764,14 @@ select:focus {
         height: auto;
     }
     .district-wrap {
-        gap: 15px;
-        justify-content: center;
+        gap: 5px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 0;
+    }
+    .district-wrap li a {
+        width: 100%;
+        text-align: center;
     }
     .hero-container-wrapper {
         position: static;
