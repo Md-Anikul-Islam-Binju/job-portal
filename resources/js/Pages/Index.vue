@@ -93,6 +93,14 @@ export default {
         // Method to select category and filter jobs
         selectCategory(categoryId) {
             this.selectedCategory = categoryId;
+            // Scroll to the job section
+            this.$nextTick(() => {
+                const jobSection = document.getElementById("job-listing");
+                if (jobSection) {
+                    const topPosition = jobSection.getBoundingClientRect().top + window.pageYOffset;
+                    window.scrollTo({ top: topPosition, behavior: "smooth" });
+                }
+            });
         },
         selectLocation(locationId) {
             this.selectedLocation = locationId;
@@ -349,13 +357,14 @@ export default {
         </div>
     </div>
 
+    <!-- Job Category -->
     <div class="category-section-area section-padding">
         <div class="container">
             <div class="category-card-wrap d-flex flex-wrap">
                 <a
                     v-for="categoryData in category"
                     :key="categoryData.id"
-                    href="#"
+                    href="#job-listing"
                     @click.prevent="selectCategory(categoryData.id)"
                     class="category-card d-flex align-items-center"
                 >
@@ -437,7 +446,7 @@ export default {
     </div>
 
     <!-- Job Listing -->
-    <section class="job-listing-area">
+    <section id="job-listing" class="job-listing-area">
         <div class="container">
             <div class="job-listing-heading">
                 <h2> {{ locale === "en" ? "Job Listing" : "চাকরির তালিকা" }}</h2>
