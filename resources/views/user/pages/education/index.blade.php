@@ -104,7 +104,7 @@
                                                     <div class="col-12">
                                                         <div class="mb-3">
                                                             <label for="passing_year" class="form-label">Passing Year</label>
-                                                            <input type="text" id="passing_year" name="degree_name_bn" value="{{$educationData->passing_year}}"
+                                                            <input type="text" id="passing_year" name="passing_year" value="{{$educationData->passing_year}}"
                                                                    class="form-control" placeholder="Enter Passing Year" required>
                                                         </div>
                                                     </div>

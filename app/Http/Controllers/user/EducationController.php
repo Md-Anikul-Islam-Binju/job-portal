@@ -40,7 +40,7 @@ class EducationController extends Controller
     {
         try {
             $request->validate([
-                'name' => 'required',
+                'result' => 'required',
             ]);
             $education = Education::find($id);
             $education->institute_name = $request->institute_name;
