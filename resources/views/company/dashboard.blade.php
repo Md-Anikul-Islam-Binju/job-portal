@@ -22,7 +22,9 @@
                         <i class="ri-app-store-line widget-icon"></i>
                     </div>
                     <h6 class="text-uppercase mt-0" title="Customers">Total Job</h6>
-                    <h2 class="my-2">{{$totalJob}}</h2>
+                    <a href="{{route('company.job.section')}}">
+                     <h2 class="my-2" style="color: white">{{$totalJob}}</h2>
+                    </a>
                 </div>
             </div>
         </div>
@@ -33,7 +35,9 @@
                         <i class="ri-profile-line widget-icon"></i>
                     </div>
                     <h6 class="text-uppercase mt-0" title="Customers">Total Candidate Apply</h6>
-                    <h2 class="my-2">{{$totalCandidate}}</h2>
+                    <a href="{{route('company.job.candidate')}}">
+                      <h2 class="my-2" style="color: white">{{$totalCandidate}}</h2>
+                    </a>
                 </div>
             </div>
         </div>

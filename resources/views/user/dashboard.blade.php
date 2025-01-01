@@ -33,7 +33,9 @@
                         <i class="ri-profile-line widget-icon"></i>
                     </div>
                     <h6 class="text-uppercase mt-0" title="Customers">Total Apply</h6>
-                    <h2 class="my-2">{{$totalApply}}</h2>
+                    <a href="{{route('user.job.apply')}}">
+                        <h2 class="my-2" style="color: white">{{$totalApply}}</h2>
+                    </a>
                 </div>
             </div>
         </div>

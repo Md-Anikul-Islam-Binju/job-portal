@@ -17,13 +17,17 @@
     <div class="row">
         <div class="col-xxl-3 col-sm-6">
             <div class="card widget-flat text-bg-pink">
+
                 <div class="card-body">
                     <div class="float-end">
                         <i class="ri-app-store-line widget-icon"></i>
                     </div>
                     <h6 class="text-uppercase mt-0" title="Customers">Total Company</h6>
-                    <h2 class="my-2">{{$totalCompany}}</h2>
+                    <a href="{{route('admin.company')}}">
+                      <h2 class="my-2" style="color: white">{{$totalCompany}}</h2>
+                    </a>
                 </div>
+
             </div>
         </div>
         <div class="col-xxl-3 col-sm-6">
@@ -33,7 +37,9 @@
                         <i class="ri-profile-line widget-icon"></i>
                     </div>
                     <h6 class="text-uppercase mt-0" title="Customers">Total Location</h6>
-                    <h2 class="my-2">{{$totalLocation}}</h2>
+                    <a href="{{route('admin.location')}}">
+                      <h2 class="my-2" style="color: white">{{$totalLocation}}</h2>
+                    </a>
                 </div>
             </div>
         </div>
@@ -44,7 +50,9 @@
                         <i class="ri-route-line widget-icon"></i>
                     </div>
                     <h6 class="text-uppercase mt-0" title="Customers">Total Category</h6>
-                    <h2 class="my-2">{{$totalCategory}}</h2>
+                    <a href="{{route('admin.category')}}">
+                      <h2 class="my-2" style="color: white">{{$totalCategory}}</h2>
+                    </a>
                 </div>
             </div>
         </div>
