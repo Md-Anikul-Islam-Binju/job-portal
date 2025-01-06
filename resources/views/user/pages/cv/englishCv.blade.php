@@ -41,6 +41,12 @@
         .no-pdf-hidden {
             display: none !important;
         }
+        .contact-info a {
+            word-wrap: break-word;
+            word-break: break-word;
+            white-space: normal;
+            overflow-wrap: break-word;
+        }
     </style>
 </head>
 
