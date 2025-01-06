@@ -16,7 +16,13 @@ class FrontendController extends Controller
 {
     public function frontend()
     {
-        $category = Category::withCount('jobs')->latest()->limit(20)->get();
+        //$category = Category::withCount('jobs')->latest()->limit(20)->get();
+        $category = Category::withCount(['jobs' => function ($query) {
+            $query->where('deadline', '>=', now()->toDateString());
+        }])->latest()->limit(20)->get();
+
+
+
         $job = Job::with('company')->where('deadline', '>=', now()->toDateString())->latest()->limit(50)->get();
         $siteSetting = SiteSetting::latest()->first();
         $slider = Slider::latest()->get();

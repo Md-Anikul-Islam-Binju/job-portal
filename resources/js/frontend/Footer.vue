@@ -143,6 +143,11 @@ export default {
                 </div>
             </div>
         </div>
+
+        <div class="text-center">
+            <b>Powered By  Bhawal Tech Ltd.</b>
+        </div>
+
     </footer>
 </template>
 
