@@ -148,6 +148,8 @@ Route::middleware('auth')->group(callback: function () {
         //Site Setting
         Route::get('/site-setting', [SiteSettingController::class, 'index'])->name('admin.site.setting');
         Route::post('/site-settings-store-update/{id?}', [SiteSettingController::class, 'createOrUpdate'])->name('admin.site.settings.createOrUpdate');
+        Route::get('/site-setting/delete-banner/{id}', [SiteSettingController::class, 'deleteBanner'])->name('admin.site.settings.deleteBanner');
+
 
         //Site About
         Route::get('/about', [AboutController::class, 'index'])->name('admin.about');

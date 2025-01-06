@@ -146,17 +146,37 @@
                                                placeholder="Linkedin Link">
                                     </div>
 
+{{--                                    <div class="mb-3 col-md-4">--}}
+{{--                                        <label for="advisement_banner" class="form-label">Advisement Banner</label>--}}
+{{--                                        <input type="file" class="form-control" name="advisement_banner" value="{{$siteSettings?$siteSettings->advisement_banner:''}}"--}}
+{{--                                               placeholder="Enter Logo">--}}
+{{--                                        @if($siteSettings? $siteSettings->advisement_banner:'')--}}
+{{--                                            <img src="{{asset($siteSettings?$siteSettings->advisement_banner:'')}}" alt="Current Image" class="mt-2" style="max-width: 50px;">--}}
+{{--                                        @endif--}}
+{{--                                    </div>--}}
+
                                     <div class="mb-3 col-md-4">
-                                        <label for="advisement_banner" class="form-label">Advisement Banner</label>
-                                        <input type="file" class="form-control" name="advisement_banner" value="{{$siteSettings?$siteSettings->advisement_banner:''}}"
-                                               placeholder="Enter Logo">
-                                        @if($siteSettings? $siteSettings->advisement_banner:'')
-                                            <img src="{{asset($siteSettings?$siteSettings->advisement_banner:'')}}" alt="Current Image" class="mt-2" style="max-width: 50px;">
+
+
+                                        @if($siteSettings && $siteSettings->advisement_banner)
+                                            <!-- If the advisement_banner exists, show the image preview and delete link -->
+                                            <img src="{{ asset($siteSettings->advisement_banner) }}" alt="Current Banner" class="mt-2" style="max-width: 150px;">
+                                            <a href="{{ route('admin.site.settings.deleteBanner', $siteSettings->id) }}" class="btn btn-danger btn-sm mt-2">Delete Banner</a>
+                                            <!-- Delete Button as a link -->
+
+
+                                        @else
+                                            <label for="advisement_banner" class="form-label">Advisement Banner</label>
+                                            <!-- If no advisement_banner exists, show the input field -->
+                                            <input type="file" class="form-control" name="advisement_banner" value="{{ $siteSettings ? $siteSettings->advisement_banner : '' }}" placeholder="Enter Banner">
                                         @endif
                                     </div>
 
+
+
                                 </div>
                                 <button type="submit" class="btn btn-primary">Save</button>
+
                             </form>
                         </div>
                     </div>

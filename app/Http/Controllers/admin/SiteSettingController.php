@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\SiteSetting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class SiteSettingController extends Controller
@@ -83,5 +84,22 @@ class SiteSettingController extends Controller
         $setting->save();
         $message = $id ? 'Site settings updated successfully!' : 'Site settings created successfully!';
         return redirect()->back()->with('success', $message);
+    }
+
+    public function deleteBanner($id)
+    {
+        // Find the site setting by ID
+        $setting = SiteSetting::findOrFail($id);
+
+        // Check if the banner exists and delete it
+        if ($setting->advisement_banner && File::exists(public_path($setting->advisement_banner))) {
+            File::delete(public_path($setting->advisement_banner)); // Delete the file
+        }
+
+        // Set the advisement_banner field to null
+        $setting->advisement_banner = null;
+        $setting->save();
+
+        return redirect()->back()->with('success', 'Advisement Banner deleted successfully.');
     }
 }
