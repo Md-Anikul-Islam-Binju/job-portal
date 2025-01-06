@@ -172,7 +172,7 @@ export default {
                     >
                         <span class="language" :class="{ active: locale === 'en' }">EN</span>
                         <div class="toggle" :class="{ active: locale === 'en' }"></div>
-                        <span class="language" :class="{ active: locale === 'bn' }">BN </span>
+                        <span class="language" :class="{ active: locale === 'bn' }">বাং </span>
                     </button>
                     <div class="d-block d-lg-none">
                         <button
