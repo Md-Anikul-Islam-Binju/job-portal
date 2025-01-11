@@ -108,49 +108,49 @@
                 <li class="side-nav-item">
                     <a href="{{route('user.dashboard')}}" class="side-nav-link">
                         <i class="ri-dashboard-3-line"></i>
-                        <span> Dashboard </span>
+                        <span> Dashboard / ড্যাশবোর্ড </span>
                     </a>
                 </li>
 
                 <li class="side-nav-item">
                     <a href="{{route('user.account.setting')}}" class="side-nav-link">
                         <i class="ri-dashboard-3-line"></i>
-                        <span> Account </span>
+                        <span> Profile / প্রোফাইল </span>
                     </a>
                 </li>
 
                 <li class="side-nav-item">
                     <a href="{{route('user.education.section')}}" class="side-nav-link">
                         <i class="ri-dashboard-3-line"></i>
-                        <span> Education </span>
+                        <span> Education / শিক্ষা</span>
                     </a>
                 </li>
 
                 <li class="side-nav-item">
                     <a href="{{route('user.experiences.section')}}" class="side-nav-link">
                         <i class="ri-dashboard-3-line"></i>
-                        <span> Experiences </span>
+                        <span> Experiences / অভিজ্ঞতা </span>
                     </a>
                 </li>
 
                 <li class="side-nav-item">
                     <a href="{{route('user.skill.section')}}" class="side-nav-link">
                         <i class="ri-dashboard-3-line"></i>
-                        <span> Skill </span>
+                        <span> Skill / দক্ষতা </span>
                     </a>
                 </li>
 
                 <li class="side-nav-item">
                     <a href="{{route('user.job.apply')}}" class="side-nav-link">
                         <i class="ri-dashboard-3-line"></i>
-                        <span> Applied Job </span>
+                        <span> Applied Job / চাকরি </span>
                     </a>
                 </li>
 
                 <li class="side-nav-item">
                     <a href="{{route('user.bangle.cv')}}" target="_blank" class="side-nav-link">
                         <i class="ri-dashboard-3-line"></i>
-                        <span> Bangle CV </span>
+                        <span> বাংলা সিভি </span>
                     </a>
                 </li>
 
@@ -165,7 +165,7 @@
                     <a href="{{route('home')}}" class="side-nav-link" target="_blank">
                         <i class="ri-dashboard-3-line"></i>
                         <span>
-                             <b style="color: red"> Our Site </b>
+                             <b style="color: red"> Our Site / সাইট </b>
                         </span>
 
                     </a>
