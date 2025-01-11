@@ -61,6 +61,12 @@
                     @endphp
                     <a class="nav-link dropdown-toggle arrow-none nav-user" data-bs-toggle="dropdown" href="#" role="button"
                        aria-haspopup="false" aria-expanded="false">
+                        @if($company->profile)
+                            <img src="{{asset('images/logo/'.$company->profile)}}" alt="User Avatar" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover;">
+                        @else
+                            <img src="{{asset('backend/images/userImg.png')}}" alt="User Avatar" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover;">
+                        @endif
+
                         <span class="d-lg-block d-none">
                               <h5 class="my-0 fw-normal">{{$company->name}}
                                   <i class="ri-arrow-down-s-line d-none d-sm-inline-block align-middle"></i>
