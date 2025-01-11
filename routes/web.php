@@ -122,6 +122,11 @@ Route::middleware('auth')->group(callback: function () {
         Route::get('/company-under-job-application/{id}', [CompanyController::class, 'companyUnderJobApplyCandidate'])->name('admin.company.under.job.application');
         Route::get('/company-under-job-application-delete/{id}', [CompanyController::class, 'companyUnderJobApplyCandidateDestroy'])->name('admin.company.under.job.application.delete');
 
+
+        Route::post('/company-under-job-store', [CompanyController::class, 'storeCompanyUnderPostedJob'])->name('admin.company.under.job.store');
+        Route::put('/company-under-job-update/{id}', [CompanyController::class, 'updateCompanyUnderPostedJob'])->name('admin.company.under.job.update');
+        Route::get('/company-under-job-delete/{id}', [CompanyController::class, 'destroyCompanyUnderPostedJob'])->name('admin.company.under.job.destroy');
+
         //Blog Section
         Route::get('/blog-section', [BlogController::class, 'index'])->name('admin.blog');
         Route::post('/blog-store', [BlogController::class, 'store'])->name('admin.blog.store');
