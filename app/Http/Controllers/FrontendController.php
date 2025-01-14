@@ -24,7 +24,7 @@ class FrontendController extends Controller
         $job = Job::with('company')->where('deadline', '>=', now()->toDateString())->latest()->limit(50)->get();
         $siteSetting = SiteSetting::latest()->first();
         $slider = Slider::latest()->get();
-        $company = User::where('role','=','company')->latest()->limit(10)->get();
+        $company = User::where('role','=','company')->latest()->limit(24)->get();
         $location = Location::latest()->get();
         $review = Review::latest()->limit(3)->get();
         $jobTotal = Job::where('deadline', '>=', now()->toDateString())->count();

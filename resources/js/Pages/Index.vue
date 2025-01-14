@@ -641,7 +641,7 @@ export default {
         <div class="container">
             <div class="trusted-company-content">
                 <h4> {{ locale === "en" ? "Trusted by Leading Companies" : "শীর্ষস্থানীয় কোম্পানিগুলির দ্বারা বিশ্বস্ত" }}</h4>
-                <div class="d-flex align-items-center justify-content-between">
+                <div class="company-logo-wrapper">
                     <div
                         v-for="companyData in company"
                         :key="companyData.id"
